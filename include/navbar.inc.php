@@ -36,13 +36,16 @@
                     <li class="nav-item">
                         <a href="include/login.inc.php" class="nav-link smoothScroll">Login</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="include/registreren.inc.php" class="nav-link smoothScroll">Registreren</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="include/test.inc.php" class="nav-link smoothScroll">DEV TEST</a>
+                    </li>
                 </ul>
 
-                <ul class="social-icon ml-lg-3">
-                    <li><a href="https://fb.com/tooplate" class="fa fa-facebook"></a></li>
-                    <li><a href="#" class="fa fa-twitter"></a></li>
-                    <li><a href="#" class="fa fa-instagram"></a></li>
-                </ul>
             </div>
 
         </div>

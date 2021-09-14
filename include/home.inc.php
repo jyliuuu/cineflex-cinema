@@ -53,30 +53,28 @@
             <div class="row">
 
                 <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
-                    <h2 class="mb-3 text-white" data-aos="fade-up">ben je nieuw bij Cineflex</h2>
+                    <h2 class="mb-3 text-white" data-aos="fade-up">Ben je nieuw bij Cineflex?</h2>
 
-                    <h6 class="mb-4 text-white" data-aos="fade-up">dit maakt opzich niet heel veel uit</h6>
+                    <h6 class="mb-4 text-white" data-aos="fade-up">Dit maakt opzicht niet heel veel uit.</h6>
 
-                    <p data-aos="fade-up" data-aos-delay="200"> Je hoeft geen account te maken als je wilt zien welke films deze week worden gedraaidt</p>
+                    <p data-aos="fade-up" data-aos-delay="200"> Je hoeft geen account te maken als je wilt zien welke films deze week worden gedraaid.<br><br>Indien je tickets wilt reserveren moet je wel een account aanmaken.   </p>
 
-                    <a href="#" class="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300" data-toggle="modal" data-target="#membershipForm">klik hier als je account wilt maken</a>
+                    <a href="include/registreren.inc.php" class="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300">klik hier als je account wilt maken</a>
                 </div>
 
                 <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
                      <div class="about-working-hours">
                           <div>
 
-                                <h2 class="mb-4 text-white" data-aos="fade-up" data-aos-delay="500">openingstijden</h2>
-
-
+                                <h2 class="mb-4 text-white" data-aos="fade-up" data-aos-delay="500">Openingstijden</h2>
 
                                <strong class="mt-3 d-block" data-aos="fade-up" data-aos-delay="700">maandag tot en met vrijdag</strong>
 
-                                <p data-aos="fade-up" data-aos-delay="800">8:00 AM - 2:00 AM</p>
+                                <p data-aos="fade-up" data-aos-delay="800">13:00 - 02:00</p>
 
                                 <strong class="mt-3 d-block" data-aos="fade-up" data-aos-delay="700"> weekend</strong>
 
-                                <p data-aos="fade-up" data-aos-delay="800">7:00 AM - 2:00 AM</p>
+                                <p data-aos="fade-up" data-aos-delay="800">13:00 - 02:00</p>
                                </div>
                           </div>
                      </div>
@@ -109,12 +107,12 @@
 
                                     <div class="team-info d-flex flex-column">
 
-                                        <h3>Huzaifa balaksi</h3>
+                                        <h3>Huzaifa Balaksi</h3>
                                         <span>Software Developer</span>
 
                                         <ul class="social-icon mt-3">
-                                            <li><a href="#" class="fa fa-twitter"></a></li>
-                                            <li><a href="#" class="fa fa-instagram"></a></li>
+                                            <li><a href="https://www.instagram.com" class="fa fa-twitter"></a></li>
+                                            <li><a href="https://www.instagram.com" class="fa fa-instagram"></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -162,9 +160,9 @@
                     <div class="row">
 
                             <div class="col-lg-12 col-12 text-center mb-5">
-                                <h6 data-aos="fade-up">2021 films</h6>
+                                <h6 data-aos="fade-up">Film Spotlight</h6>
 
-                                <h2 data-aos="fade-up" data-aos-delay="200">beste trending films</h2>
+                                <h2 data-aos="fade-up" class="text-white" data-aos-delay="200">beste trending films</h2>
                              </div>
 
                             <div class="col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="400">
@@ -217,140 +215,18 @@
                     </div>
                </div>
      </section>
-
-
-     <!-- SCHEDULE -->
-     <section class="schedule section" id="schedule">
-               <div class="container">
-                    <div class="row">
-
-                            <div class="col-lg-12 col-12 text-center">
-                                <h6 data-aos="fade-up">Planning</h6>
-
-                                <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Kijk Wat Er Speelt.</h2>
-                             </div>
-
-                             <div class="col-lg-12 py-5 col-md-12 col-12">
-                                 <table class="table table-bordered table-responsive schedule-table" data-aos="fade-up" data-aos-delay="300">
-
-                                     <thead class="thead-light">
-                                         <th>Titel</i></th>
-                                         <th>Vandaag</th>
-                                         <th>Morgen</th>
-                                         <th>Donderdag</th>
-                                         <th>Vrijdag</th>
-                                         <th>Zaterdag</th>
-                                         <th>Zondag</th>
-                                         <th>Maandag</th>
-                                     </thead>
-
-                                     <tbody>
-                                        <tr>
-                                            <!-- 1 td is een film blok in de planning -->
-                                            <td><small>FILM 1</small></td>
-                                            <td>
-                                                <strong>ZAAL NUMMER</strong>
-                                                <span>BEGIN_TIJD + EIND_TIJD</span>
-                                            </td>
-                                            <td>
-                                                <strong>ZAAL NUMMER</strong>
-                                                <span>BEGIN_TIJD + EIND_TIJD</span>
-                                            </td>
-                                            <td>
-                                            </td>
-                                            <td>
-                                            </td>
-                                            <td>
-                                            </td>
-                                            <td>
-                                            </td>
-                                            <td>
-                                            </td>
-                                         </tr>
-                                         <tr> 
-                                             <!-- elk td is een nieuwe film. -->
-                                            <td><small>FILM 2</small></td>
-                                            <td>
-                                                <strong>ZAAL NUMMER</strong>
-                                                <span>BEGIN_TIJD + EIND_TIJD</span>
-                                            </td>
-                                            <td>
-                                                <strong>ZAAL NUMMER</strong>
-                                                <span>BEGIN_TIJD + EIND_TIJD</span>
-                                            </td>
-                                            <td> 
-                                                <!-- geen film in planning    -->
-                                            </td>
-                                            <td>
-                                                <strong>ZAAL NUMMER</strong>
-                                                <span>BEGIN_TIJD + EIND_TIJD</span>
-                                            </td>
-                                            <td>
-                                            </td>
-                                            <td>
-                                            </td>
-                                            <td>
-                                            </td>
-                                         </tr>
-                                         <tr>
-                                            <td><small>FILM 3</small></td>
-                                            <?php 
-                                            for ($i = 0; $i <= 6; $i++ ) { ?>
-                                                <td>
-                                                    <br>
-                                                </td>          
-                                            <?php } ?> 
-                                         </tr>
-                                         <tr>
-                                            <td><small>FILM 4</small></td>
-                                            <?php 
-                                            for ($i = 0; $i <= 6; $i++ ) { ?>
-                                                <td>
-                                                    <br>
-                                                </td>          
-                                            <?php } ?> 
-                                         </tr>
-                                         <tr>
-                                            <td><small>FILM 5</small></td>
-                                            <?php 
-                                            for ($i = 0; $i <= 6; $i++ ) { ?>
-                                                <td>
-                                                    <br>
-                                                </td>          
-                                            <?php } ?> 
-                                         </tr>
-                                     </tbody>
-                                 </table>
-                             </div>
-
-                    </div>
-               </div>
-     </section>
-
-
+<?php
+    include 'include/planning.inc.php';
+?>
      <!-- CONTACT -->
      <section class="contact section" id="contact">
           <div class="container">
                <div class="row">
 
-                    <div class="ml-auto col-lg-5 col-md-6 col-12">
-                        <h2 class="mb-4 pb-2" data-aos="fade-up" data-aos-delay="200">Onze klantenservice</h2>
-
-                        <form action="#" method="post" class="contact-form webform" data-aos="fade-up" data-aos-delay="400" role="form">
-                            <input type="text" class="form-control" name="cf-name" placeholder="Name">
-
-                            <input type="email" class="form-control" name="cf-email" placeholder="Email">
-
-                            <textarea class="form-control" rows="5" name="cf-message" placeholder="Message"></textarea>
-
-                            <button type="submit" class="form-control" id="submit-button" name="submit"> verzenden</button>
-                        </form>
-                    </div>
-
                     <div class="mx-auto mt-4 mt-lg-0 mt-md-0 col-lg-5 col-md-6 col-12">
-                        <h2 class="mb-4" data-aos="fade-up" data-aos-delay="600">Waar kan je ons vinden</h2>
+                        <h2 class="mb-4 text-white" data-aos="fade-up" data-aos-delay="600">Waar kan je ons vinden</h2>
 
-                        <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i> 120-240 Rio de Janeiro - State of Rio de Janeiro, Brazil</p>
+                        <p data-aos="fade-up" class="text-white" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i> Zijpendaalseweg 167 - Arnhem, Nederland</p>
 <!-- How to change your own map point
 	1. Go to Google Maps
 	2. Click on your location point
@@ -372,64 +248,24 @@
           <div class="container">
                <div class="row">
 
-                    <div class="ml-auto col-lg-4 col-md-5">
-                        <p class="copyright-text">Copyright &copy; 2020 Cineflex.
-                        
-                        <br>Design: <a href="https://www.tooplate.com">Made by Huzaifa balaksi</a></p>
+                    <div class="ml-auto col-lg-7 col-md-7">
+                        <p class="text-white copyright-text">Copyright &copy; 2021 Cineflex.
+                        <br><br>     
+                        Front-end: <a href="https://www.rijnijssel.nl" class="text-white">made by Huzaifa Balaksi, Jacky Liu, Dion Muller</a>
+                        <br> Back-end: <a href="https://www.rijnijssel.nl" class="text-white">made by Huzaifa Balaksi, Jacky Liu, Dion Muller</a></p>
                     </div>
 
-                    <div class="d-flex justify-content-center mx-auto col-lg-5 col-md-7 col-12">
-                        <p class="mr-4">
+                    <div class="d-flex justify-content-center mx-auto col-lg-5 col-md-7 col-8">
+                        <p class="mr-2">
                             <i class="fa fa-envelope-o mr-1"></i>
-                            <a href="#">balaksihozefa@gmail.com</a>
-                        </p>
-
-                        <p><i class="fa fa-phone mr-1"></i> 0681822526</p>
+                            <a class="text-white" href="#">E: cineflexsupport@gmail.com</a>
+                        </p>           
+                        <p class="text-white">T: 0681822526</p>
                     </div>
                     
                </div>
           </div>
      </footer>
-
-    <!-- Modal -->
-    <div class="modal fade" id="membershipForm" tabindex="-1" role="dialog" aria-labelledby="membershipFormLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-
-        <div class="modal-content">
-          <div class="modal-header">
-
-            <h2 class="modal-title" id="membershipFormLabel">Membership Form</h2>
-
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-
-          <div class="modal-body">
-            <form class="membership-form webform" role="form">
-                <input type="text" class="form-control" name="cf-name" placeholder="John Doe">
-
-                <input type="email" class="form-control" name="cf-email" placeholder="Johndoe@gmail.com">
-
-                <input type="tel" class="form-control" name="cf-phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-
-                <textarea class="form-control" rows="3" name="cf-message" placeholder="Additional Message"></textarea>
-
-                <button type="submit" class="form-control" id="submit-button" name="submit">Submit Button</button>
-
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="signup-agree">
-                    <label class="custom-control-label text-small text-muted" for="signup-agree">I agree to the <a href="#">Terms &amp;Conditions</a>
-                    </label>
-                </div>
-            </form>
-          </div>
-
-          <div class="modal-footer"></div>
-
-        </div>
-      </div>
-    </div>
 
      <!-- SCRIPTS -->
      <script src="js/jquery.min.js"></script>

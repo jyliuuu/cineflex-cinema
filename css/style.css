@@ -5,6 +5,17 @@ Tooplate 2119 Gymso Fitness
 https://www.tooplate.com/view/2119-gymso-fitness
 
 */
+.maxform {
+  max-height: 800px;
+}
+
+.planning {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px auto;
+  float: none;
+}
+
 .empty {
   min-height: 400px;
 }
@@ -204,9 +215,9 @@ https://www.tooplate.com/view/2119-gymso-fitness
     transition: all 0.3s ease;
   }
 
-  a:hover, 
-  a:active, 
-  a:focus {
+  a, button :hover, 
+  a, button :active, 
+  a, button :focus {
     color: var(--primary-color);
     outline: none;
     text-decoration: none;
@@ -243,7 +254,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
     padding: 0;
   }
 
-  .membership-form a {
+  .membership-form a, button {
     color: var(--primary-color);
   }
 
@@ -935,7 +946,7 @@ body {
   font-size: 12px;
 }
 
-.login-box form a {
+.login-box form button {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
@@ -959,12 +970,12 @@ body {
   0 0 100px #03e9f4;
 }
 
-.login-box a span {
+.login-box button span {
   position: absolute;
   display: block;
 }
 
-.login-box a span:nth-child(1) {
+.login-box button span:nth-child(1) {
   top: 0;
   left: -100%;
   width: 100%;
@@ -982,7 +993,7 @@ body {
   }
 }
 
-.login-box a span:nth-child(2) {
+.login-box button span:nth-child(2) {
   top: -100%;
   right: 0;
   width: 2px;
@@ -1001,7 +1012,7 @@ body {
   }
 }
 
-.login-box a span:nth-child(3) {
+.login-box button span:nth-child(3) {
   bottom: 0;
   right: -100%;
   width: 100%;
@@ -1020,7 +1031,7 @@ body {
   }
 }
 
-.login-box a span:nth-child(4) {
+.login-box button span:nth-child(4) {
   bottom: -100%;
   left: 0;
   width: 2px;
