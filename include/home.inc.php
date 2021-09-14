@@ -17,9 +17,6 @@
 
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="css/style.css">
-<!--
-
--->
 </head>
      <!-- HERO -->
      <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">

@@ -11,12 +11,16 @@ if (isset($_GET['page'])) {
     $page = 'home';
 }
 ?>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/aos.css">
+
+<!-- MAIN CSS -->
+<link rel="stylesheet" href="css/style.css">
 
 <body>
 
-<?php include 'include/navbar.inc.php'; ?>
-
-<?php include 'include/home.inc.php'; ?>
+<?php require 'include/navbar.inc.php'; ?>
 
 <?php include "include/" . $page . ".inc.php"; ?>
 

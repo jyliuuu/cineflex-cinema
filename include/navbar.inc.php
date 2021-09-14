@@ -13,9 +13,6 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-lg-auto">
-                    <li class="nav-item">
-                        <a href="#home" class="nav-link smoothScroll">Thuis</a>
-                    </li>
 
                     <li class="nav-item">
                         <a href="#about" class="nav-link smoothScroll">Over Ons</a>
@@ -34,7 +31,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="include/login.inc.php" class="nav-link smoothScroll">Login</a>
+                        <a class="nav-link" href="index.php?page=login">Login</a>
                     </li>
 
                     <li class="nav-item">
