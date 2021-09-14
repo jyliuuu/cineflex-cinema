@@ -32,5 +32,5 @@ $smt->execute(array(
 ));
 $_SESSION['newuser'] = 'CineFlex verwelkomt u bij uw nieuwe account!';
 
-header('location: ../index.php?page=welkom');
+header('location: ../index.php?page=home');
 ?>

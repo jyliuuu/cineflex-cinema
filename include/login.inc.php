@@ -1,5 +1,11 @@
 <link rel="stylesheet" href="../css/style.css">
 <div class="login-box">
+    <?php 
+    if (isset($_SESSION['newuser'])) {
+        echo $_SESSION['newuser'];
+        session_unset();
+    }
+    ?>
     <h2>Login</h2>
     <form action="../php/login.php">
         <div class="user-box">
