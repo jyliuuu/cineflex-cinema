@@ -8,32 +8,17 @@ if (isset($_GET['page'])) {
         $page = $_GET['page'];
     }
 } else {
-    $page = 'login';
+    $page = 'home';
 }
 ?>
 
-<!doctype html>
-<link rel="stylesheet" href="style.css">
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>Hello, world!</title>
-</head>
+
 <body>
 
-<?php /*include 'include/header.inc.php'; */?><!--
+<?php include 'include/navbar.inc.php'; ?>
 
-<?php /*include 'include/navbar.inc.php'; */?>
-
---><?php /*include "include/" . $page . ".inc.php"; */?>
+<?php include "include/" . $page . ".inc.php"; ?>
 
 
 
