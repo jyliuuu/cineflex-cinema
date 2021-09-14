@@ -5,6 +5,11 @@ Tooplate 2119 Gymso Fitness
 https://www.tooplate.com/view/2119-gymso-fitness
 
 */
+.empty {
+  min-height: 400px;
+}
+
+
 
   @font-face {
       font-family: 'Plain';

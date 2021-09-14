@@ -14,19 +14,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-lg-auto">
                     <li class="nav-item">
-                        <a href="#home" class="nav-link smoothScroll">Home</a>
+                        <a href="#home" class="nav-link smoothScroll">Thuis</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="#about" class="nav-link smoothScroll">About Us</a>
+                        <a href="#about" class="nav-link smoothScroll">Over Ons</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="#class" class="nav-link smoothScroll">film schema</a>
+                        <a href="#class" class="nav-link smoothScroll">Film Spotlight</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="#schedule" class="nav-link smoothScroll">vacatures </a>
+                        <a href="#schedule" class="nav-link smoothScroll">Film Planning </a>
                     </li>
 
                     <li class="nav-item">
@@ -34,7 +34,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="include/login.inc.php" class="nav-link smoothScroll">login</a>
+                        <a href="include/login.inc.php" class="nav-link smoothScroll">Login</a>
                     </li>
                 </ul>
 

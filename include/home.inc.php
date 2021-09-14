@@ -92,18 +92,20 @@
                <div class="container">
                     <div class="row">
 
-                            <div class="mt-lg-5 mb-lg-0 mb-4 col-lg-5 col-md-10 mx-auto col-12">
-                                <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300">Hello, wij zijn Cineflex team</h2>
+                            <div class="mt-lg-5 mb-lg-0 mb-4 col-lg-12 col-md-12 mx-auto col-12">
+                                <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300">Hallo, wij zijn Cineflex team</h2>
 
                                 <p data-aos="fade-up" data-aos-delay="400">Cineflex heeft een uitgebreide catalogus van speelfilms, documentaires, series, anime, bekroonde Netflix Originals en meer. Kijk zoveel je wilt en wanneer je wilt.</p>
 
                                 <p data-aos="fade-up" data-aos-delay="500">Je kijkt zo veel je wilt, wanneer je wilt, zonder enige vorm van reclame. En dit allemaal voor één lage prijs per maand. Er valt altijd iets nieuws te ontdekken en elke week worden er nieuwe series en films toegevoegd!</p>
 
                             </div>
-
+                            <div class="empty">
+                                <br>
+                            </div>
                             <div class="ml-lg-auto col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="700">
                                 <div class="team-thumb">
-                                    <img src="images/team/team-image.jpg" class="img-fluid" alt="Trainer">
+                                    <img src="images/team/team-image.jpg" class="img-fluid" alt="Trainer" style="max-height: 270px">
 
                                     <div class="team-info d-flex flex-column">
 
@@ -117,10 +119,9 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="mr-lg-auto mt-5 mt-lg-0 mt-md-0 col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="800">
                                 <div class="team-thumb">
-                                    <img src="images/team/team-image01.jpg" class="img-fluid" alt="Trainer">
+                                    <img src="images/team/jacky.jpg" class="img-fluid" alt="Trainer" style="max-height: 270px">
 
                                     <div class="team-info d-flex flex-column">
 
@@ -134,7 +135,22 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="mr-lg-auto mt-5 mt-lg-0 mt-md-0 col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="800">
+                                <div class="team-thumb">
+                                    <img src="images/team/dion.jpg" class="img-fluid" alt="Trainer" style="max-height: 270px">
 
+                                    <div class="team-info d-flex flex-column">
+
+                                        <h3>Dion Muller</h3>
+                                        <span>Software Developer</span>
+
+                                        <ul class="social-icon mt-3">
+                                            <li><a href="#" class="fa fa-instagram"></a></li>
+                                            <li><a href="#" class="fa fa-facebook"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                </div>
      </section>
@@ -153,7 +169,7 @@
 
                             <div class="col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="400">
                                 <div class="class-thumb">
-                                    <img src="images/class/you.jpg" class="img-fluid" alt="Class">
+                                    <img src="images/class/you.jpg" class="img-fluid" alt="Class" style="min-height:450px">
 
                                     <div class="class-info">
                                         <h3 class="mb-1">You</h3>
@@ -169,7 +185,7 @@
 
                             <div class="mt-5 mt-lg-0 mt-md-0 col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="500">
                                 <div class="class-thumb">
-                                    <img src="images/class/fury.jpg" class="img-fluid" alt="Class">
+                                    <img src="images/class/fury.jpg" class="img-fluid" alt="Class" style="min-height:450px">
 
                                     <div class="class-info">
                                         <h3 class="mb-1">Fury</h3>
@@ -185,7 +201,7 @@
 
                             <div class="mt-5 mt-lg-0 col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="600">
                                 <div class="class-thumb">
-                                    <img src="images/class/bird.jpg" class="img-fluid" alt="Class">
+                                    <img src="images/class/bird.jpg" class="img-fluid" alt="Class" style="min-height:450px">
 
                                     <div class="class-info">
                                         <h3 class="mb-1">Bird Box</h3>
@@ -209,100 +225,99 @@
                     <div class="row">
 
                             <div class="col-lg-12 col-12 text-center">
-                                <h6 data-aos="fade-up">our weekly GYM schedules</h6>
+                                <h6 data-aos="fade-up">Planning</h6>
 
-                                <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Workout Timetable</h2>
+                                <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Kijk Wat Er Speelt.</h2>
                              </div>
 
                              <div class="col-lg-12 py-5 col-md-12 col-12">
                                  <table class="table table-bordered table-responsive schedule-table" data-aos="fade-up" data-aos-delay="300">
 
                                      <thead class="thead-light">
-                                         <th><i class="fa fa-calendar"></i></th>
-                                         <th>Man</th>
-                                         <th>Din</th>
-                                         <th>Woe</th>
-                                         <th>don</th>
-                                         <th>Vri</th>
-                                         <th>Zat</th>
+                                         <th>Titel</i></th>
+                                         <th>Vandaag</th>
+                                         <th>Morgen</th>
+                                         <th>Donderdag</th>
+                                         <th>Vrijdag</th>
+                                         <th>Zaterdag</th>
+                                         <th>Zondag</th>
+                                         <th>Maandag</th>
                                      </thead>
 
                                      <tbody>
-                                         <tr>
-                                            <td><small>7:00 am</small></td>
+                                        <tr>
+                                            <!-- 1 td is een film blok in de planning -->
+                                            <td><small>FILM 1</small></td>
                                             <td>
-                                                <strong>Cardio</strong>
-                                                <span>7:00 am - 9:00 am</span>
+                                                <strong>ZAAL NUMMER</strong>
+                                                <span>BEGIN_TIJD + EIND_TIJD</span>
                                             </td>
                                             <td>
-                                                <strong>Power Fitness</strong>
-                                                <span>7:00 am - 9:00 am</span>
-                                            </td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
-                                                <strong>Yoga Section</strong>
-                                                <span>7:00 am - 9:00 am</span>
-                                            </td>
-                                         </tr>
-
-                                         <tr>
-                                            <td><small>9:00 am</small></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
-                                                <strong>Boxing</strong>
-                                                <span>8:00 am - 9:00 am</span>
+                                                <strong>ZAAL NUMMER</strong>
+                                                <span>BEGIN_TIJD + EIND_TIJD</span>
                                             </td>
                                             <td>
-                                                <strong>Areobic</strong>
-                                                <span>8:00 am - 9:00 am</span>
                                             </td>
-                                            <td></td>
                                             <td>
-                                                <strong>Cardio</strong>
-                                                <span>8:00 am - 9:00 am</span>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td>
                                             </td>
                                          </tr>
-
-                                         <tr>
-                                            <td><small>11:00 am</small></td>
-                                            <td></td>
+                                         <tr> 
+                                             <!-- elk td is een nieuwe film. -->
+                                            <td><small>FILM 2</small></td>
                                             <td>
-                                                <strong>Boxing</strong>
-                                                <span>11:00 am - 2:00 pm</span>
+                                                <strong>ZAAL NUMMER</strong>
+                                                <span>BEGIN_TIJD + EIND_TIJD</span>
                                             </td>
                                             <td>
-                                                <strong>Areobic</strong>
-                                                <span>11:30 am - 3:30 pm</span>
+                                                <strong>ZAAL NUMMER</strong>
+                                                <span>BEGIN_TIJD + EIND_TIJD</span>
                                             </td>
-                                            <td></td>
+                                            <td> 
+                                                <!-- geen film in planning    -->
+                                            </td>
                                             <td>
-                                                <strong>Body work</strong>
-                                                <span>11:50 am - 5:20 pm</span>
+                                                <strong>ZAAL NUMMER</strong>
+                                                <span>BEGIN_TIJD + EIND_TIJD</span>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td>
                                             </td>
                                          </tr>
-
                                          <tr>
-                                            <td><small>2:00 pm</small></td>
-                                            <td>
-                                                <strong>Boxing</strong>
-                                                <span>2:00 pm - 4:00 pm</span>
-                                            </td>
-                                            <td>
-                                                <strong>Power lifting</strong>
-                                                <span>3:00 pm - 6:00 pm</span>
-                                            </td>
-                                            <td></td>
-                                            <td>
-                                                <strong>Cardio</strong>
-                                                <span>6:00 pm - 9:00 pm</span>
-                                            </td>
-                                            <td></td>
-                                            <td>
-                                                <strong>Crossfit</strong>
-                                                <span>5:00 pm - 7:00 pm</span>
-                                            </td>
+                                            <td><small>FILM 3</small></td>
+                                            <?php 
+                                            for ($i = 0; $i <= 6; $i++ ) { ?>
+                                                <td>
+                                                    <br>
+                                                </td>          
+                                            <?php } ?> 
+                                         </tr>
+                                         <tr>
+                                            <td><small>FILM 4</small></td>
+                                            <?php 
+                                            for ($i = 0; $i <= 6; $i++ ) { ?>
+                                                <td>
+                                                    <br>
+                                                </td>          
+                                            <?php } ?> 
+                                         </tr>
+                                         <tr>
+                                            <td><small>FILM 5</small></td>
+                                            <?php 
+                                            for ($i = 0; $i <= 6; $i++ ) { ?>
+                                                <td>
+                                                    <br>
+                                                </td>          
+                                            <?php } ?> 
                                          </tr>
                                      </tbody>
                                  </table>
