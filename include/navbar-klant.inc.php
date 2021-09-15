@@ -1,27 +1,3 @@
-<body data-spy="scroll" data-target="#navbarNav" data-offset="50">
-
-<?php 
-echo "<pre>", print_r($_SESSION), "</pre>";
-
-    if ($_SESSION['page'] == "login") { ?>
-    <nav class="navbar navbar-expand-lg fixed-top">
-    <div class="container">
-
-            <a class="navbar-brand text-danger" href="index.php"> Cineflex</a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-lg-auto">
-
-                </ul>
-            </div>
-        </div>
-    </nav>
-<?php } else { ?>
     <!-- MENU BAR -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
@@ -67,8 +43,3 @@ echo "<pre>", print_r($_SESSION), "</pre>";
             </div>
         </div>
     </nav>
-<?php
-    }
-
-
-?>
