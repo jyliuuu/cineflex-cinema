@@ -23,8 +23,18 @@ if (isset($_GET['page'])) {
 
     <?php 
         include "include/" . $page . ".inc.php"; 
+        
+        if ($_SESSION['rol'] == 3) {
+            include 'include/navbar2.inc.php'; //CREATE
+        } else if ($_SESSION['rol'] == 2) {
+            include 'include/navbar2.inc.php';
+        } else if ($_SESSION['rol'] == 1) {
+            include 'include/navbar2.inc.php';
+        } else {
+            include 'include/navbar.inc.php';
+        }
 
-        include 'include/navbar.inc.php';
+
     ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"

@@ -30,11 +30,11 @@
             <div class="col-lg-8 col-md-10 mx-auto col-12">
                 <div class="hero-text mt-5 text-center">
                     <?php
-                                     if (isset($_SESSION['newuser'])) {
-                                        ?> <h6 data-aos="fade-up" data-aos-delay="300"> <?php $_SESSION['newuser'];
-                                        session_unset();
-                                        }
-                                        ?>
+                        if (isset($_SESSION['newuser'])) {
+                        ?> <h6 data-aos="fade-up" data-aos-delay="300"> <?php $_SESSION['newuser'];
+                        session_unset();
+                        }
+                        ?>
                         <h6 data-aos="fade-up" data-aos-delay="300">Beste plek waar je kan genieten</h6>
 
                         <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">Onbeperkt series, films en meer
