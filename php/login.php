@@ -13,10 +13,12 @@ $rs = $sth->fetch(PDO::FETCH_ASSOC);
 if (password_verify ($_POST['wachtwoord'], $rs['wachtwoord'])) {
     $_SESSION['klantid'] = $rs['klant_id'];
     $_SESSION['voornaam'] = $rs['voornaam'];
-    // header('location: ../index.php?page=welkom');
+
+     header('location: ../index.php?page=welkom');
     echo "<pre>", print_r($_POST), "</pre>";
 } else {
     $_SESSION['melding'] = 'U heeft incorrecte kredieten ingevuld.';  
-    // header('location: ../index.php?page=login');
+    header('location: ../index.php?page=login');
     echo "<pre>", print_r($_POST), "</pre>";
 }
+
