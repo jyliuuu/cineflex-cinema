@@ -2,31 +2,13 @@
 session_start();
 require "../private/connectioncineflex.php";
 
-<<<<<<< HEAD
-$sql = 'SELECT klant_id, voornaam, email, wachtwoord FROM klanten WHERE email = :email';
-
-=======
 $sql = 'SELECT medewerker_id, email, wachtwoord, voornaam, rol
         FROM medewerkers
         WHERE email = :email';
->>>>>>> 098eaba4754dd47f620a28bc54bb67b09c0670ba
 $sth = $conn->prepare($sql);
 $sth->execute(array(    
     ':email'=> $_POST['email']
 ));
-<<<<<<< HEAD
-$rs = $sth->fetch(PDO::FETCH_ASSOC);
-
-if (password_verify ($_POST['wachtwoord'], $rs['wachtwoord'])) {
-    $_SESSION['klantid'] = $rs['klant_id'];
-    $_SESSION['voornaam'] = $rs['voornaam'];
-    // header('location: ../index.php?page=welkom');
-    echo "<pre>", print_r($_POST), "</pre>";
-} else {
-    $_SESSION['melding'] = 'U heeft incorrecte kredieten ingevuld.';  
-    // header('location: ../index.php?page=login');
-    echo "<pre>", print_r($_POST), "</pre>";
-=======
 
 $sql2 = 'SELECT klant_id, email, wachtwoord, voornaam, leeftijd, rol
         FROM klanten
@@ -67,5 +49,4 @@ if ($_POST['wachtwoord'] == $row['wachtwoord'] OR $_POST['wachtwoord'] == $row2[
     $_SESSION['melding'] = 'U heeft incorrecte kredieten ingevuld.';  
     echo "<pre>", print_r($_POST), "</pre>";
     header('location: ../index.php?page=login');
->>>>>>> 098eaba4754dd47f620a28bc54bb67b09c0670ba
 }
