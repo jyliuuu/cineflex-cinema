@@ -2,38 +2,51 @@
 session_start();
 require "../private/connectioncineflex.php";
 
-$sql = 'SELECT klant_id, voornaam, email, wachtwoord, rol
-        FROM klanten
+$sql = 'SELECT medewerker_id, email, wachtwoord, voornaam, rol
+        FROM medewerkers
         WHERE email = :email';
 $sth = $conn->prepare($sql);
 $sth->execute(array(    
     ':email'=> $_POST['email']
 ));
-$row = $sth->fetch(PDO::FETCH_ASSOC);
 
-$sql2 = 'SELECT medewerker_id, voornaam, email, wachtwoord, rol
-        FROM medewerkers
-        WHERE email = :email'; 
+$sql2 = 'SELECT klant_id, email, wachtwoord, voornaam, leeftijd, rol
+        FROM klanten
+        WHERE email = :email';
 $sth2 = $conn->prepare($sql2);
 $sth2->execute(array(    
     ':email'=> $_POST['email']
 ));
-$row2 = $sth2->fetch(PDO::FETCH_ASSOC);
 
-    echo "<pre>", print_r($row2), "</pre>";
+$row = $sth->fetch(PDO::FETCH_ASSOC); //STAFF LOGIN . 2 = STAFF . 3 = MANAGER
+$row2 = $sth2->fetch(PDO::FETCH_ASSOC); //KLANT LOGIN 
 
-if (isset($_POST['wachtwoord'])) {
-    if ($_POST['wachtwoord'] == $row['wachtwoord']) {
-        $_SESSION['klantid'] = $row['klant_id'];
-        $_SESSION['voornaam'] = $row['voornaam'];
-        echo "<pre>", print_r($_SESSION), "</pre>";
-        // header('location: ../index.php?page=welkom');
+echo "<pre>", print_r($row['rol']), "</pre>";
+
+if ($_POST['wachtwoord'] == $row['wachtwoord'] OR $_POST['wachtwoord'] == $row2['wachtwoord']) {
+    if (!empty($row)) {
+        if ($row['rol'] > 1) {
+            $_SESSION['rol'] = $row['rol'];
+            $_SESSION['id'] = $row['medewerker_id'];
+            $_SESSION['voornaam'] = $row['voornaam'];
+            echo "staff";
+            header('location: ../index.php?page=welkom');
+        } else if ($row['rol'] < 2) {
+            $_SESSION['rol'] = $row['rol'];
+            $_SESSION['id'] = $row['medewerker_id'];
+            $_SESSION['voornaam'] = $row['voornaam'];
+            echo "manager";
+            header('location: ../index.php?page=welkom');
+        }
     } else {
-        $_SESSION['melding'] = 'U heeft incorrecte kredieten ingevuld.';  
-        echo "<pre>", print_r($_POST), "</pre>";
-        echo "<pre>", print_r($row['wachtwoord']), "</pre>";
-        // header('location: ../index.php?page=login');
+        $_SESSION['id'] = $row2['klant_id'];
+        $_SESSION['rol'] = $row2['rol'];
+        $_SESSION['voornaam'] = $row2['voornaam'];
+        echo "klant";
+        header('location: ../index.php?page=welkom');
     }
 } else {
-    $_SESSION['melding'] = 'Kan doorgestuurde wachtwoord niet vinden, probeer opnieuw.';
+    $_SESSION['melding'] = 'U heeft incorrecte kredieten ingevuld.';  
+    echo "<pre>", print_r($_POST), "</pre>";
+    header('location: ../index.php?page=login');
 }
