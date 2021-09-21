@@ -30,6 +30,7 @@
             <div class="col-lg-8 col-md-10 mx-auto col-12">
                 <div class="hero-text mt-5 text-center">
                     <?php
+                        unset($_SESSION['page']);
                         if (isset($_SESSION['newuser'])) {
                         ?> <h6 data-aos="fade-up" data-aos-delay="300"> <?php $_SESSION['newuser'];
                         session_unset();

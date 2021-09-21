@@ -21,7 +21,7 @@ $tomorrow2 = date("l m-d", strtotime('+2 day')); // OK
 $tomorrow3 = date("l m-d", strtotime('+3 day')); // OK
 $tomorrow4 = date("l m-d", strtotime('+4 day')); // OK
 $tomorrow5 = date("l m-d", strtotime('+5 day')); // OK
-$tomorrow6 = date("l m-d", strtotime('-1 day')); // OK
+$tomorrow6 = date("l m-d", strtotime('+6 day')); // OK
 ?>
                     <th>Today <?= $today ?></th>
                     <th>Tomorrow <?= $tomorrow ?></th>

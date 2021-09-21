@@ -35,7 +35,7 @@ echo "<pre>", print_r($_SESSION), "</pre>";
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-lg-auto">
-
+                    
                     <li class="nav-item">
                         <a href="#about" class="nav-link smoothScroll text-danger">Over Ons</a>
                     </li>

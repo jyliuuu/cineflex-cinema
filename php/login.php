@@ -30,20 +30,20 @@ if ($_POST['wachtwoord'] == $row['wachtwoord'] OR $_POST['wachtwoord'] == $row2[
             $_SESSION['id'] = $row['medewerker_id'];
             $_SESSION['voornaam'] = $row['voornaam'];
             echo "staff";
-            header('location: ../index.php?page=welkom');
+            header('location: ../index.php?page=groet');
         } else if ($row['rol'] < 2) {
             $_SESSION['rol'] = $row['rol'];
             $_SESSION['id'] = $row['medewerker_id'];
             $_SESSION['voornaam'] = $row['voornaam'];
             echo "manager";
-            header('location: ../index.php?page=welkom');
+            header('location: ../index.php?page=groet');
         }
     } else {
         $_SESSION['id'] = $row2['klant_id'];
         $_SESSION['rol'] = $row2['rol'];
         $_SESSION['voornaam'] = $row2['voornaam'];
         echo "klant";
-        header('location: ../index.php?page=welkom');
+        header('location: ../index.php?page=groet');
     }
 } else {
     $_SESSION['melding'] = 'U heeft incorrecte kredieten ingevuld.';  
