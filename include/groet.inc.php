@@ -45,7 +45,7 @@ unset($_SESSION['page']);
                     <?php
                     } else { ?>
                         <h6 data-aos="fade-up" data-aos-delay="600">Filmpje Pakken?</h6>
-                        <a href="#spotlight" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">Nu Kijken</a>
+                        <a href="" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">Nu Kijken</a>
 
                         <a href="#schedule" class="btn custom-btn bordered mt-3" data-aos="fade-up"
                         data-aos-delay="700">Zie Planning</a> <?php
