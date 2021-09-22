@@ -4,9 +4,12 @@ $sql = "SELECT * FROM films ";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 
-$sql2 = "SELECT * FROM kijkwijzers";
+$sql2 = "SELECT * FROM kijkwijzers WHERE active  = 0"; // is voor leeftijden
 $stmt2 = $conn->prepare($sql2);
 $stmt2->execute();
+$sql3 = "SELECT * FROM kijkwijzers WHERE active  = 1";
+$stmt3 = $conn->prepare($sql3);
+$stmt3->execute();
 
 ?>
 
@@ -42,28 +45,23 @@ $stmt2->execute();
                 <li class="dropdown-item" value="">18+ </li>
             </ul>
         </div>-->
-        <div class="user-box">
-            <select name="kijkwijzers" id="cars">
-                <option value="">discriminatie</option>
-                <option value="">angst</option>
-                <option value="">drugs</option>
-                <option value="">geweld</option>
-                <option value="">grof taalgebruik</option>
-                <option value="">seks</option>
-            </select>
-        </div>
-<br>
-        <div class="user-box">
-            <select name="leeftijden" id="cars">
-                <option value="">AL+</option>
-                <option value="">6</option>
-                <option value="">9</option>
-                <option value="">12</option>
-                <option value="">14</option>
-                <option value="">16</option>
-                <option value="">18</option>
-            </select>
-        </div>
+
+
+        <select multiple class="form-control"  style="height: 50%"
+                name="leeftijd" id="leeftijd">
+
+            <?php while ($r = $stmt2->fetch(PDO::FETCH_ASSOC)) { ?>
+                <option value="<?= $r['naam'] ?>"><?= $r['naam'] ?></option>
+            <?php } ?>
+        </select>
+        <select multiple class="form-control" style="height: 50%"
+                name="teams[]" id="teams">
+
+            <?php while ($r = $stmt3->fetch(PDO::FETCH_ASSOC)) { ?>
+                <option value="<?= $r['kijkwijzer_id'] ?>"><?= $r['naam'] ?></option>
+            <?php } ?>
+        </select>
+
 
 
 
