@@ -2,7 +2,6 @@
 <html lang="en">
 <?php 
 require "private/connectioncineflex.php"; 
-session_start();
 ?>
 
 <head>
@@ -34,7 +33,7 @@ session_start();
                 <div class="hero-text mt-5 text-center">
                         <h6 data-aos="fade-up" data-aos-delay="300">Films overzicht</h6>
 
-                        <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">Ready, Set, Go!
+                        <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">Ready, Set, Kijken!
                         </h1>
 
                         <a href="#feature" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">
@@ -47,20 +46,28 @@ session_start();
     </div>
 </section>
 
-
 <section class="feature" id="feature">
     <div class="container">
+
+    <form action="index.php?page=filmstoevoegen" method="POST">
+    <button type="submit" class="btn btn-success" value="Submit">Voeg Nieuw</button>
+    </form>
         
     <table class="txtalign" style="width:100%">
 
     <tr class="text-light">
         <th>Poster</th>
         <th>Titel</th>
-        <th>Leeftijd</th>
         <th>Duratie</th>
-        <th>Actions</th>
+        <th>Acties</th>
     </tr>
     <?php 
+        // $sql = 'SELECT *
+        // FROM films 
+        // INNER JOIN films_kijkwijzers
+        // ON films.film_id = films_kijkwijzers.film_id
+        // INNER JOIN kijkwijzers
+        // ON films_kijkwijzers.kijkwijzer_id = kijkwijzers.kijkwijzer_id';
         $sql = 'SELECT *
         FROM films';
         $sth = $conn->prepare($sql);
@@ -68,75 +75,43 @@ session_start();
 
         $sql2 = 'SELECT *
         FROM films';
-        $sth2 = $conn->prepare($sql2);
+        $sth2 = $conn->prepare($sql2);  
         $sth2->execute();
 
         while ($r = $sth->fetch(PDO::FETCH_ASSOC)) { ?>
     <tr>
         <td>
-            <img id="l_img" src="data:image/png;base64,<?php echo $r['poster'] ?>" alt="team photo" />
+            <img data-aos="fade-up" data-aos-delay="100" id="s_img" src="data:image/png;base64,<?= $r['poster']?>"/> 
         </td>
-        <td><?php echo $r['titel'] ?></td>
-        <td><?php echo $r['leeftijd'] ?></td>
-        <td><?php echo $r['duratie'] ?></td>
-        <td>
-            <form action="index.php?page=editteam" method="POST">
-                <input type="hidden" name="film_id" value="<?php echo $r['film_id'] ?>">
-                <button type="submit" class="btn btn-warning" value="Submit">EDIT</button>
-            </form>
-        </td>
-        <td>
-            <form action="PHP/deleteteam.php" method="POST">
-                <input type="hidden" name="film_id" value="<?php echo $r['film_id'] ?>">
-                <input type="hidden" name="tname" value="<?php echo $r['name'] ?>">
-                <button type="submit" class="btn btn-danger" value="Submit">DELETE</button>
-            </form>
-        </td>
+            <td data-aos="fade-up" data-aos-delay="200" class="text-white"><?php echo $r['titel'] ?></td>
+            <td data-aos="fade-up" data-aos-delay="400" class="text-white"><?php echo $r['duratie'] ?></td>
+            <td>
+                <form action="index.php?page=filmbewerken" method="POST">
+                    <input type="hidden" name="film_id" value="<?php echo $r['film_id'] ?>">
+                    <button type="submit" class="btn btn-warning" value="Submit">EDIT</button>
+                </form>
+            </td>
+            <td>
+                <form action="PHP/filmverwijderen.php" method="POST">
+                    <input type="hidden" name="film_id" value="<?php echo $r['film_id'] ?>">
+                    <input type="hidden" name="tname" value="<?php echo $r['titel'] ?>">
+                    <button type="submit" class="btn btn-danger" value="Submit">DELETE</button>
+                </form>
+            </td>
     </tr>
     <?php } ?>
 </table>
 <br>
 <hr>
 <br>
+<br>
 <?php if ($sth->rowcount() == 0) { ?>
     <div class="textcenter">
         <br>
-        <h6 class="text-light">Er zijn momenteel geen films online gezet.</h6>
+        <h6 class="text-light">Er zijn momenteel geen films geplant.</h6>
     </div>
 <?php } else { ?>
-    <br>
-    <table class="txtalign" style="width:100%">
-        <tr>
-            <th>Photo</th>
-            <th>Team name</th>
-            <th>Coach</th>
-            <th>City</th>
-            <th>Actions</th>
-        </tr>
-        <?php while ($r2 = $smt2->fetch(PDO::FETCH_ASSOC)) { ?>
-            <tr>
-                <td>
-                    <img id="l_img" src="data:image/png;base64,<?php echo $r2['poster'] ?>" alt="team photo" />
-                </td>
-                <td><?php echo $r2['titel'] ?></td>
-                <td><?php echo $r2['leeftijd'] ?></td>
-                <td><?php echo $r2['duratie'] ?></td>
-                <td>
-                    <form action="index.php?page=editteam" method="POST">
-                        <input type="hidden" name="film_id" value="<?php echo $r2['film_id'] ?>">
-                        <button type="submit" class="btn btn-warning" value="Submit">EDIT</button>
-                    </form>
-                </td>
-                <td>
-                    <form action="PHP/deleteteam.php" method="POST">
-                        <input type="hidden" name="film_id" value="<?php echo $r2['film_id'] ?>">
-                        <input type="hidden" name="tname" value="<?php echo $r2['titel'] ?>">
-                        <button type="submit" class="btn btn-danger" value="Submit">DELETE</button>
-                    </form>
-                </td>
-            </tr>
-    <?php }
-    } ?>
+   <?php } ?>
     </table>
 
     </div>

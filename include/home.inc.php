@@ -41,11 +41,10 @@
                         <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">Onbeperkt series, films en meer
                             kijken. </h1>
 
-                        <a href="#feature" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">Get
-                            started</a>
+                        <a href="#feature" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">Start nu</a>
 
                         <a href="#about" class="btn custom-btn bordered mt-3" data-aos="fade-up"
-                            data-aos-delay="700">learn more</a>
+                            data-aos-delay="700">over ons</a>
 
                 </div>
             </div>

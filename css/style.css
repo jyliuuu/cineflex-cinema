@@ -20,6 +20,10 @@ https://www.tooplate.com/view/2119-gymso-fitness
   min-height: 400px;
 }
 
+#s_img {
+  max-height: 350px;
+}
+
   @font-face {
       font-family: 'Plain';
       src: url('../fonts/Plain-Regular.woff2') format('woff2'),

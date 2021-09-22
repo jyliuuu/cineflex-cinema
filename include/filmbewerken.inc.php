@@ -1,28 +1,39 @@
 <?php
 include 'private/connectioncineflex.php';
-$sql = "SELECT * FROM films ";
-$stmt = $conn->prepare($sql);
-$stmt->execute();
 
-$sql2 = "SELECT * FROM kijkwijzers
+$id = $_POST['film_id'];
+
+$sql = "SELECT * 
+        FROM films 
+        WHERE film_id = :filmid";
+$stmt = $conn->prepare($sql);
+$stmt->execute(array(
+    ':filmid'=> $id
+));
+
+$sql2 = "SELECT * 
+         FROM kijkwijzers
          WHERE active =0"; //leeftijden
 $stmt2 = $conn->prepare($sql2);
 $stmt2->execute();
 
-$sql3 = "SELECT * FROM kijkwijzers 
+$sql3 = "SELECT * 
+         FROM kijkwijzers 
          WHERE active =1"; //overige
 $stmt3 = $conn->prepare($sql3);
 $stmt3->execute();
+
+$r0 = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 <br><br>
 <link rel="stylesheet" href="../css/style.css">
 <div class="container">
     <div class="text-light">
-        <h1>Films Toevoegen</h1>
+        <h1>Films Bewerken</h1>
         <form class="maxform" action="php/filmstoevoegen.php" method="post" enctype="multipart/form-data">
             <div class="user-box">
                 <label>Titel</label>
-                <input type="text" name="titel" class="form-control" required="">
+                <input type="text" name="titel" value="<?= $r0['titel'] ?>" class="form-control" required="">
             </div>
             <div class="user-box">
                 <input type="file" name="poster" required="">
@@ -31,12 +42,12 @@ $stmt3->execute();
 
             <div class="user-box">
                 <label>Omschrijving</label>
-                <input type="text" name="omschrijving" class="form-control" required="">
+                <input type="text" name="omschrijving" value="<?= $r0['omschrijving'] ?>" class="form-control" required="">
             </div>
 
             <div class="user-box">
                 <label>Duratie</label>
-                <input type="text" name="duratie" class="form-control" maxLength="3" required="">
+                <input type="text" name="duratie" value="<?= $r0['duratie'] ?>" class="form-control" maxLength="3" required="">
             </div>
 
         <!--   <div class="user-box">

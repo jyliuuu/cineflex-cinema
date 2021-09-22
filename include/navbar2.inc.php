@@ -15,15 +15,11 @@
                 <?php         
                 if ($_SESSION['rol'] == 3) { // klant rol ?>
                     <li class="nav-item">
-                        <a href="#class" class="nav-link smoothScroll text-danger">Film Spotlight</a>
+                        <a href="index.php?page=filmsoverzicht" class="nav-link smoothScroll text-danger">Film Spotlight</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="#schedule" class="nav-link smoothScroll text-danger">Film Planning </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="#contact" class="nav-link smoothScroll text-danger">Contact</a>
+                        <a href="index.php?page=filmsplanning" class="nav-link smoothScroll text-danger">Film Planning </a>
                     </li>
 
                     <li class="nav-item">

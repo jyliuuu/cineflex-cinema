@@ -2,7 +2,6 @@
 <html lang="en">
 <?php 
 require "private/connectioncineflex.php"; 
-session_start();
 // WORK IN PROGRESS . . . 
 ?>
 
@@ -35,7 +34,7 @@ session_start();
                 <div class="hero-text mt-5 text-center">
                         <h6 data-aos="fade-up" data-aos-delay="300">Reserveringen</h6>
 
-                        <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">Ready, Set, Kijken!
+                        <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">Laten we gaan!
                         </h1>
 
                         <a href="#feature" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">
@@ -101,7 +100,7 @@ session_start();
 <?php if ($sth->rowcount() == 0) { ?>
     <div class="textcenter">
         <br>
-        <h6 class="text-light">Er zijn momenteel geen bestellingen gezet.</h6>
+        <h6 class="text-light">Er zijn momenteel geen reserveringen gezet.</h6>
     </div>
 <?php } else { ?>
     <br>
