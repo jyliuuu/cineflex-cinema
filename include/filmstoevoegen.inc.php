@@ -4,10 +4,17 @@ $sql = "SELECT * FROM films ";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 
+<<<<<<< HEAD
 $sql2 = "SELECT * FROM kijkwijzers
          WHERE active =0"; //leeftijden
+=======
+$sql2 = "SELECT * FROM kijkwijzers WHERE active  = 0"; // is voor leeftijden
+>>>>>>> 76cc2ccc084b1b1b6f83b207aeed7092c7d44736
 $stmt2 = $conn->prepare($sql2);
 $stmt2->execute();
+$sql3 = "SELECT * FROM kijkwijzers WHERE active  = 1";
+$stmt3 = $conn->prepare($sql3);
+$stmt3->execute();
 
 $sql3 = "SELECT * FROM kijkwijzers 
          WHERE active =1"; //overige
@@ -39,6 +46,7 @@ $stmt3->execute();
                 <input type="text" name="duratie" class="form-control" maxLength="3" required="">
             </div>
 
+<<<<<<< HEAD
         <!--   <div class="user-box">
                 <button class="btn btn-secondary dropdown-toggle" name="leeftijden" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     leeftijden
@@ -71,6 +79,39 @@ $stmt3->execute();
         </div>
         <br>
         <button class="btn-success" type="submit">Submit</button>
+=======
+     <!--   <div class="user-box">
+            <button class="btn btn-secondary dropdown-toggle" name="leeftijden" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                leeftijden
+            </button>
+            <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton1">
+                <li class="dropdown-item"  value="">12+ </li>
+                <li class="dropdown-item" value="">16+ </li>
+                <li class="dropdown-item" value="">18+ </li>
+            </ul>
+        </div>-->
+
+
+        <select multiple class="form-control"  style="height: 50%"
+                name="leeftijd" id="leeftijd">
+
+            <?php while ($r = $stmt2->fetch(PDO::FETCH_ASSOC)) { ?>
+                <option value="<?= $r['naam'] ?>"><?= $r['naam'] ?></option>
+            <?php } ?>
+        </select>
+        <select multiple class="form-control" style="height: 50%"
+                name="teams[]" id="teams">
+
+            <?php while ($r = $stmt3->fetch(PDO::FETCH_ASSOC)) { ?>
+                <option value="<?= $r['kijkwijzer_id'] ?>"><?= $r['naam'] ?></option>
+            <?php } ?>
+        </select>
+
+
+
+
+        <button type="submit">Submit</button>
+>>>>>>> 76cc2ccc084b1b1b6f83b207aeed7092c7d44736
     </form>
 </div>
 
