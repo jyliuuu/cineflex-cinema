@@ -88,14 +88,14 @@ require "private/connectioncineflex.php";
             <td>
                 <form action="index.php?page=filmbewerken" method="POST">
                     <input type="hidden" name="film_id" value="<?php echo $r['film_id'] ?>">
-                    <button type="submit" class="btn btn-warning" value="Submit">EDIT</button>
+                    <button type="submit" class="btn btn-warning" value="Submit">Bewerken</button>
                 </form>
             </td>
             <td>
                 <form action="PHP/filmverwijderen.php" method="POST">
                     <input type="hidden" name="film_id" value="<?php echo $r['film_id'] ?>">
                     <input type="hidden" name="tname" value="<?php echo $r['titel'] ?>">
-                    <button type="submit" class="btn btn-danger" value="Submit">DELETE</button>
+                    <button type="submit" class="btn btn-danger" value="Submit">Verwijderen</button>
                 </form>
             </td>
     </tr>

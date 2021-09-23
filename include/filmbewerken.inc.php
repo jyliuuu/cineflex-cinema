@@ -30,13 +30,13 @@ $r0 = $stmt->fetch(PDO::FETCH_ASSOC);
 <div class="container">
     <div class="text-light">
         <h1>Films Bewerken</h1>
-        <form class="maxform" action="php/filmstoevoegen.php" method="post" enctype="multipart/form-data">
+        <form class="maxform" action="php/filmsbewerken.php" method="post" enctype="multipart/form-data">
             <div class="user-box">
                 <label>Titel</label>
                 <input type="text" name="titel" value="<?= $r0['titel'] ?>" class="form-control" required="">
             </div>
             <div class="user-box">
-                <input type="file" name="poster" required="">
+                <input type="file" name="poster">
             </div>
             <br>
 
@@ -81,6 +81,7 @@ $r0 = $stmt->fetch(PDO::FETCH_ASSOC);
             </div>
         </div>
         <br>
+        <input type="hidden" name="film_id" value="<?= $r0['film_id'] ?>">
         <button class="btn-success" type="submit">Submit</button>
     </form>
 </div>
