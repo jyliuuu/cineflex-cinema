@@ -4,12 +4,7 @@ $sql = "SELECT * FROM films ";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 
-<<<<<<< HEAD
-$sql2 = "SELECT * FROM kijkwijzers
-         WHERE active =0"; //leeftijden
-=======
 $sql2 = "SELECT * FROM kijkwijzers WHERE active  = 0"; // is voor leeftijden
->>>>>>> 76cc2ccc084b1b1b6f83b207aeed7092c7d44736
 $stmt2 = $conn->prepare($sql2);
 $stmt2->execute();
 $sql3 = "SELECT * FROM kijkwijzers WHERE active  = 1";
@@ -46,40 +41,6 @@ $stmt3->execute();
                 <input type="text" name="duratie" class="form-control" maxLength="3" required="">
             </div>
 
-<<<<<<< HEAD
-        <!--   <div class="user-box">
-                <button class="btn btn-secondary dropdown-toggle" name="leeftijden" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    leeftijden
-                </button>
-                <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton1">
-                    <li class="dropdown-item"  value="">12+ </li>
-                    <li class="dropdown-item" value="">16+ </li>
-                    <li class="dropdown-item" value="">18+ </li>
-                </ul>
-            </div>-->
-            <div class="user-box">
-                <label>Kijkwijzers</label>
-                    <select multiple name="kijkwijzers[]" class="form-control" id="cars">
-                <?php 
-                while ($r = $stmt3->fetch(PDO::FETCH_ASSOC)) { ?>
-                    <option value="<?= $r['kijkwijzer_id'] ?>"><?= $r['naam'] ?></option><?php
-                } ?>
-                </select>
-            </div>
-    <br>
-            <div class="user-box">
-                <label>Kijkwijzers leeftijd</label>
-                <select name="leeftijd" class="form-control" id="cars">
-                <?php 
-                while ($r2 = $stmt2->fetch(PDO::FETCH_ASSOC)) { ?>
-                    <option value="<?= $r2['kijkwijzer_id'] ?>"><?= $r2['naam'] ?></option><?php
-                } ?>
-                </select>
-            </div>
-        </div>
-        <br>
-        <button class="btn-success" type="submit">Submit</button>
-=======
      <!--   <div class="user-box">
             <button class="btn btn-secondary dropdown-toggle" name="leeftijden" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 leeftijden
@@ -111,7 +72,6 @@ $stmt3->execute();
 
 
         <button type="submit">Submit</button>
->>>>>>> 76cc2ccc084b1b1b6f83b207aeed7092c7d44736
     </form>
 </div>
 
