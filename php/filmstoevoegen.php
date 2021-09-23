@@ -36,4 +36,4 @@ $smt2->execute(array(
     ':kijkwijzer_id' => $kijkwijzer[$i]
 ));
 }
-header('location: ../index.php?page=home');
+header('location: ../index.php?page=filmsoverzicht');

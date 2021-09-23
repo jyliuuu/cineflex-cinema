@@ -6,8 +6,8 @@ $id = $_POST['film_id'];
 $titel = $_POST['titel'];
 $omschrijving = $_POST['omschrijving'];
 $duratie = $_POST['duratie'];
+$kijkwijzer = $_POST['kijkwijzers'];
 // $active = $_POST['active'];
-
 if ($_FILES['poster']['tmp_name'] != null) {
     $img = base64_encode(file_get_contents($_FILES['poster']['tmp_name']));
     $sql = "UPDATE films
@@ -33,5 +33,24 @@ if ($_FILES['poster']['tmp_name'] != null) {
         ':id' => $id
     ));
 }
+
+$sql3 = "DELETE FROM films_kijkwijzers
+         WHERE film_id = :id";
+$smt3 = $conn->prepare($sql3);
+$smt3->execute(array(
+    ':id' => $id
+));
+
+for($i = 0; $i < sizeof($kijkwijzer); $i++) {
+
+    $sql4 = "INSERT INTO films_kijkwijzers (film_id, kijkwijzer_id )  
+             VALUE (:film_id, :kijkwijzer_id)";
+    $smt4 = $conn->prepare($sql4);
+    $smt4->execute(array(
+        ':film_id'       => $id,
+        ':kijkwijzer_id' => $kijkwijzer[$i]
+    ));
+}
+
 echo "<pre>", print_r($id), "</pre>";
 header('location: ../index.php?page=filmsoverzicht');

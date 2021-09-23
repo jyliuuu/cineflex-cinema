@@ -62,7 +62,7 @@ $r0 = $stmt->fetch(PDO::FETCH_ASSOC);
             </div>-->
             <div class="user-box">
                 <label>Kijkwijzers</label>
-                    <select multiple name="kijkwijzers[]" class="form-control" id="cars">
+                    <select multiple name="kijkwijzers[]" class="form-control" id="kijkwijzers">
                 <?php 
                 while ($r = $stmt3->fetch(PDO::FETCH_ASSOC)) { ?>
                     <option value="<?= $r['kijkwijzer_id'] ?>"><?= $r['naam'] ?></option><?php
@@ -72,7 +72,7 @@ $r0 = $stmt->fetch(PDO::FETCH_ASSOC);
     <br>
             <div class="user-box">
                 <label>Kijkwijzers leeftijd</label>
-                <select name="leeftijd" class="form-control" id="cars">
+                <select name="leeftijd" class="form-control" id="kijkwijzers">
                 <?php 
                 while ($r2 = $stmt2->fetch(PDO::FETCH_ASSOC)) { ?>
                     <option value="<?= $r2['kijkwijzer_id'] ?>"><?= $r2['naam'] ?></option><?php
