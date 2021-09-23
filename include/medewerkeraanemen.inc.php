@@ -1,16 +1,25 @@
-<form action="../php/medewerkeraanemen.php" method="POST">
+<form action="php/medewerkeraanemen.php" method="POST">
 
-<input type="hidden" name="id" value="<?php echo $id ?>">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <td>Voornaam: </td>
-<input type="text" placeholder="Voornaam" name="voornaam" value="<?php echo $r['voornaam'] ?>" required>
+<input type="text" placeholder="Voornaam" name="voornaam" value="" required>
 
 <td>Achternaam: </td>
-<input type="text" placeholder="Voornaam" name="achternaam" value="<?php echo $r['achternaam'] ?>" required>
+<input type="text" placeholder="Achternaam" name="achternaam" value="" required>
 
-<td>Voornaam: </td>
-<input type="text" placeholder="Voornaam" name="email" value="<?php echo $r['email'] ?>" required>
+<td>Email: </td>
+<input type="text" placeholder="E-mail" name="email" value="" required>
 
-<input type="subtmit" name="submit" value="Bewerk">
+<td>Wachtwoord: </td>
+<input type="password" placeholder="Wachtwoord" name="wachtwoord" value="" required>
+
+<input type="submit" name="submit" value="Aanemen">
 
 </form>
