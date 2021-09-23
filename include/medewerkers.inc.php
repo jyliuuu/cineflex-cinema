@@ -37,12 +37,8 @@ $stmt->execute();
                 <div class="hero-text mt-5 text-center">
                         <h6 data-aos="fade-up" data-aos-delay="300">Medewerker overzicht</h6>
 
-                        <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">Ready, Set, Rawr :3!
+                        <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">Onze geweldige collega's van Cineflex
                         </h1>
-
-                        <a href="#feature" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">
-                            lol xd!
-                        </a> 
                 </div>
             </div>
 
