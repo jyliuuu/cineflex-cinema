@@ -1,5 +1,5 @@
 <?php 
-include "../private/connectioncineflex.php";
+include "private/connectioncineflex.php";
 
 $sql = "SELECT * 
 FROM medewerkers";
