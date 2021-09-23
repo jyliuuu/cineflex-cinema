@@ -75,7 +75,7 @@ $r0 = $stmt->fetch(PDO::FETCH_ASSOC);
                 <select name="leeftijd" class="form-control" id="kijkwijzers">
                 <?php 
                 while ($r2 = $stmt2->fetch(PDO::FETCH_ASSOC)) { ?>
-                    <option value="<?= $r2['kijkwijzer_id'] ?>"><?= $r2['naam'] ?></option><?php
+                    <option value="<?= $r2['naam'] ?>"><?= $r2['naam'] ?></option><?php
                 } ?>
                 </select>
             </div>

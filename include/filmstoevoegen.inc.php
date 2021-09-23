@@ -52,14 +52,14 @@ $stmt3->execute();
             </ul>
         </div>-->
 
-
-        <select multiple class="form-control"  style="height: 50%"
+        <label>Kijkwijzers leeftijd</label>
+        <select class="form-control"
                 name="leeftijd" id="leeftijd">
-
             <?php while ($r = $stmt2->fetch(PDO::FETCH_ASSOC)) { ?>
-                <option value="<?= $r['kijkwijzer_id'] ?>"><?= $r['naam'] ?></option>
+                <option value="<?= $r['naam'] ?>"><?= $r['naam'] ?></option>
             <?php } ?>
         </select>
+        <label>Kijkwijzers</label>
         <select multiple class="form-control" style="height: 50%"
                 name="kijkwijzers[]" id="teams">
 
@@ -67,9 +67,6 @@ $stmt3->execute();
                 <option value="<?= $r['kijkwijzer_id'] ?>"><?= $r['naam'] ?></option>
             <?php } ?>
         </select>
-
-
-
 
         <button type="submit">Submit</button>
     </form>

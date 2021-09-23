@@ -58,6 +58,7 @@ require "private/connectioncineflex.php";
     <tr class="text-light">
         <th>Poster</th>
         <th>Titel</th>
+        <th>Leeftijd</th>
         <th>Duratie</th>
         <th>Acties</th>
     </tr>
@@ -84,6 +85,7 @@ require "private/connectioncineflex.php";
             <img data-aos="fade-up" data-aos-delay="100" id="s_img" src="data:image/png;base64,<?= $r['poster']?>" heigh=300 width=300/> 
         </td>
             <td data-aos="fade-up" data-aos-delay="200" class="text-white"><?php echo $r['titel'] ?></td>
+            <td data-aos="fade-up" data-aos-delay="200" class="text-white"><?php echo $r['leeftijd'] ?></td>
             <td data-aos="fade-up" data-aos-delay="400" class="text-white"><?php echo $r['duratie'] ?></td>
             <td>
                 <form action="index.php?page=filmbewerken" method="POST">
