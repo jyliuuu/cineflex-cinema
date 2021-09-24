@@ -12,28 +12,36 @@ $stmt->execute(array(
 $r = $stmt->fetch();
 ?>
 
-<form action="php/medewerkerbewerk.php" method="POST">
+<form class="maxform" action="php/medewerkerbewerk.php" method="POST" enctype="multipart/form-data">
 
 <input type="hidden" name="id" value="<?php echo $id ?>">
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<td>Voornaam: </td>
-<input type="text" placeholder="Voornaam" name="voornaam" value="<?php echo $r['voornaam'] ?>" required>
 
-<td>Achternaam: </td>
-<input type="text" placeholder="Achternaam" name="achternaam" value="<?php echo $r['achternaam'] ?>" required>
+<br><br>
+<link rel="stylesheet" href="../css/style.css">
+<div class="container">
+    <div class="text-light">
+        <h1>Medewerker bewerken</h1>
+            <div class="user-box">
+                <label>Voornaam</label>
+                <input type="text" value="<?php echo $r['voornaam'] ?>"  name="voornaam" class="form-control" required="">
+            </div>
+        
+            <div class="user-box">
+                <label>Achternaam</label>
+                <input type="text" value="<?php echo $r['achternaam'] ?>" name="achternaam" class="form-control" required="">
+            </div>
 
-<td>Email: </td>
-<input type="text" placeholder="Email" name="email" value="<?php echo $r['email'] ?>" required>
+            <div class="user-box">
+                <label>E-mail</label>
+                <input type="text" value="<?php echo $r['email'] ?>"  name="email"  class="form-control" required="">
+            </div>
 
-<td>Wachtwoord: </td>
-<input type="password" placeholder="Wachtwoord" name="wachtwoord" value="<?php echo $r['wachtwoord'] ?>" required>
+            <div class="user-box">
+                <label>Wachtwoord</label>
+                <input type="password" value="<?php echo $r['wachtwoord'] ?>"  name="wachtwoord"  class="form-control" required="">
+            </div>
 
-<input type="submit" class="btn btn-primary" name="submit" value="Bewerk">
+<input type="submit" name="submit" value="Bewerk">
 
 </form>
+</div>

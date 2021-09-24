@@ -57,7 +57,7 @@ echo "<pre>", print_r($_SESSION), "</pre>";
                     </li>
 
                     <li class="nav-item">
-                        <a href="include/registreren.inc.php" class="nav-link smoothScroll text-danger">Registreren</a>
+                        <a href="index.php?page=registreren" class="nav-link smoothScroll text-danger">Registreren</a>
                     </li>
 
                     <li class="nav-item">
