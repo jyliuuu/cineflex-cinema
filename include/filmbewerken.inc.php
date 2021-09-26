@@ -30,13 +30,13 @@ $r0 = $stmt->fetch(PDO::FETCH_ASSOC);
 <div class="container">
     <div class="text-light">
         <h1>Films Bewerken</h1>
-        <form class="maxform" action="php/filmstoevoegen.php" method="post" enctype="multipart/form-data">
+        <form class="maxform" action="php/filmsbewerken.php" method="post" enctype="multipart/form-data">
             <div class="user-box">
                 <label>Titel</label>
                 <input type="text" name="titel" value="<?= $r0['titel'] ?>" class="form-control" required="">
             </div>
             <div class="user-box">
-                <input type="file" name="poster" required="">
+                <input type="file" name="poster">
             </div>
             <br>
 
@@ -62,7 +62,7 @@ $r0 = $stmt->fetch(PDO::FETCH_ASSOC);
             </div>-->
             <div class="user-box">
                 <label>Kijkwijzers</label>
-                    <select multiple name="kijkwijzers[]" class="form-control" id="cars">
+                    <select multiple name="kijkwijzers[]" class="form-control" id="kijkwijzers">
                 <?php 
                 while ($r = $stmt3->fetch(PDO::FETCH_ASSOC)) { ?>
                     <option value="<?= $r['kijkwijzer_id'] ?>"><?= $r['naam'] ?></option><?php
@@ -72,15 +72,16 @@ $r0 = $stmt->fetch(PDO::FETCH_ASSOC);
     <br>
             <div class="user-box">
                 <label>Kijkwijzers leeftijd</label>
-                <select name="leeftijd" class="form-control" id="cars">
+                <select name="leeftijd" class="form-control" id="kijkwijzers">
                 <?php 
                 while ($r2 = $stmt2->fetch(PDO::FETCH_ASSOC)) { ?>
-                    <option value="<?= $r2['kijkwijzer_id'] ?>"><?= $r2['naam'] ?></option><?php
+                    <option value="<?= $r2['naam'] ?>"><?= $r2['naam'] ?></option><?php
                 } ?>
                 </select>
             </div>
         </div>
         <br>
+        <input type="hidden" name="film_id" value="<?= $r0['film_id'] ?>">
         <button class="btn-success" type="submit">Submit</button>
     </form>
 </div>

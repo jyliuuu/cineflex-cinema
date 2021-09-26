@@ -58,6 +58,7 @@ require "private/connectioncineflex.php";
     <tr class="text-light">
         <th>Poster</th>
         <th>Titel</th>
+        <th>Leeftijd</th>
         <th>Duratie</th>
         <th>Acties</th>
     </tr>
@@ -84,18 +85,19 @@ require "private/connectioncineflex.php";
             <img data-aos="fade-up" data-aos-delay="100" id="s_img" src="data:image/png;base64,<?= $r['poster']?>" heigh=300 width=300/> 
         </td>
             <td data-aos="fade-up" data-aos-delay="200" class="text-white"><?php echo $r['titel'] ?></td>
+            <td data-aos="fade-up" data-aos-delay="200" class="text-white"><?php echo $r['leeftijd'] ?></td>
             <td data-aos="fade-up" data-aos-delay="400" class="text-white"><?php echo $r['duratie'] ?></td>
             <td>
                 <form action="index.php?page=filmbewerken" method="POST">
                     <input type="hidden" name="film_id" value="<?php echo $r['film_id'] ?>">
-                    <button type="submit" class="btn btn-warning" value="Submit">EDIT</button>
+                    <button type="submit" class="btn btn-warning" value="Submit">Bewerken</button>
                 </form>
             </td>
             <td>
                 <form action="PHP/filmverwijderen.php" method="POST">
                     <input type="hidden" name="film_id" value="<?php echo $r['film_id'] ?>">
                     <input type="hidden" name="tname" value="<?php echo $r['titel'] ?>">
-                    <button type="submit" class="btn btn-danger" value="Submit">DELETE</button>
+                    <button type="submit" class="btn btn-danger" value="Submit">Verwijderen</button>
                 </form>
             </td>
     </tr>

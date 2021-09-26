@@ -1,25 +1,32 @@
-<form action="php/medewerkeraanemen.php" method="POST">
+<form class="maxform" action="php/medewerkeraanemen.php" method="POST" enctype="multipart/form-data">
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-<td>Voornaam: </td>
-<input type="text" placeholder="Voornaam" name="voornaam" value="" required>
+<br><br>
+<link rel="stylesheet" href="../css/style.css">
+<div class="container">
+    <div class="text-light">
+        <h1>Medewerker aanemen</h1>
+            <div class="user-box">
+                <label>Voornaam</label>
+                <input type="text" name="voornaam" class="form-control" required="">
+            </div>
+        
+            <div class="user-box">
+                <label>Achternaam</label>
+                <input type="text" name="achternaam" class="form-control" required="">
+            </div>
 
-<td>Achternaam: </td>
-<input type="text" placeholder="Achternaam" name="achternaam" value="" required>
+            <div class="user-box">
+                <label>E-mail</label>
+                <input type="text" name="email"  class="form-control" required="">
+            </div>
 
-<td>Email: </td>
-<input type="text" placeholder="E-mail" name="email" value="" required>
+            <div class="user-box">
+                <label>Wachtwoord</label>
+                <input type="password" name="wachtwoord"  class="form-control" required="">
+            </div>
 
-<td>Wachtwoord: </td>
-<input type="password" placeholder="Wachtwoord" name="wachtwoord" value="" required>
-
-<input type="submit" name="submit" value="Aanemen">
+<input type="submit" name="submit" value="Aannemen">
 
 </form>
+</div>
