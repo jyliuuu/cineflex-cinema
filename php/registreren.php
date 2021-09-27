@@ -15,18 +15,35 @@ $straat = $_POST['straat'];
 $provincie = $_POST['provincie'];
 $telefoon = $_POST['telefoon'];
 
+$sql = "SELECT *
+FROM klanten
+WHERE email = :email";
+$stmt = $conn->prepare($sql);
+$stmt->execute(array(
+    ':email'    => $email
+));
+$rowcount = $stmt->rowCount();
+
 if(strlen($wachtwoord) < 6)
 {
-    $_SESSION['wachtwoord_error'] = "Wachtwoord is te kort. Het moet meer dan 6 karakters bevatten";
+    $_SESSION['error'] = "Wachtwoord is te kort. Het moet meer dan 6 karakters bevatten";
+    header('location: ../index.php?page=registreren');
+}
+
+
+
+else if($rowcount > 0)
+{
+    $_SESSION['error'] = "email bestaat al";
     header('location: ../index.php?page=registreren');
 }
 
 else
 {
-$sql = "INSERT INTO klanten (voornaam, achternaam, email, wachtwoord, leeftijd, postcode, woonplaats, straat, provincie, telefoon, rol)
+$sql2 = "INSERT INTO klanten (voornaam, achternaam, email, wachtwoord, leeftijd, postcode, woonplaats, straat, provincie, telefoon, rol)
         VALUES (:voornaam, :achternaam, :email, :wachtwoord, :leeftijd, :postcode, :woonplaats, :straat, :provincie, :telefoon, :rol)";
-$smt = $conn->prepare($sql);
-$smt->execute(array(
+$smt2 = $conn->prepare($sql2);
+$smt2->execute(array(
     ':voornaam' => $voornaam,
     ':achternaam' => $achternaam,
     ':email' => $email,

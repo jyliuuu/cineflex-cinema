@@ -82,7 +82,7 @@ require "private/connectioncineflex.php";
         while ($r = $sth->fetch(PDO::FETCH_ASSOC)) { ?>
     <tr>
         <td>
-            <img data-aos="fade-up" data-aos-delay="100" id="s_img" src="data:image/png;base64,<?= $r['poster']?>" heigh=300 width=300/> 
+            <img data-aos="fade-up" data-aos-delay="100" id="s_img" src="data:image/png;base64,<?= $r['poster']?>" heigh=600 width=300/> 
         </td>
             <td data-aos="fade-up" data-aos-delay="200" class="text-white"><?php echo $r['titel'] ?></td>
             <td data-aos="fade-up" data-aos-delay="200" class="text-white"><?php echo $r['leeftijd'] ?></td>
