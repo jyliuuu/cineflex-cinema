@@ -41,16 +41,6 @@ $stmt3->execute();
                 <input type="text" name="duratie" class="form-control" maxLength="3" required="">
             </div>
 
-     <!--   <div class="user-box">
-            <button class="btn btn-secondary dropdown-toggle" name="leeftijden" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                leeftijden
-            </button>
-            <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton1">
-                <li class="dropdown-item"  value="">12+ </li>
-                <li class="dropdown-item" value="">16+ </li>
-                <li class="dropdown-item" value="">18+ </li>
-            </ul>
-        </div>-->
 
         <label>Kijkwijzers leeftijd</label>
         <select class="form-control"
@@ -69,7 +59,10 @@ $stmt3->execute();
         </select>
 
         <button type="submit">Submit</button>
-    </form>
+ <!-- --><?/* if ($r['titel'] == $r['titel']){
+      echo "dit film bestaat al";
+  }else{}*/?>
+   </form>
 </div>
 
 
