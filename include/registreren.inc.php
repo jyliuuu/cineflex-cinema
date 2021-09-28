@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="../css/style.css">
 <div class="login-box maxform">
     <h2>Registratie</h2>
-    <?php if (isset($_SESSION['wachtwoord_error'])) { ?> 
-    <p><?php echo $_SESSION['wachtwoord_error'];
+    <?php if (isset($_SESSION['error'])) { ?> 
+    <p><?php echo $_SESSION['error'];
             session_unset(); 
     }?></p>
-    
+
     <form class="maxform" action="php/registreren.php" method="POST">
         <div class="user-box">
             <input type="text" name="voornaam" required="">
