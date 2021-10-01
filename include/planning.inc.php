@@ -1,4 +1,4 @@
-<!-- SCHEDULE -->
+
 <section class="schedule section" id="schedule">
     <div class="container">
         <div class="row">
@@ -33,8 +33,8 @@ $tomorrow6 = date("l m-d", strtotime('+6 day')); // OK
                 </thead>
                 <tbody>
                     <tr>
-                        <!-- 1 td is een film blok in de planning -->
-                        <td><small>FILM 1</small></td>
+
+                       <td><small>fdf</small></td>
                         <td>
                             <strong>ZAAL NUMMER</strong>
                             <span>BEGIN_TIJD + EIND_TIJD</span>
