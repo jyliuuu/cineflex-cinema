@@ -15,6 +15,8 @@ $straat = $_POST['straat'];
 $provincie = $_POST['provincie'];
 $telefoon = $_POST['telefoon'];
 
+$hash = password_hash($wachtwoord, PASSWORD_DEFAULT);
+
 $sql = "SELECT *
 FROM klanten
 WHERE email = :email";
@@ -48,7 +50,7 @@ $smt2->execute(array(
     ':achternaam' => $achternaam,
     ':email' => $email,
     ':leeftijd' => $leeftijd,
-    ':wachtwoord' => $wachtwoord,
+    ':wachtwoord' => $hash,
     ':postcode' => $postcode,
     ':woonplaats' => $woonplaats,
     ':straat' => $straat,
