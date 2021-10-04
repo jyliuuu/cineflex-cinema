@@ -21,9 +21,9 @@ $smt->execute(array(
 ));
 
 $filmid = $conn->LastInsertId();
-echo "<pre>", print_r($selected), "</pre>";
+echo "<pre>", print_r($_POST), "</pre>";
 
-for ($i = 0; $i <= $selected; $i++) {
+for ($i = 0; $i <= $selected -1; $i++) {
     $sql2 = "INSERT INTO films_kijkwijzers (film_id, kijkwijzer_id )
              VALUE (:film_id , :kijkwijzer_id)";
     $smt2 = $conn->prepare($sql2);

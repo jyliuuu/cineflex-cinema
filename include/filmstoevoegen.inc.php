@@ -7,9 +7,6 @@ $stmt->execute();
 $sql2 = "SELECT * FROM kijkwijzers WHERE active  = 0"; // is voor leeftijden
 $stmt2 = $conn->prepare($sql2);
 $stmt2->execute();
-$sql3 = "SELECT * FROM kijkwijzers WHERE active  = 1";
-$stmt3 = $conn->prepare($sql3);
-$stmt3->execute();
 
 $sql3 = "SELECT * FROM kijkwijzers 
          WHERE active =1"; //overige
@@ -45,23 +42,19 @@ $stmt3->execute();
         <label>Kijkwijzers leeftijd</label>
         <select class="form-control"
                 name="leeftijd" id="leeftijd">
-            <?php while ($r = $stmt2->fetch(PDO::FETCH_ASSOC)) { ?>
-                <option value="<?= $r['naam'] ?>"><?= $r['naam'] ?></option>
+            <?php while ($r2 = $stmt2->fetch(PDO::FETCH_ASSOC)) { ?>
+                <option value="<?= $r2['naam'] ?>"><?= $r2['naam'] ?></option>
             <?php } ?>
         </select>
         <label>Kijkwijzers</label>
         <select multiple class="form-control" style="height: 50%"
-                name="kijkwijzers[]" id="teams">
-
-            <?php while ($r = $stmt3->fetch(PDO::FETCH_ASSOC)) { ?>
-                <option value="<?= $r['kijkwijzer_id'] ?>"><?= $r['naam'] ?></option>
+                name="kijkwijzers[]" id="kijkwijzers">
+            <?php while ($r3 = $stmt3->fetch(PDO::FETCH_ASSOC)) { ?>
+                <option value="<?= $r3['kijkwijzer_id'] ?>"><?= $r3['naam'] ?></option>
             <?php } ?>
         </select>
 
         <button type="submit">Submit</button>
- <!-- --><?/* if ($r['titel'] == $r['titel']){
-      echo "dit film bestaat al";
-  }else{}*/?>
    </form>
 </div>
 
