@@ -9,28 +9,48 @@ $id         = $_POST['id'];
 $wachtwoord = $_POST['wachtwoord'];
 
 $sql = "SELECT *
-FROM medewerkers
+FROM klanten
 WHERE email = :email";
 $stmt = $conn->prepare($sql);
 $stmt->execute(array(
     ':email'    => $email
 ));
 
-$rowCount = $stmt->rowCount();
+$sql2 = "SELECT *
+FROM medewerkers
+WHERE email = :email";
+$stmt2 = $conn->prepare($sql2);
+$stmt2->execute(array(
+    ':email'    => $email
+));
 
-if($rowcount > 0)
+
+
+$rowCount = $stmt->rowCount();
+$rowCount2 = $stmt2->rowCount();
+
+
+if($rowCount > 0)
 {
     $_SESSION['error'] = "email bestaat al";
-    header('location: ../index.php?page=registreren');
+    header('location: ../index.php?page=medewerkersbewerk&acc_id='.$id.''); //gebruik database info inplaats van post
+}
+
+else if($rowCount2 > 0)
+{
+    $_SESSION['error'] = "email bestaat al";
+    header('location: ../index.php?page=medewerkersbewerk&acc_id='.$id.'');
 }
 
 else if(strlen($wachtwoord) < 6)
 {
     $_SESSION['error'] = "Wachtwoord is tekort, moet minimaal 6 karakters hebben";
-    header('location: ../index.php?page=registreren');
+    header('location: ../index.php?page=medewerkersbewerk&acc_id='.$id.'');
 }
 
-$sql2 = "UPDATE medewerkers
+else
+{
+$sql3 = "UPDATE medewerkers
 
 SET voornaam    = :voornaam,
 achternaam      = :achternaam,
@@ -39,14 +59,16 @@ wachtwoord      = :wachtwoord
 
 WHERE medewerker_id = :id";
 
-$stmt2 = $conn->prepare($sql2);
-$result = $stmt2->execute(array(
+$stmt3 = $conn->prepare($sql3);
+$result = $stmt3->execute(array(
     ':voornaam'     => $voornaam,
     ':achternaam'   => $achternaam,
     ':email'        => $email,
     ':id'           => $id,
     ':wachtwoord'   => $wachtwoord
 ));
+
+// echo "<pre>", print_r($), "</pre>";
 
 if ($result){
     echo 'Successfully edited';
@@ -56,5 +78,6 @@ else{
     echo 'Something we  nt wrong with the connection';
     header('location: ../index.php?page=medewerkersbewerk');
     }
+}
 
 ?>

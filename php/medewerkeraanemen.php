@@ -10,29 +10,40 @@ $wachtwoord   = $_POST['wachtwoord'];
 $hash = password_hash($wachtwoord, PASSWORD_DEFAULT);
 
 $sql = "SELECT *
-FROM medewerkers mw
-
-LEFT JOIN klanten kt
-ON mw.rol = kt.rol
-
-WHERE kt.email = :email OR mw.email = :email";
+FROM medewerkers
+WHERE email = :email";
 $stmt = $conn->prepare($sql);
 $stmt->execute(array(
     ':email'    => $email
 ));
 
-$rowCount = $stmt->rowCount();
+$sql2 = "SELECT *
+FROM klanten 
+WHERE email = :email";
+$stmt2 = $conn->prepare($sql2);
+$stmt2->execute(array(
+    ':email'    => $email
+));
 
-if($rowcount > 0)
+$rowCount = $stmt->rowCount();
+$rowCount2 = $stmt2->rowCount();
+
+if($rowCount > 0)
 {
     $_SESSION['error'] = "email bestaat al";
-    header('location: ../index.php?page=registreren');
+    header('location: ../index.php?page=medewerkeraanemen');
+}
+
+else if ($rowCount2 > 0)
+{
+    $_SESSION['error'] = "email bestaat al";
+    header('location: ../index.php?page=medewerkeraanemen');
 }
 
 else if(strlen($wachtwoord) < 6)
 {
     $_SESSION['error'] = "Wachtwoord is tekort, moet minimaal 6 karakters hebben";
-    header('location: ../index.php?page=registreren');
+    header('location: ../index.php?page=medewerkeraanemen');
 }
 
 else

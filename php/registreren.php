@@ -24,7 +24,18 @@ $stmt = $conn->prepare($sql);
 $stmt->execute(array(
     ':email'    => $email
 ));
-$rowcount = $stmt->rowCount();
+
+$sql2 = "SELECT *
+FROM medewerkers
+WHERE email = :email";
+$stmt2 = $conn->prepare($sql2);
+$stmt2->execute(array(
+    ':email'    => $email
+));
+
+$rowCount = $stmt->rowCount();
+$rowCount2 = $stmt2->rowCount();
+
 
 if(strlen($wachtwoord) < 6)
 {
@@ -34,7 +45,13 @@ if(strlen($wachtwoord) < 6)
 
 
 
-else if($rowcount > 0)
+else if($rowCount > 0)
+{
+    $_SESSION['error'] = "email bestaat al";
+    header('location: ../index.php?page=registreren');
+}
+
+else if($rowCount2 > 0)
 {
     $_SESSION['error'] = "email bestaat al";
     header('location: ../index.php?page=registreren');
