@@ -28,7 +28,7 @@ if (password_verify($_POST['wachtwoord'], $row['wachtwoord'])) {
             $_SESSION['id'] = $row['klant_id'];
             $_SESSION['voornaam'] = $row['voornaam'];
             echo "klant";
-            header('location: ../index.php?page=home');        
+            header('location: ../index.php?page=groet');        
 } 
 
 else if (password_verify($_POST['wachtwoord'], $row2['wachtwoord'])) {
@@ -36,7 +36,7 @@ else if (password_verify($_POST['wachtwoord'], $row2['wachtwoord'])) {
     $_SESSION['id'] = $row2['medewerker_id'];
     $_SESSION['voornaam'] = $row2['voornaam'];
     echo "staff";
-    header('location: ../index.php?page=home');        
+    header('location: ../index.php?page=groet');        
 } 
 
 else {
