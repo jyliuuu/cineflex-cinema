@@ -172,8 +172,6 @@
     </div>
 </section>
 
-
-<!-- CLASS -->
 <section class="class section" id="class">
     <div class="container">
         <div class="row">
@@ -183,64 +181,34 @@
 
                 <h2 data-aos="fade-up" class="text-white" data-aos-delay="200">beste trending films</h2>
             </div>
+<!-- CLASS -->
+<?php
+require "private/connectioncineflex.php";
+$sql = "SELECT * FROM films ";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {  ?>
+
+
+
 
             <div class="col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="400">
                 <div class="class-thumb">
-                    <img src="images/class/you.jpg" class="img-fluid" alt="Class" style="min-height:450px">
-
+                    <img src="data:image/png;base64,<?= $result['poster'] ?>" style="width: 349px"/>
                     <div class="class-info">
-                        <h3 class="mb-1">You</h3>
-
-                        <span><strong>Directeur:</strong> Greg Berlanti; Sera Gamble</span>
+                        <h3 class="mb-1"><?= $result['titel'] ?></h3>
 
 
 
-                        <p class="mt-3">Een gevaarlijk charmante, geobsedeerde jongeman neemt extreme maatregelen om
-                            een
-                            plaats te krijgen in het leven van degenen op wie hij zijn oog heeft laten vallen.</p>
+                        <p class="mt-3"><?= $result['omschrijving']?></p>
                     </div>
                 </div>
             </div>
-
-            <div class="mt-5 mt-lg-0 mt-md-0 col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="500">
-                <div class="class-thumb">
-                    <img src="images/class/fury.jpg" class="img-fluid" alt="Class" style="min-height:450px">
-
-                    <div class="class-info">
-                        <h3 class="mb-1">Fury</h3>
-
-                        <span><strong>Directeur:</strong> Nicholas Joseph</span>
+<?php } ?>
+        </section>
 
 
 
-                        <p class="mt-3">'Fury' volgt de door de wol geverfde Wardaddy aan het einde van de Tweede
-                            Wereldoorlog. Hij heeft de leiding over een vijfkoppige tank-crew die een
-                            levensgevaarlijke
-                            missie in vijandelijk gebied dient uit te voeren.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-5 mt-lg-0 col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="600">
-                <div class="class-thumb">
-                    <img src="images/class/bird.jpg" class="img-fluid" alt="Class" style="min-height:450px">
-
-                    <div class="class-info">
-                        <h3 class="mb-1">Bird Box</h3>
-
-                        <span><strong>Directeur:</strong> Susanne Bier</span>
-
-
-                        <p class="mt-3">Bird Box is een Amerikaanse post-apocalyptische thriller uit 2018,
-                            geregisseerd
-                            door Susanne Bier en gebaseerd op de gelijknamige roman uit 2014 van Josh Malerman</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
 <?php
     include 'include/planning.inc.php';
 ?>
