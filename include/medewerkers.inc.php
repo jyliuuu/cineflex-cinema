@@ -45,13 +45,6 @@ $stmt->execute();
         </div>
     </div>
 </section>
-
-
-
-<a href = "index.php?page=medewerkeraanemen">
-  <input class="btn btn-success" type="submit" name="" value="Aannemen">
-</a>
-
   <section class="feature" id="feature">
     <div class="container">
         
@@ -82,6 +75,10 @@ $stmt->execute();
 </td>
 </tr>
 <?php } ?>
+    <a href = "index.php?page=medewerkeraanemen">
+    <input class="btn btn-success" type="submit" name="" value="Aannemen">
+    </a>
+    <br><br>
 
 </section>
 <!-- SCRIPTS -->

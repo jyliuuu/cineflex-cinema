@@ -31,7 +31,7 @@ $r3 = $stmt3->fetch(PDO::FETCH_ASSOC)
                 <select name="film" class="form-control" id="film">
                     <?php 
                     while ($r = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
-                        <option value="<?= $r['titel'] ?>"><?= $r['titel'] ?></option><?php
+                        <option value="<?= $r['film_id'] ?>"><?= $r['titel'] ?></option><?php
                     } ?>
                 </select>
                 <label>Zaal</label>
@@ -42,7 +42,9 @@ $r3 = $stmt3->fetch(PDO::FETCH_ASSOC)
                     } ?>
                 </select>
                 <label>Start tijd</label>
-                <input type="time" name="start" class="form-control" min="10:00" max="02:00" required>
+                <input type="time" name="start" class="form-control" min="13:00" max="02:00" required>
+                <label>Start tijd</label>
+                <input type="date" name="datum" class="form-control" required>
             </div>
         <br>
         <input type="hidden" name="duratie" value="<?php echo $r3['duratie'] ?>">

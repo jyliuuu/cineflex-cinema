@@ -24,10 +24,22 @@ $tomorrow4 = date("l m-d", strtotime('+4 day')); // OK
 $tomorrow5 = date("l m-d", strtotime('+5 day')); // OK
 $tomorrow6 = date("l m-d", strtotime('+6 day')); // OK
 
+$tomorrownummax = date("Y-m-d", strtotime('+6 day')); // OK
+
 $sql = 'SELECT *
         FROM films';
-        $sth = $conn->prepare($sql);
-        $sth->execute();
+$sth = $conn->prepare($sql);
+$sth->execute();
+
+$sql2 = "SELECT *
+    	 FROM planning
+         WHERE datum >= :datum";
+$sth2 = $conn->prepare($sql2);
+$sth2->execute(array(
+    ':datum'=> $tomorrownummax
+));
+
+$r2 = $sth2->fetchAll(PDO::FETCH_ASSOC);
 ?>
                 <tabel style="table-layout: fixed">
                     <th>Today <br> <?= $today ?></th>
@@ -43,9 +55,21 @@ $sql = 'SELECT *
                     <tr>
                         <!-- 1 td is een film blok in de planning -->
                         <td><small><?= $r['titel']?></small></td>
-                        <?php for ($i = 0; $i <= 6; $i++ ) { ?>
+                        <?php for ($i = 1; $i <= 7; $i++ ) { ?>
                         <td>
-                            <br>
+                            <?php
+                            if (empty($r2)) 
+                            { 
+                                for ($i = 1; $i <= 7; $i++ ) { ?>
+                                    <td>
+                                        <br>
+                                    </td>
+                                <?php } 
+                            }
+                            else 
+                            {
+                                
+                            } ?>
                         </td>
                         <?php } ?>
                 </tbody>
