@@ -15,7 +15,7 @@
                 <thead class="thead-light">
                     <th></i></th>
 <?php 
-require "../private/connectioncineflex.php";
+require "private/connectioncineflex.php";
 $today = date("m-d", strtotime('now')); // OK
 $tomorrow = date("m-d", strtotime('+1 day')); // OK
 $tomorrow2 = date("l m-d", strtotime('+2 day')); // OK

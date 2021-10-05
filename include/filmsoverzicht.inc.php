@@ -48,7 +48,7 @@ require "private/connectioncineflex.php";
 
 <section class="feature" id="feature">
     <div class="container">
-    <?php if ($_SESSION['rol'] = "3") { ?>
+    <?php if ($_SESSION['rol'] == "3") { ?>
 
     <?php } else { ?>
         <form action="index.php?page=filmstoevoegen" method="POST">
@@ -91,7 +91,7 @@ require "private/connectioncineflex.php";
             <td data-aos="fade-up" data-aos-delay="200" class="text-white"><?php echo $r['leeftijd'] ?></td>
             <td data-aos="fade-up" data-aos-delay="400" class="text-white"><?php echo $r['duratie'] ?></td>
         <?php 
-        if ($_SESSION['rol'] = "3") { ?>
+        if ($_SESSION['rol'] == "3") { ?>
             <td>
                 <form action="index.php?page=filminfo" method="POST">
                     <input type="hidden" name="film_id" value="<?php echo $r['film_id'] ?>">

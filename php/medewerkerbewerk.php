@@ -12,7 +12,7 @@ $sql = "SELECT *
 FROM klanten
 WHERE email = :email";
 $stmt = $conn->prepare($sql);
-$stmt->execute(array(
+$stmt->execute(array(   
     ':email'    => $email
 ));
 

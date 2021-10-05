@@ -23,7 +23,7 @@ $r = $stmt->fetch();
         <h1>Medewerker bewerken</h1>
         <?php if (isset($_SESSION['error'])) { ?> 
     <p><?php echo $_SESSION['error'];
-            session_unset(); 
+            unset($_SESSION['error']); 
     }?></p>
             <input type="hidden" value="<?php echo $r['medewerker_id'] ?>" name="id">
 

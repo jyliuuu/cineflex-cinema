@@ -3,7 +3,7 @@
 <?php 
 echo "<pre>", print_r($_SESSION), "</pre>";
 
-    if ($_SESSION['page'] == "login") { ?>
+    if (isset($_SESSION['page']) == "login") { ?>
     <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
 
