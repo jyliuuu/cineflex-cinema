@@ -1,4 +1,4 @@
-
+<!-- SCHEDULE -->
 <section class="schedule section" id="schedule">
     <div class="container">
         <div class="row">
@@ -14,7 +14,8 @@
                 </div>
                 <thead class="thead-light">
                     <th></i></th>
-                    <?php 
+<?php 
+require "../private/connectioncineflex.php";
 $today = date("m-d", strtotime('now')); // OK
 $tomorrow = date("m-d", strtotime('+1 day')); // OK
 $tomorrow2 = date("l m-d", strtotime('+2 day')); // OK
@@ -22,96 +23,42 @@ $tomorrow3 = date("l m-d", strtotime('+3 day')); // OK
 $tomorrow4 = date("l m-d", strtotime('+4 day')); // OK
 $tomorrow5 = date("l m-d", strtotime('+5 day')); // OK
 $tomorrow6 = date("l m-d", strtotime('+6 day')); // OK
+
+$sql = 'SELECT *
+        FROM films';
+        $sth = $conn->prepare($sql);
+        $sth->execute();
 ?>
-                    <th>Today <?= $today ?></th>
-                    <th>Tomorrow <?= $tomorrow ?></th>
+                <tabel style="table-layout: fixed">
+                    <th>Today <br> <?= $today ?></th>
+                    <th>Tomorrow <br> <?= $tomorrow ?></th>
                     <th><?= $tomorrow2 ?></th>
                     <th><?= $tomorrow3 ?></th>
                     <th><?= $tomorrow4 ?></th>
                     <th><?= $tomorrow5 ?></th>
                     <th><?= $tomorrow6 ?></th>
                 </thead>
+<?php while ($r = $sth->fetch(PDO::FETCH_ASSOC)) { ?>
                 <tbody>
                     <tr>
-
-                       <td><small>fdf</small></td>
-                        <td>
-                            <strong>ZAAL NUMMER</strong>
-                            <span>BEGIN_TIJD + EIND_TIJD</span>
-                        </td>
-                        <td>
-                            <strong>ZAAL NUMMER</strong>
-                            <span>BEGIN_TIJD + EIND_TIJD</span>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                    </tr>
-                    <tr>
-                        <!-- elk td is een nieuwe film. -->
-                        <td><small>FILM 2</small></td>
-                        <td>
-                            <strong>ZAAL NUMMER</strong>
-                            <span>BEGIN_TIJD + EIND_TIJD</span>
-                        </td>
-                        <td>
-                            <strong>ZAAL NUMMER</strong>
-                            <span>BEGIN_TIJD + EIND_TIJD</span>
-                        </td>
-                        <td>
-                            <!-- geen film in planning    -->
-                        </td>
-                        <td>
-                            <strong>ZAAL NUMMER</strong>
-                            <span>BEGIN_TIJD + EIND_TIJD</span>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><small>FILM 3</small></td>
-                        <?php 
-                                        for ($i = 0; $i <= 6; $i++ ) { ?>
-                        <td>
-                            <strong>ZAAL NUMMER</strong>
-                            <span>BEGIN_TIJD + EIND_TIJD</span>
-                        </td>
-                        <?php } ?>
-                    </tr>
-                    <tr>
-                        <td><small>FILM 4</small></td>
-                        <?php 
-                                        for ($i = 0; $i <= 6; $i++ ) { ?>
+                        <!-- 1 td is een film blok in de planning -->
+                        <td><small><?= $r['titel']?></small></td>
+                        <?php for ($i = 0; $i <= 6; $i++ ) { ?>
                         <td>
                             <br>
                         </td>
                         <?php } ?>
-                    </tr>
-                    <tr>
-                        <td><small>FILM 5</small></td>
-                        <?php 
-                                        for ($i = 0; $i <= 6; $i++ ) { ?>
-                        <td>
-                            <br>
-                        </td>
-                        <?php } ?>
-                    </tr>
                 </tbody>
+<?php } ?>
                 </table>
             </div>
 
         </div>
     </div>
-</section>
 </table>
+<div class="text-white" data-aos="fade-up" data-aos-delay="200">
+    <form action="index.php?page=filmsinplannen" method="POST">
+        <button type="submit" class="btn-lg btn-success" value="Submit">Plan in</button>
+    </form>
+</div>    
+</section>

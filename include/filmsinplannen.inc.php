@@ -12,6 +12,13 @@ $sql2 = "SELECT *
          FROM zalen";
 $stmt2 = $conn->prepare($sql2);
 $stmt2->execute();
+
+$sql3 = "SELECT duratie
+        FROM films";
+$stmt3 = $conn->prepare($sql3);
+$stmt3->execute();
+
+$r3 = $stmt3->fetch(PDO::FETCH_ASSOC)
 ?>
 <br><br>
 <link rel="stylesheet" href="../css/style.css">
@@ -38,6 +45,7 @@ $stmt2->execute();
                 <input type="time" name="start" class="form-control" min="10:00" max="02:00" required>
             </div>
         <br>
+        <input type="hidden" name="duratie" value="<?php echo $r3['duratie'] ?>">
         <button class="btn-success" type="submit">Submit</button>
     </form>
 </div>
