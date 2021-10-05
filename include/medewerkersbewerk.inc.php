@@ -25,6 +25,7 @@ $r = $stmt->fetch();
     <p><?php echo $_SESSION['error'];
             session_unset(); 
     }?></p>
+            <input type="hidden" value="<?php echo $r['medewerker_id'] ?>" name="id">
 
             <div class="user-box">
                 <label>Voornaam</label>
