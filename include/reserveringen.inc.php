@@ -54,93 +54,26 @@ require "private/connectioncineflex.php";
     <table class="txtalign" style="width:100%">
 
     <tr class="text-light">
+        <th>ID</th>
         <th>Klant naam</th>
-        <th>Leeftijd</th>
         <th>Film</th>
-        <th>Actions</th>
+        <th>Stoel nummer</th>
     </tr>
     <?php 
         $sql = 'SELECT *
-        FROM films';
+        FROM reserveringen';
         $sth = $conn->prepare($sql);
         $sth->execute();
 
-        $sql2 = 'SELECT *
-        FROM films';
-        $sth2 = $conn->prepare($sql2);
-        $sth2->execute();
-
         while ($r = $sth->fetch(PDO::FETCH_ASSOC)) { ?>
     <tr>
-        <td>
-            <img id="l_img" src="data:image/png;base64,<?php echo $r['poster'] ?>" alt="team photo" />
-        </td>
-        <td><?php echo $r['titel'] ?></td>
-        <td><?php echo $r['leeftijd'] ?></td>
-        <td><?php echo $r['duratie'] ?></td>
-        <td>
-            <form action="index.php?page=editteam" method="POST">
-                <input type="hidden" name="film_id" value="<?php echo $r['film_id'] ?>">
-                <button type="submit" class="btn btn-warning" value="Submit">EDIT</button>
-            </form>
-        </td>
-        <td>
-            <form action="PHP/deleteteam.php" method="POST">
-                <input type="hidden" name="film_id" value="<?php echo $r['film_id'] ?>">
-                <input type="hidden" name="tname" value="<?php echo $r['name'] ?>">
-                <button type="submit" class="btn btn-danger" value="Submit">DELETE</button>
-            </form>
-        </td>
+        <td><?php echo $r['reservering_id'] ?></td>
+        <td><?php echo $r['klant_id'] ?></td>
+        <td><?php echo $r['planning_id'] ?></td>
+        <td><?php echo $r['stoel_id'] ?></td>
     </tr>
     <?php } ?>
 </table>
-<br>
-<hr>
-<br>
-<?php if ($sth->rowcount() == 0) { ?>
-    <div class="textcenter">
-        <br>
-        <h6 class="text-light">Er zijn momenteel geen reserveringen gezet.</h6>
-    </div>
-<?php } else { ?>
-    <br>
-    <table class="txtalign" style="width:100%">
-        <tr>
-            <th>Photo</th>
-            <th>Team name</th>
-            <th>Coach</th>
-            <th>City</th>
-            <th>Actions</th>
-        </tr>
-        <?php while ($r2 = $smt2->fetch(PDO::FETCH_ASSOC)) { ?>
-            <tr>
-                <td>
-                    <img id="l_img" src="data:image/png;base64,<?php echo $r2['poster'] ?>" alt="team photo" />
-                </td>
-                <td><?php echo $r2['titel'] ?></td>
-                <td><?php echo $r2['leeftijd'] ?></td>
-                <td><?php echo $r2['duratie'] ?></td>
-                <td>
-                    <form action="index.php?page=editteam" method="POST">
-                        <input type="hidden" name="film_id" value="<?php echo $r2['film_id'] ?>">
-                        <button type="submit" class="btn btn-warning" value="Submit">EDIT</button>
-                    </form>
-                </td>
-                <td>
-                    <form action="PHP/deleteteam.php" method="POST">
-                        <input type="hidden" name="film_id" value="<?php echo $r2['film_id'] ?>">
-                        <input type="hidden" name="tname" value="<?php echo $r2['titel'] ?>">
-                        <button type="submit" class="btn btn-danger" value="Submit">DELETE</button>
-                    </form>
-                </td>
-            </tr>
-    <?php }
-    } ?>
-    </table>
-
-    </div>
-</section>
-
 <!-- SCRIPTS -->
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

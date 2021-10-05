@@ -72,10 +72,7 @@ $stmt->execute();
 <td class="text-light" data-aos="fade-up" data-aos-delay="300"> <?php echo $r['email'] ?></td>
 
 <td> 
-<form action="index.php?page=medewerkersbewerk" method="POST">
-<input type="hidden" name="id" value="<?php echo $r['medewerker_id'] ?>">
-<button class="btn btn-primary">Bewerken</button>
-</form>
+<?php echo '<a href="index.php?page=medewerkersbewerk&acc_id='.$r['medewerker_id'].'" class="btn btn-primary">Bewerk</a>'; ?>">
 </td>
 <td> 
 <form action="php/medewerkersontslaan.php" method="POST">

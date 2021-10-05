@@ -6,6 +6,11 @@
 <div class="container">
     <div class="text-light">
         <h1>Medewerker aanemen</h1>
+        <?php if (isset($_SESSION['error'])) { ?> 
+    <p><?php echo $_SESSION['error'];
+            session_unset(); 
+    }?></p>
+
             <div class="user-box">
                 <label>Voornaam</label>
                 <input type="text" name="voornaam" class="form-control" required="">

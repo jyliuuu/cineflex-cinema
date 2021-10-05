@@ -1,13 +1,13 @@
 <?php 
 include "private/connectioncineflex.php";
 
-$id     = $_POST['id'];
+$acc_id    = $_GET["acc_id"];
 
 $sql = "SELECT * FROM `medewerkers` 
 WHERE medewerker_id = :id";
 $stmt = $conn->prepare($sql);
 $stmt->execute(array(
-    ':id'   => $id
+    ':id'   => $acc_id
 ));
 $r = $stmt->fetch();
 ?>
@@ -21,6 +21,11 @@ $r = $stmt->fetch();
 <div class="container">
     <div class="text-light">
         <h1>Medewerker bewerken</h1>
+        <?php if (isset($_SESSION['error'])) { ?> 
+    <p><?php echo $_SESSION['error'];
+            session_unset(); 
+    }?></p>
+
             <div class="user-box">
                 <label>Voornaam</label>
                 <input type="text" value="<?php echo $r['voornaam'] ?>"  name="voornaam" class="form-control" required="">

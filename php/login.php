@@ -21,13 +21,11 @@ $sth2->execute(array(
 $row = $sth->fetch(PDO::FETCH_ASSOC); //STAFF LOGIN . 2 = STAFF . 3 = MANAGER
 $row2 = $sth2->fetch(PDO::FETCH_ASSOC); //KLANT LOGIN 
 
-
+$hash = '$2y$07$BCryptRequires22Chrcte/VlQH0piJtjXl.0t1XkA8pw9dMXTpOq';
 
 echo "<pre>", print_r($row['rol']), "</pre>";
 
-$hash = '$2y$07$BCryptRequires22Chrcte/VlQH0piJtjXl.0t1XkA8pw9dMXTpOq';
-
-if ( password_verify(['wachtwoord'] == $row['wachtwoord'] OR $_POST['wachtwoord'] == $row2['wachtwoord'])) {
+if ( password_verify($hash['wachtwoord'] == $row['wachtwoord'] OR $_POST['wachtwoord'] == $row2['wachtwoord'])) {
     if (!empty($row)) {
         if ($row['rol'] > 1) {
             $_SESSION['rol'] = $row['rol'];

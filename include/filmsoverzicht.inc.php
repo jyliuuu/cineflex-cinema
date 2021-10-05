@@ -48,10 +48,13 @@ require "private/connectioncineflex.php";
 
 <section class="feature" id="feature">
     <div class="container">
+    <?php if ($_SESSION['rol'] = "3") { ?>
 
-    <form action="index.php?page=filmstoevoegen" method="POST">
-    <button type="submit" class="btn btn-success" value="Submit">Voeg Nieuw</button>
-    </form>
+    <?php } else { ?>
+        <form action="index.php?page=filmstoevoegen" method="POST">
+        <button type="submit" class="btn btn-success" value="Submit">Voeg Nieuw</button>
+        </form>
+    <?php } ?>
         
     <table class="txtalign" style="width:100%">
 
@@ -82,11 +85,20 @@ require "private/connectioncineflex.php";
         while ($r = $sth->fetch(PDO::FETCH_ASSOC)) { ?>
     <tr>
         <td>
-            <img data-aos="fade-up" data-aos-delay="100" id="s_img" src="data:image/png;base64,<?= $r['poster']?>" heigh=600 width=300/> 
+            <img data-aos="fade-up" data-aos-delay="100" id="s_img" src="data:image/png;base64,<?= $r['poster']?>" height=900 width=300/> 
         </td>
             <td data-aos="fade-up" data-aos-delay="200" class="text-white"><?php echo $r['titel'] ?></td>
             <td data-aos="fade-up" data-aos-delay="200" class="text-white"><?php echo $r['leeftijd'] ?></td>
             <td data-aos="fade-up" data-aos-delay="400" class="text-white"><?php echo $r['duratie'] ?></td>
+        <?php 
+        if ($_SESSION['rol'] = "3") { ?>
+            <td>
+                <form action="index.php?page=filminfo" method="POST">
+                    <input type="hidden" name="film_id" value="<?php echo $r['film_id'] ?>">
+                    <button type="submit" class="btn btn-success" value="Submit">Bekijken</button>
+                </form>
+            </td>
+        <?php } else { ?>
             <td>
                 <form action="index.php?page=filmbewerken" method="POST">
                     <input type="hidden" name="film_id" value="<?php echo $r['film_id'] ?>">
@@ -100,6 +112,8 @@ require "private/connectioncineflex.php";
                     <button type="submit" class="btn btn-danger" value="Submit">Verwijderen</button>
                 </form>
             </td>
+        <?php } ?>
+            
     </tr>
     <?php } ?>
 </table>
@@ -110,7 +124,7 @@ require "private/connectioncineflex.php";
 <?php if ($sth->rowcount() == 0) { ?>
     <div class="textcenter">
         <br>
-        <h6 class="text-light">Er zijn momenteel geen films geplant.</h6>
+        <h6 class="text-light">Er zijn momenteel geen films beschikbaar.</h6>
     </div>
 <?php } else { ?>
    <?php } ?>
