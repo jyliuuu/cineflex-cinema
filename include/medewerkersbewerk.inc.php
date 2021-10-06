@@ -39,13 +39,10 @@ $r = $stmt->fetch();
 
             <div class="user-box">
                 <label>E-mail</label>
-                <input type="text" value="<?php echo $r['email'] ?>"  name="email"  class="form-control" required="">
+                <input type="text" value=""  name="email"  class="form-control">
             </div>
 
-            <div class="user-box">
-                <label>Wachtwoord</label>
-                <input type="password" value="<?php echo $r['wachtwoord'] ?>"  name="wachtwoord"  class="form-control" required="">
-            </div>
+            <?php echo '<a href="index.php?page=medewerkerwachtwoord&acc_id='.$acc_id.'" class="btn btn-primary">bewerk wachtwoord</a><br><br><br><br>'; ?>
 
 <input type="submit" name="submit" value="Bewerk">
 
