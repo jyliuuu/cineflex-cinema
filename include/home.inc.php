@@ -30,9 +30,10 @@
             <div class="col-lg-8 col-md-10 mx-auto col-12">
                 <div class="hero-text mt-5 text-center">
                     <?php
-                        unset($_SESSION['page']);
-                        if (isset($_SESSION['newuser'])) {
-                        ?> <h6 data-aos="fade-up" data-aos-delay="300"> <?php $_SESSION['newuser'];
+                    unset($_SESSION['page']);
+                    if (isset($_SESSION['newuser'])) {
+                    ?>
+                    <h6 data-aos="fade-up" data-aos-delay="300"> <?php $_SESSION['newuser'];
                         session_unset();
                         }
                         ?>
@@ -41,10 +42,11 @@
                         <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">Onbeperkt series, films en meer
                             kijken. </h1>
 
-                        <a href="#feature" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">Start nu</a>
+                        <a href="#feature" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">Start
+                            nu</a>
 
                         <a href="#about" class="btn custom-btn bordered mt-3" data-aos="fade-up"
-                            data-aos-delay="700">over ons</a>
+                           data-aos-delay="700">over ons</a>
 
                 </div>
             </div>
@@ -68,7 +70,7 @@
                     aanmaken. </p>
 
                 <a href="include/registreren.inc.php" class="btn custom-btn bg-color mt-3" data-aos="fade-up"
-                    data-aos-delay="300">klik hier als je account wilt maken</a>
+                   data-aos-delay="300">klik hier als je account wilt maken</a>
             </div>
 
             <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
@@ -135,7 +137,7 @@
                 </div>
             </div>
             <div class="mr-lg-auto mt-5 mt-lg-0 mt-md-0 col-lg-3 col-md-6 col-12" data-aos="fade-up"
-                data-aos-delay="800">
+                 data-aos-delay="800">
                 <div class="team-thumb">
                     <img src="images/team/jacky.jpg" class="img-fluid" alt="Trainer" style="max-height: 270px">
 
@@ -152,7 +154,7 @@
                 </div>
             </div>
             <div class="mr-lg-auto mt-5 mt-lg-0 mt-md-0 col-lg-3 col-md-6 col-12" data-aos="fade-up"
-                data-aos-delay="800">
+                 data-aos-delay="800">
                 <div class="team-thumb">
                     <img src="images/team/dion.jpg" class="img-fluid" alt="Trainer" style="max-height: 270px">
 
@@ -181,36 +183,41 @@
 
                 <h2 data-aos="fade-up" class="text-white" data-aos-delay="200">beste trending films</h2>
             </div>
-<!-- CLASS -->
-<?php
-require "private/connectioncineflex.php";
-$sql = "SELECT * FROM films ";
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {  ?>
+            <!-- CLASS -->
+            <?php
+            include "private/connectioncineflex.php";
+            $sql = "SELECT * FROM films 
+    /*    inner join films_kijkwijzers AS FK ON films.film_id = FK.film_id
+        inner join kijkwijzers as KW ON FK.kijkwijzer_id = KW.kijkwijzer_id*/ ";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            $sql1 = "SELECT naam FROM kijkwijzers ";
+            $stmt1 = $conn->prepare($sql1);
+            $stmt1->execute();
 
 
+            while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
+                <div class="col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="400">
+                    <div class="class-thumb">
+                        <img src="data:image/png;base64,<?= $result['poster'] ?>" style="width: 349px"/>
+                        <div class="class-info" style="word-wrap: break-word;">
+                            <h3 class="mb-1"><?= $result['titel'] ?></h3>
+                            <p class="mt-3"><?= $result['omschrijving'] ?></p>
+
+                            <span class="tag"><?= $result['naam'] ?></span>
 
 
-            <div class="col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="400">
-                <div class="class-thumb">
-                    <img src="data:image/png;base64,<?= $result['poster'] ?>" style="width: 349px"/>
-                    <div class="class-info">
-                        <h3 class="mb-1"><?= $result['titel'] ?></h3>
-
-
-
-                        <p class="mt-3"><?= $result['omschrijving']?></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-<?php } ?>
-        </section>
 
+            <?php } ?>
+</section>
 
 
 <?php
-    include 'include/planning.inc.php';
+include 'include/planning.inc.php';
 ?>
 <!-- CONTACT -->
 <section class="contact section" id="contact">
@@ -230,8 +237,8 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {  ?>
 -->
                 <div class="google-map" data-aos="fade-up" data-aos-delay="900">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2456.594074715265!2d5.888991415486854!3d51.9960518797184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c7a5a22b8b81cb%3A0xa9d063799555c1f!2sRijn%20IJssel!5e0!3m2!1snl!2snl!4v1631527682797!5m2!1snl!2snl"
-                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2456.594074715265!2d5.888991415486854!3d51.9960518797184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c7a5a22b8b81cb%3A0xa9d063799555c1f!2sRijn%20IJssel!5e0!3m2!1snl!2snl!4v1631527682797!5m2!1snl!2snl"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
 
