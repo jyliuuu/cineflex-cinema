@@ -192,9 +192,7 @@
             $stmt = $conn->prepare($sql);
             $stmt->execute();
 
-            $sql1 = "SELECT naam FROM kijkwijzers ";
-            $stmt1 = $conn->prepare($sql1);
-            $stmt1->execute();
+
 
 
             while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
@@ -204,10 +202,20 @@
                         <div class="class-info" style="word-wrap: break-word;">
                             <h3 class="mb-1"><?= $result['titel'] ?></h3>
                             <p class="mt-3"><?= $result['omschrijving'] ?></p>
+                            <?php
 
-                            <span class="tag"><?= $result['naam'] ?></span>
+                            $sql1 = "SELECT fk.film_id , kw.naam FROM films_kijkwijzers fk
+                                     LEFT JOIN kijkwijzers kw ON fk.kijkwijzer_id = kw.kijkwijzer_id WHERE fk.film_id = :film_id ";
+                            $stmt1 = $conn->prepare($sql1);
+                            $stmt1->execute(array(
+                                    ':film_id' => $result['film_id']
+                            ));
+                            while ($result1 = $stmt1->fetch(PDO::FETCH_ASSOC)){
+                            ?>
 
-
+                            <span class="tag"><?= $result1['naam'] ?></span>
+<?php }  ?>
+                            <span class="tag"><?= $result['leeftijd'] ?></span>
                         </div>
                     </div>
                 </div>
