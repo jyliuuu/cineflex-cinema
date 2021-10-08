@@ -216,6 +216,11 @@
                             <span class="tag"><?= $result1['naam'] ?></span>
 <?php }  ?>
                             <span class="tag"><?= $result['leeftijd'] ?></span>
+
+                            <br>
+
+                            <a href="include/registreren.inc.php" class="btn custom-btn bg-color mt-3" data-aos="fade-up"
+                               data-aos-delay="300">reserveer ticket</a>
                         </div>
                     </div>
                 </div>
