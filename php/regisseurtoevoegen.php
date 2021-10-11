@@ -5,35 +5,32 @@ session_start();
 $naam   = $_POST['naam'];
 
 $sql = "SELECT *
-FROM acteurs
+FROM regisseurs
 WHERE  naam = :checknaam";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute(array(
     ':checknaam'    => $naam
 ));
+
 $r = $stmt->rowCount();
 
 if($r > 0)
 {
     $_SESSION['error'] = "Naam bestaat al";
-    header('location: ../index.php?page=acteurs');
+    header('location: ../index.php?page=regisseurs');
 }
 
 else
 {
-    $sql2 = "INSERT INTO acteurs (naam)
+    $sql2 = "INSERT INTO regisseurs (naam)
 VALUES (:naam)";
 
     $stmt2 = $conn->prepare($sql2);
     $stmt2->execute(array(
         ':naam' => $naam
     ));
-    header('location: ../index.php?page=acteurs');
+    header('location: ../index.php?page=regisseurs');
 }
-
-?>
-
-
 
 ?>
