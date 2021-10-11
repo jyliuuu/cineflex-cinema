@@ -224,7 +224,7 @@ if (isset($_SESSION['melding'])) {
 <?php }  ?>
                             <br>
                             <form action="index.php?page=filmbekijken" method="POST">
-                                <input type="hidden" value="<?= $result['film_id']; ?>" name="filmid">
+                                <input type="hidden" value="<?= $result1['film_id']; ?>" name="filmid">
                                 <button class="btn-danger" type="submit">Bekijk</button>
                             </form>
                         </div>
