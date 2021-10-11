@@ -57,19 +57,7 @@ $r2 = $sth2->fetchAll(PDO::FETCH_ASSOC);
                         <td><small><?= $r['titel']?></small></td>
                         <?php for ($i = 1; $i <= 7; $i++ ) { ?>
                         <td>
-                            <?php
-                            if (empty($r2)) 
-                            { 
-                                for ($i = 1; $i <= 7; $i++ ) { ?>
-                                    <td>
-                                        <br>
-                                    </td>
-                                <?php } 
-                            }
-                            else 
-                            {
-                                
-                            } ?>
+                            <br>
                         </td>
                         <?php } ?>
                 </tbody>

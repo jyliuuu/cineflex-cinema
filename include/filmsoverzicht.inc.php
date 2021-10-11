@@ -93,7 +93,7 @@ require "private/connectioncineflex.php";
         <?php 
         if ($_SESSION['rol'] == "3") { ?>
             <td>
-                <form action="index.php?page=filminfo" method="POST">
+                <form action="index.php?page=filmbekijken" method="POST">
                     <input type="hidden" name="film_id" value="<?php echo $r['film_id'] ?>">
                     <button type="submit" class="btn btn-success" value="Submit">Bekijken</button>
                 </form>
