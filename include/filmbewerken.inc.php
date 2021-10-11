@@ -23,6 +23,10 @@ $sql3 = "SELECT *
 $stmt3 = $conn->prepare($sql3);
 $stmt3->execute();
 
+$sql4= "SELECT * FROM genres";
+$stmt4 = $conn->prepare($sql4);
+$stmt4->execute();
+
 $r0 = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 <br><br>
@@ -49,6 +53,14 @@ $r0 = $stmt->fetch(PDO::FETCH_ASSOC);
                 <label>Duratie</label>
                 <input type="text" name="duratie" value="<?= $r0['duratie'] ?>" class="form-control" maxLength="3" required="">
             </div>
+
+            <label>Genre</label>
+            <select class="form-control"
+                    name="genre" id="genre">
+                <?php while ($r4 = $stmt4->fetch(PDO::FETCH_ASSOC)) { ?>
+                    <option value="<?= $r4['genre_id'] ?>"><?= $r4['genre'] ?></option>
+                <?php } ?>
+            </select>
 
         <!--   <div class="user-box">
                 <button class="btn btn-secondary dropdown-toggle" name="leeftijden" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">

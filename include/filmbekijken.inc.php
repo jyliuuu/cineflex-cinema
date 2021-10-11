@@ -29,6 +29,15 @@ $smt3 = $conn->prepare($sql3);
 $smt3->execute(array(
     ':filmid'=> $filmid
 ));
+
+$sql4 = "SELECT *
+         FROM planning
+         WHERE film_id = :filmid";
+$smt4 = $conn->prepare($sql4);
+$smt4->execute(array(
+    ':filmid'=> $filmid
+));
+$r4 = $smt4->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!-- moviesingle07:38-->
@@ -76,17 +85,27 @@ $smt3->execute(array(
                         <div class="movie-btn floatright">	
                             <div class="freespacexs"></div>
                             <?php // film reserveren form ?>
-                            <form action="php/filmreserveren.php" method="POST">
+                                    <br>
+                                    <?php
+                                    if (empty($r4)) { ?>
+                                        <h2 class="text-danger">! ) Deze film wordt helaas niet meer afgespeeld.</h2>
+                                    <?php
+                                    } else { ?>
+                                        <form action="php/filmreserveren.php" method="POST">
 
                                 <select name="planning" class="form-control limitform" id="planning">
-                                    <?php 
+                                    <?php
                                     while ($r3 = $smt3->fetch(PDO::FETCH_ASSOC)) { ?>
                                         <option value="<?= $r3['planning_id'] ?>"><?= $r3['begin_tijd'] ?> op <?= $r3['datum'] ?></option><?php
                                     } ?>
                                 </select>
                                 <button class="btn-transform btn-lg btn-danger" type="submit">Reserveer Ticket</button>
-                            </form>
-
+                                        </form>
+                                    <?php
+                                    }
+                                    ?>
+                            <br>
+                            <hr>
                         </div>
                         
                         <div class="social-btn">

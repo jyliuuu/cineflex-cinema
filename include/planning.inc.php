@@ -39,7 +39,6 @@ $sth2->execute(array(
     ':datum'=> $tomorrownummax
 ));
 
-$r2 = $sth2->fetchAll(PDO::FETCH_ASSOC);
 ?>
                 <tabel style="table-layout: fixed">
                     <th>Today <br> <?= $today ?></th>
@@ -50,18 +49,20 @@ $r2 = $sth2->fetchAll(PDO::FETCH_ASSOC);
                     <th><?= $tomorrow5 ?></th>
                     <th><?= $tomorrow6 ?></th>
                 </thead>
+                <tbody>
 <?php while ($r = $sth->fetch(PDO::FETCH_ASSOC)) { ?>
                 <tbody>
                     <tr>
                         <!-- 1 td is een film blok in de planning -->
                         <td><small><?= $r['titel']?></small></td>
-                        <?php for ($i = 1; $i <= 7; $i++ ) { ?>
-                        <td>
-                            <br>
-                        </td>
-                        <?php } ?>
-                </tbody>
 <?php } ?>
+<?php while ($r2 = $sth2->fetch(PDO::FETCH_ASSOC)) { ?>
+                        <td>
+                            <p><?= $r2['begin_tijd']?></p>
+                        </td>
+<?php } ?>
+                    </tr>
+                </tbody>
                 </table>
             </div>
 
@@ -70,7 +71,14 @@ $r2 = $sth2->fetchAll(PDO::FETCH_ASSOC);
 </table>
 <?php 
 if (isset($_SESSION['rol'])) {
-    if ($_SESSION['rol'] == 3) {
+    if ($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2) { //manager/mede ?>
+        <div class="text-white" data-aos="fade-up" data-aos-delay="200">
+            <form action="index.php?page=filmsinplannen" method="POST">
+                <button type="submit" class="btn-lg btn-success" value="Submit">Plan in</button>
+            </form>
+        </div>
+<?php
+    } else {
 
     }
 
@@ -80,9 +88,5 @@ else { ?>
 <?php
 }
 ?>
-<div class="text-white" data-aos="fade-up" data-aos-delay="200">
-    <form action="index.php?page=filmsinplannen" method="POST">
-        <button type="submit" class="btn-lg btn-success" value="Submit">Plan in</button>
-    </form>
-</div>    
+
 </section>
