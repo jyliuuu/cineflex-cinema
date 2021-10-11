@@ -65,7 +65,9 @@ require "private/connectioncineflex.php";
         <th>Duratie</th>
         <th>Acties</th>
     </tr>
-    <?php 
+    <?php
+        $today = date("L-m-d", strtotime('now')); // OK
+        $todaytime = date("H:i:s", strtotime('now'));
         // $sql = 'SELECT *
         // FROM films 
         // INNER JOIN films_kijkwijzers
@@ -81,6 +83,14 @@ require "private/connectioncineflex.php";
         FROM films';
         $sth2 = $conn->prepare($sql2);  
         $sth2->execute();
+
+        $sql3 ="DELETE FROM planning
+            WHERE begin_tijd >= :starttijd AND datum = :datum";
+        $smt3 = $conn->prepare($sql3);
+        $smt3->execute(array(
+            ':starttijd' => $todaytime,
+            ':datum' => $today
+        ));
 
         while ($r = $sth->fetch(PDO::FETCH_ASSOC)) { ?>
     <tr>
