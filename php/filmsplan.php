@@ -7,7 +7,6 @@ $zaal = $_POST['zaal'];
 $starttijd = $_POST['start'];
 $duratie = $_POST['duratie'];
 $datum = $_POST['datum'];
-echo "<pre>", print_r($_POST), "</pre>";
 
 // for time converts
 $hours = floor($duratie / 60);
@@ -32,7 +31,7 @@ echo $Date;
         ':eindtijd' => $Date
     ));
     $r = $smt->fetchAll(PDO::FETCH_ASSOC);
-    echo "<pre>", print_r($r), "</pre>";
+
 
     if ($smt->rowCount() == 0) 
     {
