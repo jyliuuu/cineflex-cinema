@@ -77,13 +77,14 @@ $smt3->execute(array(
                             <div class="freespacexs"></div>
                             <?php // film reserveren form ?>
                             <form action="php/filmreserveren.php" method="POST">
-                                <button class="btn-transform btn-lg btn-danger" type="submit">Reserveer Ticket</button>
+
                                 <select name="planning" class="form-control limitform" id="planning">
                                     <?php 
                                     while ($r3 = $smt3->fetch(PDO::FETCH_ASSOC)) { ?>
                                         <option value="<?= $r3['planning_id'] ?>"><?= $r3['begin_tijd'] ?> op <?= $r3['datum'] ?></option><?php
                                     } ?>
                                 </select>
+                                <button class="btn-transform btn-lg btn-danger" type="submit">Reserveer Ticket</button>
                             </form>
 
                         </div>
