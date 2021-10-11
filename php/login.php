@@ -40,8 +40,7 @@ else if (password_verify($_POST['wachtwoord'], $row2['wachtwoord'])) {
 } 
 
 else {
-    $_SESSION['melding'] = 'U heeft incorrecte kredieten ingevuld.';  
-    echo "<pre>", print_r($_POST), "</pre>";
+    $_SESSION['melding'] = 'U heeft incorrecte kredieten ingevuld.';
     header('location: ../index.php?page=login');
 }
 

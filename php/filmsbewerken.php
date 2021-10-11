@@ -53,6 +53,14 @@ if ($kijkwijzer != null) {
             ':kijkwijzer_id' => $kijkwijzer[$i]
         ));
     }
+
+    $sql5 = "INSERT INTO films_kijkwijzers (film_id, kijkwijzer_id )  
+                VALUE (:film_id, :kijkwijzer_id)";
+        $smt5 = $conn->prepare($sql5);
+        $smt5->execute(array(
+            ':film_id'       => $id,
+            ':kijkwijzer_id' => $leeftijd
+        ));
     header('location: ../index.php?page=filmsoverzicht');
 } else {
     header('location: ../index.php?page=filmsoverzicht');

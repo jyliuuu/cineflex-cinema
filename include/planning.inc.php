@@ -57,19 +57,7 @@ $r2 = $sth2->fetchAll(PDO::FETCH_ASSOC);
                         <td><small><?= $r['titel']?></small></td>
                         <?php for ($i = 1; $i <= 7; $i++ ) { ?>
                         <td>
-                            <?php
-                            if (empty($r2)) 
-                            { 
-                                for ($i = 1; $i <= 7; $i++ ) { ?>
-                                    <td>
-                                        <br>
-                                    </td>
-                                <?php } 
-                            }
-                            else 
-                            {
-                                
-                            } ?>
+                            <br>
                         </td>
                         <?php } ?>
                 </tbody>
@@ -80,6 +68,18 @@ $r2 = $sth2->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 </table>
+<?php 
+if (isset($_SESSION['rol'])) {
+    if ($_SESSION['rol'] == 3) {
+
+    }
+
+}
+else { ?>
+    <br>
+<?php
+}
+?>
 <div class="text-white" data-aos="fade-up" data-aos-delay="200">
     <form action="index.php?page=filmsinplannen" method="POST">
         <button type="submit" class="btn-lg btn-success" value="Submit">Plan in</button>
