@@ -1,7 +1,6 @@
 <body data-spy="scroll" data-target="#navbarNav" data-offset="50">
 
-<?php 
-echo "<pre>", print_r($_SESSION), "</pre>";
+<?php
 
     if (isset($_SESSION['page']) == "login") { ?>
     <nav class="navbar navbar-expand-lg fixed-top">

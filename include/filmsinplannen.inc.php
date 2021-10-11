@@ -43,7 +43,7 @@ $r3 = $stmt3->fetch(PDO::FETCH_ASSOC)
                 </select>
                 <label>Start tijd</label>
                 <input type="time" name="start" class="form-control" min="13:00" max="02:00" required>
-                <label>Start tijd</label>
+                <label>Start dag</label>
                 <input type="date" name="datum" class="form-control" required>
             </div>
         <br>

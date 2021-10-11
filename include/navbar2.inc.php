@@ -23,6 +23,10 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="index.php?page=reserveringen" class="nav-link smoothScroll text-danger">Mijn Reserveringen </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="php/logout.php" class="nav-link smoothScroll text-danger">log out</a>
                     </li>
                 <?php

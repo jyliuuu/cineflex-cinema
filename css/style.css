@@ -9,11 +9,45 @@ https://www.tooplate.com/view/2119-gymso-fitness
   max-height: 800px;
 }
 
+.freespacem {
+  min-height: 120px;
+}
+
+.freespaces {
+  min-height: 40px;
+}
+
+.floatright {
+  margin-right: 150px;
+}
+
+.redtext {
+  color: red;
+}
 .planning {
   display: flex;
   justify-content: space-between;
   margin: 0px auto;
   float: none;
+}
+
+.freespacexs {
+  min-height: 10px;
+}
+
+.freespacexm {
+  min-height: 80px;
+}
+
+.limitform {
+  max-width: 40%;
+}
+
+hr { background-color: white; height: 1px; border: 0; }
+
+.singlepic {
+  margin-top: 25px;
+  position: relative;
 }
 
 .empty {

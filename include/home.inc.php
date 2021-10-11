@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <title>Cineflex</title>
 
     <meta charset="UTF-8">
@@ -20,6 +19,14 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <!-- HERO -->
+<?php
+if (isset($_SESSION['melding'])) {
+    echo '<div class="freespacexm"></div><div class="txtboxLalign alert alert-danger" role="alert">'.$_SESSION['melding'].'</div>';
+    unset($_SESSION['melding']);
+} else {
+
+}
+?>
 <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
 
     <div class="bg-overlay"></div>
@@ -198,10 +205,10 @@
             while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
                 <div class="col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="400">
                     <div class="class-thumb">
-                        <img src="data:image/png;base64,<?= $result['poster'] ?>" style="width: 349px"/>
+                        <img src="data:image/png;base64,<?= $result['poster'] ?>" style="width: 350px; max-height: 450px"/>
                         <div class="class-info" style="word-wrap: break-word;">
                             <h3 class="mb-1"><?= $result['titel'] ?></h3>
-                            <p class="mt-3"><?= $result['omschrijving'] ?></p>
+                            <p class="mt-3"><?= $result['omschrijving'] ?>...</p>
                             <?php
 
                             $sql1 = "SELECT fk.film_id , kw.naam FROM films_kijkwijzers fk
@@ -215,16 +222,14 @@
 
                             <span class="tag"><?= $result1['naam'] ?></span>
 <?php }  ?>
-                            <span class="tag"><?= $result['leeftijd'] ?></span>
-
                             <br>
-
-                            <a href="include/registreren.inc.php" class="btn custom-btn bg-color mt-3" data-aos="fade-up"
-                               data-aos-delay="300">reserveer ticket</a>
+                            <form action="index.php?page=filmbekijken" method="POST">
+                                <input type="hidden" value="<?= $result['film_id']; ?>" name="filmid">
+                                <button class="btn-danger" type="submit">Bekijk</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-
             <?php } ?>
 </section>
 
@@ -232,61 +237,6 @@
 <?php
 include 'include/planning.inc.php';
 ?>
-<!-- CONTACT -->
-<section class="contact section" id="contact">
-    <div class="container">
-        <div class="row">
-
-            <div class="mx-auto mt-4 mt-lg-0 mt-md-0 col-lg-5 col-md-6 col-12">
-                <h2 class="mb-4 text-white" data-aos="fade-up" data-aos-delay="600">Waar kan je ons vinden</h2>
-
-                <p data-aos="fade-up" class="text-white" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i>
-                    Zijpendaalseweg 167 - Arnhem, Nederland</p>
-                <!-- How to change your own map point
-	1. Go to Google Maps
-	2. Click on your location point
-	3. Click "Share" and choose "Embed map" tab
-	4. Copy only URL and paste it within the src="" field below
--->
-                <div class="google-map" data-aos="fade-up" data-aos-delay="900">
-                    <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2456.594074715265!2d5.888991415486854!3d51.9960518797184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c7a5a22b8b81cb%3A0xa9d063799555c1f!2sRijn%20IJssel!5e0!3m2!1snl!2snl!4v1631527682797!5m2!1snl!2snl"
-                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-<!-- FOOTER -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="row">
-
-            <div class="ml-auto col-lg-7 col-md-7">
-                <p class="text-white copyright-text">Copyright &copy; 2021 Cineflex.
-                    <br><br>
-                    Front-end: <a href="https://www.rijnijssel.nl" class="text-white">made by Huzaifa Balaksi, Jacky
-                        Liu, Dion Muller</a>
-                    <br> Back-end: <a href="https://www.rijnijssel.nl" class="text-white">made by Huzaifa Balaksi,
-                        Jacky
-                        Liu, Dion Muller</a>
-                </p>
-            </div>
-
-            <div class="d-flex justify-content-center mx-auto col-lg-5 col-md-7 col-8">
-                <p class="mr-2">
-                    <i class="fa fa-envelope-o mr-1"></i>
-                    <a class="text-white" href="#">E: cineflexsupport@gmail.com</a>
-                </p>
-                <p class="text-white">T: 0681822526</p>
-            </div>
-
-        </div>
-    </div>
-</footer>
 
 <!-- SCRIPTS -->
 <script src="js/jquery.min.js"></script>

@@ -23,6 +23,17 @@ require "private/connectioncineflex.php";
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <!-- HERO -->
+<?php
+        if (isset($_SESSION['melding'])) {
+            echo '<div class="freespacexm"></div><div class="txtboxLalign alert alert-success" role="alert">'.$_SESSION['melding'].'</div>';
+            unset($_SESSION['melding']);
+        } else if (isset($_SESSION['melding2'])) {
+            echo '<div class="freespacexm"></div><div class="txtboxLalign alert alert-danger" role="alert">'.$_SESSION['melding2'].'</div>';
+            unset($_SESSION['melding2']);
+        } else {
+
+        }
+?>
 <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
 
     <div class="bg-overlay"></div>
@@ -54,23 +65,56 @@ require "private/connectioncineflex.php";
     <table class="txtalign" style="width:100%">
 
     <tr class="text-light">
-        <th>ID</th>
         <th>Klant naam</th>
         <th>Film</th>
+        <th>Tijden</th>
+        <th>Datum</th>
         <th>Stoel nummer</th>
+        <th>Acties</th>
     </tr>
     <?php 
-        $sql = 'SELECT *
-        FROM reserveringen';
-        $sth = $conn->prepare($sql);
-        $sth->execute();
+        $klantid = $_SESSION['id'];
+        if ($_SESSION['rol'] == 3) {
+            $sql = 'SELECT *
+            FROM reserveringen r
+            INNER JOIN klanten k
+            ON r.klant_id = k.klant_id
+            INNER JOIN planning p 
+            ON r.planning_id = p.planning_id
+            INNER JOIN films f
+            ON p.film_id = f.film_id
+            WHERE k.klant_id = :klantid';
+            $sth = $conn->prepare($sql);
+            $sth->execute(array(
+                ':klantid' => $klantid
+            ));
+        }
+        else {
+            $sql = 'SELECT *
+            FROM reserveringen r
+            INNER JOIN klanten k
+            ON r.klant_id = k.klant_id
+            INNER JOIN planning p 
+            ON r.planning_id = p.planning_id
+            INNER JOIN films f
+            ON p.film_id = f.film_id';
+            $sth = $conn->prepare($sql);
+            $sth->execute();
+        }   
 
         while ($r = $sth->fetch(PDO::FETCH_ASSOC)) { ?>
     <tr>
-        <td><?php echo $r['reservering_id'] ?></td>
-        <td><?php echo $r['klant_id'] ?></td>
-        <td><?php echo $r['planning_id'] ?></td>
-        <td><?php echo $r['stoel_id'] ?></td>
+        <td class="text-white"><?php echo $r['voornaam'] ?></td>
+        <td class="text-white"><?php echo $r['titel'] ?></td>
+        <td class="text-white"><?php echo $r['begin_tijd'] ?> - <?= $r['eind_tijd'] ?></td>
+        <td class="text-white"><?php echo $r['datum'] ?></td>
+        <td class="text-white"><?php echo $r['stoel_id'] ?></td>
+        <td>
+            <form action="PHP/ticketannuleren.php" method="POST">
+                <input type="hidden" name="planningid" value="<?php echo $r['planning_id'] ?>">
+                <button type="submit" class="btn btn-danger" value="Submit">Annuleren</button>
+            </form>
+        </td>
     </tr>
     <?php } ?>
 </table>
