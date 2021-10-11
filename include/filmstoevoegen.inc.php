@@ -12,6 +12,10 @@ $sql3 = "SELECT * FROM kijkwijzers
          WHERE active =1"; //overige
 $stmt3 = $conn->prepare($sql3);
 $stmt3->execute();
+
+$sql4= "SELECT * FROM genres";
+$stmt4 = $conn->prepare($sql4);
+$stmt4->execute();
 ?>
 <br><br>
 <link rel="stylesheet" href="../css/style.css">
@@ -37,6 +41,14 @@ $stmt3->execute();
                 <label>Duratie</label>
                 <input type="text" name="duratie" class="form-control" maxLength="3" required="">
             </div>
+
+            <label>Genre</label>
+            <select class="form-control"
+                    name="genre" id="genre">
+                <?php while ($r4 = $stmt4->fetch(PDO::FETCH_ASSOC)) { ?>
+                    <option value="<?= $r4['genre_id'] ?>"><?= $r4['genre'] ?></option>
+                <?php } ?>
+            </select>
 
 
         <label>Kijkwijzers leeftijd</label>

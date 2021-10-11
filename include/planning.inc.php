@@ -39,7 +39,6 @@ $sth2->execute(array(
     ':datum'=> $tomorrownummax
 ));
 
-$r2 = $sth2->fetchAll(PDO::FETCH_ASSOC);
 ?>
                 <tabel style="table-layout: fixed">
                     <th>Today <br> <?= $today ?></th>
@@ -50,18 +49,20 @@ $r2 = $sth2->fetchAll(PDO::FETCH_ASSOC);
                     <th><?= $tomorrow5 ?></th>
                     <th><?= $tomorrow6 ?></th>
                 </thead>
+                <tbody>
 <?php while ($r = $sth->fetch(PDO::FETCH_ASSOC)) { ?>
                 <tbody>
                     <tr>
                         <!-- 1 td is een film blok in de planning -->
                         <td><small><?= $r['titel']?></small></td>
-                        <?php for ($i = 1; $i <= 7; $i++ ) { ?>
-                        <td>
-                            <br>
-                        </td>
-                        <?php } ?>
-                </tbody>
 <?php } ?>
+<?php while ($r2 = $sth2->fetch(PDO::FETCH_ASSOC)) { ?>
+                        <td>
+                            <p><?= $r2['begin_tijd']?></p>
+                        </td>
+<?php } ?>
+                    </tr>
+                </tbody>
                 </table>
             </div>
 

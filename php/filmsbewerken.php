@@ -8,6 +8,7 @@ $omschrijving = $_POST['omschrijving'];
 $duratie = $_POST['duratie'];
 $kijkwijzer = $_POST['kijkwijzers'];
 $leeftijd = $_POST['leeftijd'];
+$genre = $_POST['genre'];
 // $active = $_POST['active'];
 if ($_FILES['poster']['tmp_name'] != null) {
     $img = base64_encode(file_get_contents($_FILES['poster']['tmp_name']));
@@ -61,6 +62,22 @@ if ($kijkwijzer != null) {
             ':film_id'       => $id,
             ':kijkwijzer_id' => $leeftijd
         ));
+    header('location: ../index.php?page=filmsoverzicht');
+} else if ($genre != null) {
+    $sql5 = "DELETE FROM films_genres
+         WHERE film_id = :id";
+    $smt5 = $conn->prepare($sql5);
+    $smt5->execute(array(
+        ':id' => $id
+    ));
+
+    $sql6 = "INSERT INTO films_genres (genre_id, film_id )
+             VALUE (:genreid , :film_id)";
+    $smt6 = $conn->prepare($sql6);
+    $smt6->execute(array(
+        ':genreid' => $genre,
+        ':film_id' => $id
+    ));
     header('location: ../index.php?page=filmsoverzicht');
 } else {
     header('location: ../index.php?page=filmsoverzicht');
