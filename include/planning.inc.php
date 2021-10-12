@@ -50,18 +50,27 @@ $stmt->execute();
 
                     <?php
                     for ($x = 0; $x <= 6; $x++) {
-                        $sql2 = "SELECT begin_tijd FROM planning WHERE film_id = :film_id AND datum = :datum";
+                        $sql2 = "SELECT begin_tijd, planning_id, datum FROM planning WHERE film_id = :film_id AND datum = :datum";
                         $stmt2 = $conn->prepare($sql2);
                         $stmt2->execute(array(
                             ':film_id' => $movie['film_id'],
                             ':datum' => $day[$x]
                         ));
                         echo "<td>";
-                        while($times = $stmt2->fetch(PDO::FETCH_ASSOC) ){
-                            echo $times['begin_tijd'];
+                        {
+                        while($times = $stmt2->fetch(PDO::FETCH_ASSOC) ){ ?>
+                            <form method="post" action="index.php?page=filmbekijken">
+                                <input type="hidden" name="filmid" value="<?= $movie['film_id'] ?>">
+                                <input type="hidden" name="planningid" value="<?= $times['planning_id'] ?>">
+                                <input type="hidden" name="planningtijd" value="<?= $times['begin_tijd'] ?>">
+                                <input type="hidden" name="planningdatum" value="<?= $times['datum'] ?>">
+                                <button type="submit" class="btn-danger"><?= $times['begin_tijd'] ?></button>
+                            </form>
+                            <?php
                             echo "<br>";
                         }
                         echo "</td>";
+                        }
                     }
 
                     ?>

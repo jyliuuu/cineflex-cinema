@@ -33,7 +33,16 @@ require "private/connectioncineflex.php";
                 <div class="hero-text mt-5 text-center">
                         <h6 data-aos="fade-up" data-aos-delay="300">Films overzicht</h6>
 
-                        <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">Ready, Set, Kijken!
+                        <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">
+                            <?php if (isset($_SESSION['melding'])) {
+                                echo  $_SESSION['melding'] . '</div>';
+                                unset($_SESSION['melding']);
+                            }
+
+                            else
+                            { ?>
+                            Ready, Set, Kijken!
+                         <?php  } ?>
                         </h1>
 
                         <a href="#feature" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">

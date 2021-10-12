@@ -2,6 +2,10 @@
 include 'private/connectioncineflex.php';
 
 $filmid = $_POST['filmid'];
+//$planningtijd = $_POST['planningtijd'];
+//$planningdatum = $_POST['planningdatum'];
+
+
 
 $sql = "SELECT * 
         FROM films
@@ -29,6 +33,16 @@ $smt3 = $conn->prepare($sql3);
 $smt3->execute(array(
     ':filmid'=> $filmid
 ));
+
+$sql0 = "SELECT *
+         FROM planning
+         WHERE film_id = :filmid";
+$smt0 = $conn->prepare($sql0);
+$smt0->execute(array(
+    ':filmid'=> $filmid
+));
+
+$r0 = $smt0->fetch(PDO::FETCH_ASSOC);
 
 $sql4 = "SELECT *
          FROM planning
@@ -179,13 +193,18 @@ $r10 = $smt10->rowCount();
 
                                 <select name="planning" class="form-control limitform" id="planning">
                                     <?php
-                                    while ($r3 = $smt3->fetch(PDO::FETCH_ASSOC)) { ?>
+                                    if($_POST['planningid'] != NULL){ ?>
+                                        <option value="<?= $_POST['planningid'] ?>"><?= $_POST['planningtijd'] ?> op <?= $_POST['planningdatum'] ?> </option><?php
+                                    }
+                                    else {
+                                        while ($r3 = $smt3->fetch(PDO::FETCH_ASSOC)) { ?>
                                         <option value="<?= $r3['planning_id'] ?>"><?= $r3['begin_tijd'] ?> op <?= $r3['datum'] ?></option><?php
-                                    } ?>
+                                         }?>
                                 </select>
                                 <button class="btn-transform btn-lg btn-danger" type="submit">Reserveer Ticket</button>
                                         </form>
                                     <?php
+                                    }
                                     }
                                     ?>
                             <br>
