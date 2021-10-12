@@ -1,91 +1,72 @@
-<!-- SCHEDULE -->
-<section class="schedule section" id="schedule">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-12 text-center">
-                <h6 data-aos="fade-up">Planning</h6>
-
-                <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Kijk Wat Er Speelt.</h2>
-            </div>
-            <div class="col-lg-12 py-5 col-md-12 col-12 ">
-                <div class="planning">
-                    <table class="mx-auto table table-bordered table-responsive schedule-table" data-aos="fade-up"
-                        data-aos-delay="300">
-                </div>
-                <thead class="thead-light">
-                    <th></i></th>
-<?php 
+<?php
 require "private/connectioncineflex.php";
-$today = date("m-d", strtotime('now')); // OK
-$tomorrow = date("m-d", strtotime('+1 day')); // OK
-$tomorrow2 = date("l m-d", strtotime('+2 day')); // OK
-$tomorrow3 = date("l m-d", strtotime('+3 day')); // OK
-$tomorrow4 = date("l m-d", strtotime('+4 day')); // OK
-$tomorrow5 = date("l m-d", strtotime('+5 day')); // OK
-$tomorrow6 = date("l m-d", strtotime('+6 day')); // OK
+$day[0] = date("Y-m-d", strtotime('now')); // OK
+$day[1] = date("Y-m-d", strtotime('+1 day')); // OK
+$day[2] = date("Y-m-d", strtotime('+2 day')); // OK
+$day[3] = date("Y-m-d", strtotime('+3 day')); // OK
+$day[4] = date("Y-m-d", strtotime('+4 day')); // OK
+$day[5] = date("Y-m-d", strtotime('+5 day')); // OK
+$day[6] = date("Y-m-d", strtotime('+6 day')); // OK
 
 $tomorrownummax = date("Y-m-d", strtotime('+6 day')); // OK
 
-$sql = 'SELECT *
-        FROM films';
-$sth = $conn->prepare($sql);
-$sth->execute();
 
-$sql2 = "SELECT *
-    	 FROM planning
-         WHERE datum <= :datum";
-$sth2 = $conn->prepare($sql2);
-$sth2->execute(array(
-    ':datum'=> $tomorrownummax
-));
-
+$sql = "SELECT film_id, titel FROM films";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
 ?>
-                <tabel style="table-layout: fixed">
-                    <th>Today <br> <?= $today ?></th>
-                    <th>Tomorrow <br> <?= $tomorrow ?></th>
-                    <th><?= $tomorrow2 ?></th>
-                    <th><?= $tomorrow3 ?></th>
-                    <th><?= $tomorrow4 ?></th>
-                    <th><?= $tomorrow5 ?></th>
-                    <th><?= $tomorrow6 ?></th>
-                </thead>
-                <tbody>
-<?php while ($r = $sth->fetch(PDO::FETCH_ASSOC)) { ?>
-                <tbody>
-                    <tr>
-                        <!-- 1 td is een film blok in de planning -->
-                        <td><small><?= $r['titel']?></small></td>
-<?php } ?>
-<?php while ($r2 = $sth2->fetch(PDO::FETCH_ASSOC)) { ?>
-                        <td>
-                            <p><?= $r2['begin_tijd']?></p>
-                        </td>
-<?php } ?>
-                    </tr>
-                </tbody>
-                </table>
+
+<!-- SCHEDULE -->
+<section class="schedule section" id="schedule">
+    <div class="container">
+        <h1 class="text-white">Planning</h1>
+        <?php
+        if (isset($_SESSION['rol'])) {
+            if ($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2) { //manager/mede ?>
+            <div class="text-white" data-aos="fade-up" data-aos-delay="200">
+                <form action="index.php?page=filmsinplannen" method="POST">
+                    <button type="submit" class="btn-lg btn-success" value="Submit">Plan in</button>
+                </form>
             </div>
-        </div>
-    </div>
-</table>
-<?php 
-if (isset($_SESSION['rol'])) {
-    if ($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2) { //manager/mede ?>
-        <div class="text-white" data-aos="fade-up" data-aos-delay="200">
-            <form action="index.php?page=filmsinplannen" method="POST">
-                <button type="submit" class="btn-lg btn-success" value="Submit">Plan in</button>
-            </form>
-        </div>
-<?php
-    } else {
+        <?php
+            }
+        }
+        else { ?>
 
-    }
+        <?php } ?>
+        <table class="table">
+          <thead>
+            <tr>
+                <th class="redtext" scope="col">Films</th>
+                <?php foreach ($day as $value) { ?>
+                    <th scope="col" class="redtext"><?= $value ?></th>
+                <?php } ?>
+            </tr>
+          </thead>
+          <tbody>
+            <?php while($movie = $stmt->fetch(PDO::FETCH_ASSOC)){ ?>
+                <tr>
+                  <th scope="row" class="redtext"><?= $movie['titel'] ?></th>
 
-}
-else { ?>
-    <br>
-<?php
-}
-?>
+                    <?php
+                    for ($x = 0; $x <= 6; $x++) {
+                        $sql2 = "SELECT begin_tijd FROM planning WHERE film_id = :film_id AND datum = :datum";
+                        $stmt2 = $conn->prepare($sql2);
+                        $stmt2->execute(array(
+                            ':film_id' => $movie['film_id'],
+                            ':datum' => $day[$x]
+                        ));
+                        echo "<td>";
+                        while($times = $stmt2->fetch(PDO::FETCH_ASSOC) ){
+                            echo $times['begin_tijd'];
+                            echo "<br>";
+                        }
+                        echo "</td>";
+                    }
 
+                    ?>
+                </tr>
+            <?php } ?>
+          </tbody>
+    </table>
 </section>

@@ -45,10 +45,9 @@ $r3 = $stmt3->fetch(PDO::FETCH_ASSOC)
                 <label>Start tijd</label>
                 <input type="time" name="start" class="form-control" min="13:00" max="02:00" required>
                 <label>Start dag</label>
-                <input type="date" name="datum" class="form-control" min="<?= $today ?>" required>
+                <input type="date" name="datum" class="form-control" required>
             </div>
         <br>
-        <input type="hidden" name="duratie" value="<?php echo $r3['duratie'] ?>">
         <button class="btn-success" type="submit">Submit</button>
     </form>
 </div>
