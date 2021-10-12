@@ -33,7 +33,7 @@
             </button>
             <?php
             if (isset($_GET['page'])) {
-                if ($_GET['page'] = "filmbekijken") { ?>
+                if ($_GET['page'] == "filmbekijken") { ?>
                     <?php
                 }
                 else

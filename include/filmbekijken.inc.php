@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'private/connectioncineflex.php';
 
 $filmid = $_POST['filmid'];
@@ -144,7 +144,7 @@ $smt6->execute(array(
                             <div class="tabs">
                                 <ul class="tab-links tabs-mv">
                                     <li class="active"><a href="#omschrijving">Omschrijving</a></li>
-                                    <li><a href="#cast">Cast & Acteurs </a></li>
+                                    <li><a href="#cast">Regisseurs & Acteurs </a></li>
                                     <li><a href="#gerelateerd">Gerelateerde films</a></li>                        
                                 </ul>
                             </div>
@@ -158,7 +158,7 @@ $smt6->execute(array(
                         <br>
                         <hr>
                         <section id="cast">
-                            <h2 class="text-white">Cast & Acteurs </h2>
+                            <h2 class="text-white">Regisseurs & Acteurs </h2>
                             <?php // while loop for acteurs ?>
                         </section>
                         <hr>

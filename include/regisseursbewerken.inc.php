@@ -11,7 +11,7 @@ $stmt->execute(array(
 ));
 $r = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
-
+<div class="freespaces"></div>
 <form class="maxform" action="php/regisseurbewerken.php" method="POST" enctype="multipart/form-data">
 
     <input type="hidden" name="id" value="<?php echo $id ?>">
