@@ -9,8 +9,28 @@ $duratie = $_POST['duratie'];
 $kijkwijzer = $_POST['kijkwijzers'];
 $leeftijd = $_POST['leeftijd'];
 $genre = $_POST['genre'];
+$acteurs = $_POST['acteurs'];
+$regisseurs = $_POST['regisseurs'];
+
+
+$sql0 = "SELECT *
+FROM films
+WHERE titel = :titel";
+$smt0 = $conn->prepare($sql0);
+$smt0->execute(array(
+    ':titel'   => $titel
+));
+
+$rowCount = $smt0->rowCount();
+
+if($rowCount > 0)
+{
+    $_SESSION['error'] = "Titel bestaat al";
+    header('location: ../index.php?page=filmsoverzicht');
+}
+
 // $active = $_POST['active'];
-if ($_FILES['poster']['tmp_name'] != null) {
+else if ($_FILES['poster']['tmp_name'] != null) {
     $img = base64_encode(file_get_contents($_FILES['poster']['tmp_name']));
     $sql = "UPDATE films
         SET titel = :titel, omschrijving = :omschrijving, poster = :poster, duratie = :duratie
@@ -36,6 +56,7 @@ if ($_FILES['poster']['tmp_name'] != null) {
         ':id' => $id
     ));
 }
+
 
 if ($kijkwijzer != null) {
     $sql3 = "DELETE FROM films_kijkwijzers
@@ -82,4 +103,22 @@ if ($kijkwijzer != null) {
 } else {
     header('location: ../index.php?page=filmsoverzicht');
 }
+
+//else if ($acteurs != null) {
+//    $sql7 = "DELETE FROM films_kijkwijzers
+//         WHERE film_id = :id";
+//    $smt7 = $conn->prepare($sql7);
+//    $smt7->execute(array(
+//        ':id' => $id
+//    ));
+//
+//    for($i = 0; $i < sizeof($acteurs); $i++) {
+//        $sql8 = "INSERT INTO films_kijkwijzers (film_id, kijkwijzer_id )
+//                VALUE (:film_id, :kijkwijzer_id)";
+//        $smt8 = $conn->prepare($sql8);
+//        $smt8->execute(array(
+//            ':film_id'       => $id,
+//            ':kijkwijzer_id' => $kijkwijzer[$i]
+//        ));
+//    }
 
