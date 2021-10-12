@@ -52,6 +52,10 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="index.php?page=acteurs" class="nav-link smoothScroll text-danger">Acteurs & Regisseurs</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="php/logout.php" class="nav-link smoothScroll text-danger">log out</a>
                     </li>
                 <?php
@@ -75,6 +79,10 @@
                     <li class="nav-item">
                         <!-- WIP -->
                         <a href="index.php?page=medewerkers" class="nav-link smoothScroll text-danger">Medewerkers</a> 
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="index.php?page=acteurs" class="nav-link smoothScroll text-danger">Acteurs & Regisseurs</a>
                     </li>
 
                     <li class="nav-item">

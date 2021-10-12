@@ -18,7 +18,7 @@ $r = $stmt->rowCount();
 if($r > 0)
 {
     $_SESSION['error'] = "Naam bestaat al";
-    header('location: ../index.php?page=regisseurs');
+    header('location: ../index.php?page=acteurs');
 }
 
 else
@@ -30,7 +30,7 @@ VALUES (:naam)";
     $stmt2->execute(array(
         ':naam' => $naam
     ));
-    header('location: ../index.php?page=regisseurs');
+    header('location: ../index.php?page=acteurs');
 }
 
 ?>

@@ -18,9 +18,10 @@ $r = $stmt->fetch(PDO::FETCH_ASSOC);
 
     <br><br>
     <link rel="stylesheet" href="../css/style.css">
+    <div class="freespaces"></div>
     <div class="container">
         <div class="text-light">
-            <h1>Medewerker bewerken</h1>
+            <h1>Acteur bewerken</h1>
             <?php if (isset($_SESSION['error'])) { ?>
             <p><?php echo $_SESSION['error'];
                 unset($_SESSION['error']);
@@ -28,7 +29,7 @@ $r = $stmt->fetch(PDO::FETCH_ASSOC);
             <input type="hidden" value="<?php echo $r['acteur_id'] ?>" name="id">
 
             <div class="user-box">
-                <label>Naam:<br><br> <?php echo $r['naam']; ?></label>
+                <label>Huidige naam: <?php echo $r['naam']; ?></label>
                 <input type="text" name="naam" class="form-control" required="">
             </div>
 

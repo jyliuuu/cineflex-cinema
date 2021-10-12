@@ -25,7 +25,7 @@ if($rowCount > 0)
 
 else if($naam == NULL) {
     $_SESSION["error"] = "Geen bewerking gedaan.";
-    header('location: ../index.php?page=regisseurs');
+    header('location: ../index.php?page=acteurs');
 }
 
 else
@@ -46,7 +46,7 @@ WHERE regisseur_id = :id";
 
     if ($result){
         echo 'Successfully edited';
-        header('location: ../index.php?page=regisseurs');
+        header('location: ../index.php?page=acteurs');
     }
     else{
         echo 'Something went wrong with the connection';
