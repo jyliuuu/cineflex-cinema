@@ -52,11 +52,11 @@ echo $Date;
             ':zaal_id' => $zaal,
             ':datum' => $datum
         ));
-//        header('location: ../index.php?page=filmsplanning');
+        header('location: ../index.php?page=filmsplanning');
     }
     else
     {
         echo "doei";
         $_SESSION['error'] = "IS AL VOL LMAO";
-//        header('location: ../index.php?page=filmsplanning');
+        header('location: ../index.php?page=filmsplanning');
     }
