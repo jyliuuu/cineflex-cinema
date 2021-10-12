@@ -67,7 +67,7 @@ $stmt6->execute();
             <?php } ?>
         </select>
         <label>Kijkwijzers</label>
-        <select multiple class="form-control" style="height: 50%"
+        <select multiple class="form-control" style="height: 100"
                 name="kijkwijzers[]" id="kijkwijzers">
             <?php while ($r3 = $stmt3->fetch(PDO::FETCH_ASSOC)) { ?>
                 <option value="<?= $r3['kijkwijzer_id'] ?>"><?= $r3['naam'] ?></option>
@@ -75,7 +75,7 @@ $stmt6->execute();
         </select>
 
             <label>Acteurs</label>
-            <select multiple class="form-control" style="height: 50%"
+            <select multiple class="form-control" style="height: 100"
                     name="acteurs[]" id="acteurs">
                 <?php while ($r5 = $stmt5->fetch(PDO::FETCH_ASSOC)) { ?>
                     <option value="<?= $r5['acteur_id'] ?>"><?= $r5['naam'] ?></option>
@@ -83,7 +83,7 @@ $stmt6->execute();
             </select>
 
             <label>Regisseurs</label>
-            <select multiple class="form-control" style="height: 50%"
+            <select multiple class="form-control" style="height: 100"
                     name="regisseurs[]" id="regisseurs">
                 <?php while ($r6 = $stmt6->fetch(PDO::FETCH_ASSOC)) { ?>
                     <option value="<?= $r6['regisseur_id'] ?>"><?= $r6['naam'] ?></option>

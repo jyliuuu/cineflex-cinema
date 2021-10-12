@@ -27,6 +27,14 @@ $sql4= "SELECT * FROM genres";
 $stmt4 = $conn->prepare($sql4);
 $stmt4->execute();
 
+$sql5= "SELECT * FROM acteurs";
+$stmt5 = $conn->prepare($sql5);
+$stmt5->execute();
+
+$sql6= "SELECT * FROM regisseurs";
+$stmt6 = $conn->prepare($sql6);
+$stmt6->execute();
+
 $r0 = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 <br><br>
@@ -91,8 +99,29 @@ $r0 = $stmt->fetch(PDO::FETCH_ASSOC);
                 } ?>
                 </select>
             </div>
+
+            <div class="user-box">
+            <label>Acteurs</label>
+            <select multiple class="form-control" style="height: 100"
+                    name="acteurs[]" id="acteurs">
+                <?php while ($r5 = $stmt5->fetch(PDO::FETCH_ASSOC)) { ?>
+                    <option value="<?= $r5['acteur_id'] ?>"><?= $r5['naam'] ?></option>
+                <?php } ?>
+            </select>
+            </div>
+
+            <div class="user-box">
+            <label>Regisseurs</label>
+            <select multiple class="form-control" style="height: 100"
+                    name="regisseurs[]" id="regisseurs">
+                <?php while ($r6 = $stmt6->fetch(PDO::FETCH_ASSOC)) { ?>
+                    <option value="<?= $r6['regisseur_id'] ?>"><?= $r6['naam'] ?></option>
+                <?php } ?>
+            </select>
+            </div>
+
         </div>
-        <br>
+    <div class="freespacel"></div>
         <input type="hidden" name="film_id" value="<?= $r0['film_id'] ?>">
         <button class="btn-success" type="submit">Submit</button>
     </form>
