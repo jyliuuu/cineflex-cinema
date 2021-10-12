@@ -194,17 +194,18 @@ $r10 = $smt10->rowCount();
                                 <select name="planning" class="form-control limitform" id="planning">
                                     <?php
                                     if($_POST['planningid'] != NULL){ ?>
-                                        <option value="<?= $_POST['planningid'] ?>"><?= $_POST['planningtijd'] ?> op <?= $_POST['planningdatum'] ?> </option><?php
+                                        <option value="<?= $_POST['planningid'] ?>"><?= $_POST['planningtijd'] ?> op <?= $_POST['planningdatum'] ?> </option>
+                                        <button class="btn-transform btn-lg btn-danger" type="submit">Reserveer Ticket</button><?php
                                     }
                                     else {
                                         while ($r3 = $smt3->fetch(PDO::FETCH_ASSOC)) { ?>
                                         <option value="<?= $r3['planning_id'] ?>"><?= $r3['begin_tijd'] ?> op <?= $r3['datum'] ?></option><?php
-                                         }?>
+                                         }
+                                    }?>
                                 </select>
                                 <button class="btn-transform btn-lg btn-danger" type="submit">Reserveer Ticket</button>
                                         </form>
                                     <?php
-                                    }
                                     }
                                     ?>
                             <br>
