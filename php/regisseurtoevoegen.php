@@ -2,7 +2,7 @@
 require "../private/connectioncineflex.php";
 session_start();
 
-$naam   = $_POST['naam'];
+$naam   = strip_tags($_POST['naam']);
 
 $sql = "SELECT *
 FROM regisseurs

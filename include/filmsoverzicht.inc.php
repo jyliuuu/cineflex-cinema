@@ -108,6 +108,12 @@ require "private/connectioncineflex.php";
             </td>
         <?php } else { ?>
             <td>
+                <form action="index.php?page=filmbekijken" method="POST">
+                    <input type="hidden" value="<?= $r['film_id']; ?>" name="filmid">
+                    <button class="btn btn-success" type="submit">Bekijk</button>
+                </form>
+            </td>
+            <td>
                 <form action="index.php?page=filmbewerken" method="POST">
                     <input type="hidden" name="film_id" value="<?php echo $r['film_id'] ?>">
                     <button type="submit" class="btn btn-warning" value="Submit">Bewerken</button>

@@ -3,7 +3,7 @@ require "../private/connectioncineflex.php";
 session_start();
 
 $id         = $_POST['id'];
-$wachtwoord = $_POST['wachtwoord'];
+$wachtwoord = strip_tags($_POST['wachtwoord']);
 
 $hash = password_hash($wachtwoord, PASSWORD_DEFAULT);
 

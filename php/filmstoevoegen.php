@@ -2,7 +2,7 @@
 
 require "../private/connectioncineflex.php";
 
-$titel = $_POST['titel'];
+$titel = strip_tags($_POST['titel']);
 $poster = base64_encode(file_get_contents($_FILES['poster']['tmp_name']));
 $omschrijving = $_POST['omschrijving'];
 $duratie = $_POST['duratie'];
