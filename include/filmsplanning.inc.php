@@ -20,6 +20,17 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <!-- HERO -->
+<?php
+if (isset($_SESSION['error'])) {
+    echo '<div class="freespacexm"></div><div class="txtboxLalign alert alert-danger" role="alert">'.$_SESSION['error'].'</div>';
+    unset($_SESSION['error']);
+} else if (isset($_SESSION['success'])) {
+    echo '<div class="freespacexm"></div><div class="txtboxLalign alert alert-success" role="alert">'.$_SESSION['success'].'</div>';
+    unset($_SESSION['success']);
+} else {
+
+}
+?>
 <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
 
     <div class="bg-overlay"></div>

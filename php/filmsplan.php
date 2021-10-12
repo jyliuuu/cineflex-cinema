@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require "../private/connectioncineflex.php";
 
 $filmid = $_POST['film'];
@@ -7,13 +7,14 @@ $zaal = $_POST['zaal'];
 $starttijd = $_POST['start'];
 $datum = $_POST['datum'];
 
-$sql0 = "SELECT duratie FROM films WHERE film_id = :film_id";
+$sql0 = "SELECT titel, duratie FROM films WHERE film_id = :film_id";
 $smt0 = $conn->prepare($sql0);
 $smt0->execute(array(
     ':film_id' => $filmid
 ));
 $r0 = $smt0->fetch(PDO::FETCH_ASSOC);
 $duratie = $r0['duratie'];
+$titel = $r0['titel'];
 
 // for time converts
 $hours = floor($duratie / 60);
@@ -52,11 +53,12 @@ echo $Date;
             ':zaal_id' => $zaal,
             ':datum' => $datum
         ));
+        $_SESSION['success'] = "Inplannen van '".$titel."' gelukt -> ingepland op (".$starttijd." - ".$Date." op ".$datum.")";
         header('location: ../index.php?page=filmsplanning');
     }
     else
     {
-        echo "doei";
-        $_SESSION['error'] = "IS AL VOL LMAO";
+        $_SESSION['error'] = "Error: inplannen van '".$titel."' mislukt -> er is al een ander film ingepland in die tijd. 
+                             (".$starttijd." - ".$Date." op ".$datum.")";
         header('location: ../index.php?page=filmsplanning');
     }
