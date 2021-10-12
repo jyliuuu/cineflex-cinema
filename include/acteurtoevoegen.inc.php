@@ -1,6 +1,7 @@
+<div class="freespaces"></div>
 <form class="maxform" action="php/acteurtoevoegen.php" method="POST" enctype="multipart/form-data">
 
-    <br><br>
+<div class="freespaces"></div>
     <link rel="stylesheet" href="../css/style.css">
     <div class="container">
         <div class="text-light">

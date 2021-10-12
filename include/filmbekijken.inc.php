@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'private/connectioncineflex.php';
 
 $filmid = $_POST['filmid'];
@@ -29,6 +29,40 @@ $smt3 = $conn->prepare($sql3);
 $smt3->execute(array(
     ':filmid'=> $filmid
 ));
+
+$sql4 = "SELECT *
+         FROM planning
+         WHERE film_id = :filmid";
+$smt4 = $conn->prepare($sql4);
+$smt4->execute(array(
+    ':filmid'=> $filmid
+));
+$r4 = $smt4->fetch(PDO::FETCH_ASSOC);
+
+$sql5 = "SELECT g.genre, g.genre_id
+         FROM films_genres fg
+         LEFT JOIN genres g 
+         ON fg.genre_id = g.genre_id
+         WHERE fg.film_id = :filmid";
+$smt5 = $conn->prepare($sql5);
+$smt5->execute(array(
+    ':filmid'=> $filmid
+));
+$r5 = $smt5->fetch(PDO::FETCH_ASSOC);
+
+$sql6 = "SELECT f.film_id, f.titel, f.poster
+         FROM films f
+         INNER JOIN films_genres fg
+         ON f.film_id = fg.film_id
+         WHERE genre_id = :genre 
+            AND f.film_id != :filmid
+         ORDER BY RAND()
+         LIMIT 3";
+$smt6 = $conn->prepare($sql6);
+$smt6->execute(array(
+    ':genre'=> $r5['genre_id'],
+    ':filmid'=> $filmid
+));
 ?>
 
 <!-- moviesingle07:38-->
@@ -49,6 +83,7 @@ $smt3->execute(array(
 <div class="freespacexm"></div>
 
 <!-- HERO -->
+<div class="bg-overlay"></div>
     <div>
         <div class="container">
             <div class="row ipad-width2">
@@ -64,8 +99,8 @@ $smt3->execute(array(
                                 ?>
                                     <span class="tag"><?= $r2['naam'] ?></span>
                                 <?php 
-                                }  
-                                ?>
+                                }  ?>
+                                <span class="tag2"><?= $r5['genre'] ?></span>
                             </div>
                         </div>
                     </div>
@@ -76,16 +111,28 @@ $smt3->execute(array(
                         <div class="movie-btn floatright">	
                             <div class="freespacexs"></div>
                             <?php // film reserveren form ?>
-                            <form action="php/filmreserveren.php" method="POST">
-                                <button class="btn-transform btn-lg btn-danger" type="submit">Reserveer Ticket</button>
+                                    <br>
+                                    <?php
+                                    if (empty($r4)) { ?>
+                                        <span><h2 class="text-danger">( ! )</h2><h2 class="text-white">Deze film wordt helaas niet meer afgespeeld.</h2></span>
+
+                                    <?php
+                                    } else { ?>
+                                        <form action="php/filmreserveren.php" method="POST">
+
                                 <select name="planning" class="form-control limitform" id="planning">
-                                    <?php 
+                                    <?php
                                     while ($r3 = $smt3->fetch(PDO::FETCH_ASSOC)) { ?>
                                         <option value="<?= $r3['planning_id'] ?>"><?= $r3['begin_tijd'] ?> op <?= $r3['datum'] ?></option><?php
                                     } ?>
                                 </select>
-                            </form>
-
+                                <button class="btn-transform btn-lg btn-danger" type="submit">Reserveer Ticket</button>
+                                        </form>
+                                    <?php
+                                    }
+                                    ?>
+                            <br>
+                            <hr>
                         </div>
                         
                         <div class="social-btn">
@@ -97,18 +144,44 @@ $smt3->execute(array(
                             <div class="tabs">
                                 <ul class="tab-links tabs-mv">
                                     <li class="active"><a href="#omschrijving">Omschrijving</a></li>
-                                    <li><a href="#cast">Cast & Acteurs </a></li>
+                                    <li><a href="#cast">Regisseurs & Acteurs </a></li>
                                     <li><a href="#gerelateerd">Gerelateerde films</a></li>                        
                                 </ul>
                             </div>
                         </div>
                         <hr>
-                        <h2 class="text-white">Omschrijving</h2>
-                        <p class="redtext"><?= $r['omschrijving']; ?></p>
+                        <section id="about">
+                            <h2 class="text-white">Omschrijving</h2>
+                            <p class="redtext"><?= $r['omschrijving']; ?></p>
+                        </section>
+
                         <br>
                         <hr>
-                        <h2 class="text-white">Cast & Acteurs </h2>
+                        <section id="cast">
+                            <h2 class="text-white">Regisseurs & Acteurs </h2>
                             <?php // while loop for acteurs ?>
+                        </section>
+                        <hr>
+
+                        <section id="gerelateerd">
+                            <h2 class="text-white">Gerelateerde films </h2>
+                            <?php
+                            while ($r6 = $smt6->fetch(PDO::FETCH_ASSOC)){
+                                ?>
+                                <div class="row">
+                                    <div class="column">
+                                        <form action="index.php?page=filmbekijken" method="POST">
+                                            <input type="hidden" value="<?= $r6['film_id']; ?>" name="filmid">
+                                            <img class="singlepic" id="s_img" src="data:image/png;base64,<?= $r6['poster']?>" height=220 width=160/>
+                                            <p class="text-white"><?= $r6['titel'] ?></p>
+                                            <button class="btn-danger centeringbutton" type="submit">Bekijk</button>
+                                        </form>
+                                    </div>
+                                <?php
+                            }
+                            ?>
+                        </section>
+                        <br>
                         <hr>
                     </div>
                 </div>

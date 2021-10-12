@@ -11,5 +11,5 @@ $stmt->execute(array(
     ':id'   => $id
 ));
 
-header('location: ../index.php?page=regisseurs');
+header('location: ../index.php?page=acteurs');
 ?>

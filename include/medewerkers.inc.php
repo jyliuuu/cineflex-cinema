@@ -64,14 +64,16 @@ $stmt->execute();
 <td class="text-light" data-aos="fade-up" data-aos-delay="200"> <?php echo $r['achternaam'] ?></td>
 <td class="text-light" data-aos="fade-up" data-aos-delay="300"> <?php echo $r['email'] ?></td>
 
-<td> 
-<?php echo '<a href="index.php?page=medewerkersbewerk&acc_id='.$r['medewerker_id'].'" class="btn btn-primary">Bewerk</a>'; ?>">
+<td>
+    <form>
+        <?php echo '<a href="index.php?page=medewerkersbewerk&acc_id='.$r['medewerker_id'].'" class="btn btn-primary">Bewerk</a>'; ?>">
+    </form>
 </td>
 <td> 
-<form action="php/medewerkersontslaan.php" method="POST">
-<input type="hidden" name="id" value="<?php echo $r['medewerker_id'] ?>">
-<button class="btn btn-danger">Ontslaan</button>
-</form>
+    <form action="php/medewerkersontslaan.php" method="POST">
+        <input type="hidden" name="id" value="<?php echo $r['medewerker_id'] ?>">
+        <button class="btn btn-danger">Ontslaan</button>
+    </form>
 </td>
 </tr>
 <?php } ?>

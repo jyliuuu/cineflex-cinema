@@ -1,6 +1,5 @@
+<div class="freespacem"></div>
 <form class="maxform" action="php/regisseurtoevoegen.php" method="POST" enctype="multipart/form-data">
-
-    <br><br>
     <link rel="stylesheet" href="../css/style.css">
     <div class="container">
         <div class="text-light">
@@ -16,6 +15,6 @@
             </div>
 
             <input type="submit" name="submit" value="Toevoegen">
-
+        </div>
+    </div>
 </form>
-</div>

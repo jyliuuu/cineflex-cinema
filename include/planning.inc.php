@@ -33,7 +33,7 @@ $sth->execute();
 
 $sql2 = "SELECT *
     	 FROM planning
-         WHERE datum >= :datum";
+         WHERE datum <= :datum";
 $sth2 = $conn->prepare($sql2);
 $sth2->execute(array(
     ':datum'=> $tomorrownummax
@@ -65,7 +65,6 @@ $sth2->execute(array(
                 </tbody>
                 </table>
             </div>
-
         </div>
     </div>
 </table>
