@@ -45,7 +45,9 @@ $r0 = $stmt->fetch(PDO::FETCH_ASSOC);
         <form class="maxform" action="php/filmsbewerken.php" method="post" enctype="multipart/form-data">
             <div class="user-box">
                 <label>Titel</label>
-                <input type="text" name="titel" value="<?= $r0['titel'] ?>" class="form-control" required="">
+                <label>Huidige titel:</label>
+                <?= $r0['titel'] ?>
+                <input type="text" name="titel"  class="form-control">
             </div>
             <div class="user-box">
                 <input type="file" name="poster">
@@ -102,7 +104,7 @@ $r0 = $stmt->fetch(PDO::FETCH_ASSOC);
 
             <div class="user-box">
             <label>Acteurs</label>
-            <select multiple class="form-control" style="height: 100"
+            <select multiple class="form-control" style="height: 10%"
                     name="acteurs[]" id="acteurs">
                 <?php while ($r5 = $stmt5->fetch(PDO::FETCH_ASSOC)) { ?>
                     <option value="<?= $r5['acteur_id'] ?>"><?= $r5['naam'] ?></option>
@@ -112,7 +114,7 @@ $r0 = $stmt->fetch(PDO::FETCH_ASSOC);
 
             <div class="user-box">
             <label>Regisseurs</label>
-            <select multiple class="form-control" style="height: 100"
+            <select multiple class="form-control" style="height: 10%"
                     name="regisseurs[]" id="regisseurs">
                 <?php while ($r6 = $stmt6->fetch(PDO::FETCH_ASSOC)) { ?>
                     <option value="<?= $r6['regisseur_id'] ?>"><?= $r6['naam'] ?></option>

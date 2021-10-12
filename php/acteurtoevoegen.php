@@ -2,7 +2,7 @@
 require "../private/connectioncineflex.php";
 session_start();
 
-$naam   = $_POST['naam'];
+$naam   = strip_tags($_POST['naam']);
 
 $sql = "SELECT *
 FROM acteurs
@@ -17,7 +17,7 @@ $r = $stmt->rowCount();
 if($r > 0)
 {
     $_SESSION['error'] = "Naam bestaat al";
-    header('location: ../index.php?page=acteurs');
+    header('location: ../index.php?page=acteurtoevoegen');
 }
 
 else

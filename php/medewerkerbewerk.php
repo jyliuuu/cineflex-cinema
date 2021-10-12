@@ -2,9 +2,9 @@
 require "../private/connectioncineflex.php";
 session_start();
 
-$voornaam   = $_POST['voornaam'];
-$achternaam = $_POST['achternaam'];
-$email      = $_POST['email'];
+$voornaam   = strip_tags($_POST['voornaam']);
+$achternaam = strip_tags($_POST['achternaam']);
+$email      = strip_tags($_POST['email']);
 $id         = $_POST['id'];
 $wachtwoord = $_POST['wachtwoord'];
 

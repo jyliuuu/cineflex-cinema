@@ -4,16 +4,16 @@ include "../private/connectioncineflex.php";
 
 // echo "<pre>", print_r($_POST), "</pre>";
 
-$voornaam = $_POST['voornaam'];
-$achternaam = $_POST['achternaam'];
-$email = $_POST['email'];
-$leeftijd = $_POST['leeftijd'];
-$wachtwoord = $_POST['wachtwoord'];
-$postcode = $_POST['postcode'];
-$woonplaats = $_POST['woonplaats'];
-$straat = $_POST['straat'];
-$provincie = $_POST['provincie'];
-$telefoon = $_POST['telefoon'];
+$voornaam = strip_tags($_POST['voornaam']);
+$achternaam = strip_tags($_POST['achternaam']);
+$email = strip_tags($_POST['email']);
+$leeftijd = strip_tags($_POST['leeftijd']);
+$wachtwoord = strip_tags($_POST['wachtwoord']);
+$postcode = strip_tags($_POST['postcode']);
+$woonplaats = strip_tags($_POST['woonplaats']);
+$straat = strip_tags($_POST['straat']);
+$provincie = strip_tags($_POST['provincie']);
+$telefoon = strip_tags($_POST['telefoon']);
 
 $hash = password_hash($wachtwoord, PASSWORD_DEFAULT);
 

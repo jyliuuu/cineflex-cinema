@@ -50,19 +50,76 @@ $smt5->execute(array(
 ));
 $r5 = $smt5->fetch(PDO::FETCH_ASSOC);
 
+$genre = $r5['genre_id'];
+
 $sql6 = "SELECT f.film_id, f.titel, f.poster
          FROM films f
          INNER JOIN films_genres fg
          ON f.film_id = fg.film_id
-         WHERE genre_id = :genre 
+         WHERE fg.genre_id = :genre 
             AND f.film_id != :filmid
          ORDER BY RAND()
          LIMIT 3";
 $smt6 = $conn->prepare($sql6);
 $smt6->execute(array(
-    ':genre'=> $r5['genre_id'],
+    ':genre'=> $genre,
     ':filmid'=> $filmid
 ));
+
+$sql7 = "SELECT a.naam AS acteur
+         FROM films f
+         INNER JOIN films_acteurs fa
+         ON f.film_id = fa.film_id
+         INNER JOIN acteurs a
+         ON fa.acteur_id = a.acteur_id
+
+         WHERE f.film_id = :filmid";
+$smt7 = $conn->prepare($sql7);
+$smt7->execute(array(
+    ':filmid'=> $filmid
+));
+
+$r7 = $smt7->rowCount();
+
+$sql8 = "SELECT a.naam AS acteur
+         FROM films f
+         INNER JOIN films_acteurs fa
+         ON f.film_id = fa.film_id
+         INNER JOIN acteurs a
+         ON fa.acteur_id = a.acteur_id
+
+         WHERE f.film_id = :filmid";
+$smt8 = $conn->prepare($sql8);
+$smt8->execute(array(
+    ':filmid'=> $filmid
+));
+
+$sql9 = "SELECT r.naam AS regisseur
+         FROM films f      
+         INNER JOIN films_regisseurs fr
+         ON f.film_id = fr.film_id
+         INNER JOIN regisseurs r
+         ON fr.regisseurs_id = r.regisseur_id
+         WHERE f.film_id = :filmid";
+$smt9 = $conn->prepare($sql9);
+$smt9->execute(array(
+    ':filmid'=> $filmid
+));
+$sql10 = "SELECT r.naam AS regisseur
+         FROM films f
+         
+         INNER JOIN films_regisseurs fr
+         ON f.film_id = fr.film_id
+         INNER JOIN regisseurs r
+         ON fr.regisseurs_id = r.regisseur_id
+
+         WHERE f.film_id = :filmid";
+$smt10 = $conn->prepare($sql10);
+$smt10->execute(array(
+    ':filmid'=> $filmid
+));
+
+$r10 = $smt10->rowCount();
 ?>
 
 <!-- moviesingle07:38-->
@@ -159,7 +216,24 @@ $smt6->execute(array(
                         <hr>
                         <section id="cast">
                             <h2 class="text-white">Regisseurs & Acteurs </h2>
-                            <?php // while loop for acteurs ?>
+                            <?php
+                            if ($r7 == null AND $r10 == null) { ?>
+                                <p class="redtext">n.v.t</p>
+                            <?php
+                            } else {
+                                while ($r8 = $smt8->fetch(PDO::FETCH_ASSOC)){
+                                    ?>
+                                    <p class="redtext">Acteur - <?= $r8['acteur']; ?></p>
+                                    <?php
+                                }
+                                while ($r9 = $smt9->fetch(PDO::FETCH_ASSOC)){
+                                    ?>
+                                    <p class="redtext">Regisseur - <?= $r9['regisseur']; ?></p>
+                                    <?php
+                                }
+
+                            }
+                            ?>
                         </section>
                         <hr>
 
