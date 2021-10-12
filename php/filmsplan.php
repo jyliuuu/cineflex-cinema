@@ -25,8 +25,7 @@ $time = new DateTime("$starttijd");
 $time->add(new DateInterval('PT' . $newtimem . 'MPT' . $newtimeh . 'H'));
 $Date = $time->format('H:i'); //eindtijd
 $close = strtotime("02:00am");
-$closingtime = date("h:i:sa", $close);
-echo $Date;
+$closingtime = date("H:i", $close);
 
     $sql = "SELECT *
             FROM planning
@@ -43,9 +42,8 @@ echo $Date;
 
     if ($smt->rowCount() == 0) 
     {
-        if ($Date > $closingtime) {
+        if ($Date > $closingtime && $starttijd < $closingtime) {
             $_SESSION['error'] = "Error: inplannen van '".$titel."' mislukt -> Cineflex sluit voordat de film volledig kan eindigen. Cineflex : 13:00 - 02:00 - Film tijd: (".$starttijd." - ".$Date." op ".$datum.")";
-            echo $closingtime;
             header('location: ../index.php?page=filmsplanning');
         } else {
             $sql4 = "INSERT INTO planning (film_id, begin_tijd, eind_tijd, zaal_id, datum) 
