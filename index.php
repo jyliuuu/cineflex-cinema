@@ -17,6 +17,7 @@ if (isset($_GET['page'])) {
 <link rel="stylesheet" href="css/aos.css">
 
 <!-- MAIN CSS -->
+<link rel="stylesheet" href="css/stylestoel.css">
 <link rel="stylesheet" href="css/style.css">
     <body>
         <?php 

@@ -6,7 +6,7 @@ $naam   = strip_tags($_POST['naam']);
 
 $sql = "SELECT *
 FROM acteurs
-WHERE  naam = :checknaam";
+WHERE naam = :checknaam";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute(array(
