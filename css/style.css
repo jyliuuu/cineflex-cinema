@@ -9,6 +9,11 @@ https://www.tooplate.com/view/2119-gymso-fitness
 /*  color: white !important;*/
 /*}*/
 
+.wider {
+  min-width: 200%;
+}
+
+
 .maxform {
   max-height: 800px;
 }

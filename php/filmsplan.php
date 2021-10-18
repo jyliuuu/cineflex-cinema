@@ -29,11 +29,8 @@ $closingtime = date("H:i", $close);
 
     $sql = "SELECT *
             FROM planning
-            WHERE datum = :datum AND zaal_id = :zaalid AND
-                  
-             ((:begintijd >= begin_tijd AND :begintijd <= eind_tijd)
-            OR (:eindtijd >= begin_tijd AND :eindtijd <= eind_tijd)
-                 OR (:begintijd <= begin_tijd AND :eindtijd >= eind_tijd))";
+            WHERE datum = :datum AND zaal_id = :zaalid AND ((:begintijd >= begin_tijd AND :begintijd <= eind_tijd)
+            OR (:eindtijd >= begin_tijd AND :eindtijd <= eind_tijd))";
     $smt = $conn->prepare($sql);
     $smt->execute(array(
         ':zaalid' => $zaal,    
