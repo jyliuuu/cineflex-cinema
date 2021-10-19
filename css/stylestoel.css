@@ -1,190 +1,114 @@
-*, *:before, *:after {
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+
+* {
   box-sizing: border-box;
 }
-::selection {
-  background-color: #eee;
-}
-::-moz-selection {
-  background-color: #eee;
-}
 
-.seats {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.theatre {
-  margin: 20px auto;
-  width: 100%;
-  max-width: 350px;
-  padding: 20px 10px;
-}
-.screen-side {
-  text-align: center;
-}
-.screen-side .screen {
-  height: 25px;
-  margin: 0 20px;
-  border-radius: 50%;
-  box-shadow: 0px -3px 0px 1px #ccc;
-  color: #ccc;
-}
-.screen-side .select-text {
-  color: #969696;
-}
-.exit {
-  position: relative;
-  height: 50px;
-}
-.exit:before, .exit:after {
-  content: "UITGANG";
-  font-size: 14px;
-  line-height: 18px;
-  padding: 0px 5px;
-  font-family: "Arial Narrow", Arial, sans-serif;
-  display: block;
-  position: absolute;
-  background: red;
-  color: white;
-  top: 50%;
-  transform: translate(0, -50%);
-}
-.exit:before {
-  left: 0;
-}
-.exit:after {
-  right: 0;
-}
-ol {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.seats {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-}
-.seat {
-  display: flex;
-  flex: 0 0 14.28571%;
-  padding: 5px;
-  position: relative;
-}
-.seat:nth-child(3) {
-  margin-right: 14.28571%;
-}
-.seat input[type="checkbox"] {
-  position: absolute;
-  opacity: 0;
-}
-.seat input[type="checkbox"]:checked + label {
-  background: white;
-  -webkit-animation-name: rubberBand;
-  animation-name: rubberBand;
-  animation-duration: 300ms;
-  animation-fill-mode: both;
-}
-.seat input[type="checkbox"]:disabled + label {
-  background: grey;
-  text-indent: -9999px;
-  overflow: hidden;
-}
-.seat input[type="checkbox"]:disabled + label:after {
-  content: "X";
-  text-indent: 0;
-  position: absolute;
-  top: 4px;
-  left: 50%;
-  transform: translate(-50%, 0%);
-}
-.seat input[type="checkbox"]:disabled + label:hover {
-  box-shadow: none;
-  cursor: not-allowed;
-}
-.seat label {
-  display: block;
-  position: relative;
-  width: 100%;
-  text-align: center;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 1.5rem;
-  padding: 4px 0;
+body {
+  background-color: #242333;
   color: #fff;
-  background: red;
-  border-radius: 2px;
-  animation-duration: 300ms;
-  animation-fill-mode: both;
-  transition-duration: 300ms;
+  height: 100vh;
+  font-family: "Lato", sans-serif;
 }
-.seat label:hover {
+
+.movie-container {
+  margin: 20px 0;
+}
+
+.movie-container select {
+  background-color: #fff;
+  border: 0;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-left: 10px;
+  padding: 5px 15px 5px 15px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.container {
+  perspective: 1000px;
+}
+
+.seat {
+  background-color: #ff0000;
+  height: 30px;
+  width: 37.5px;
+  margin: 3px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.centeringult {
+  position: absolute;
+  top: -15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.seat.selected {
+  background-color: #6feaf6;
+}
+
+.seat.occupied {
+  background-color: #fff;
+}
+
+.seat:nth-of-type(2) {
+  margin-right: 18px;
+}
+
+.seat:nth-last-of-type(2) {
+  margin-left: 18px;
+}
+
+.seat:not(.occupied):hover {
   cursor: pointer;
-  box-shadow: 0px 0 7px 3px #ccc;
+  transform: scale(1.2);
 }
-@-webkit-keyframes rubberBand {
-  0% {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-  30% {
-    -webkit-transform: scale3d(1.25, 0.75, 1);
-    transform: scale3d(1.25, 0.75, 1);
-  }
-  40% {
-    -webkit-transform: scale3d(0.75, 1.25, 1);
-    transform: scale3d(0.75, 1.25, 1);
-  }
-  50% {
-    -webkit-transform: scale3d(1.15, 0.85, 1);
-    transform: scale3d(1.15, 0.85, 1);
-  }
-  65% {
-    -webkit-transform: scale3d(0.95, 1.05, 1);
-    transform: scale3d(0.95, 1.05, 1);
-  }
-  75% {
-    -webkit-transform: scale3d(1.05, 0.95, 1);
-    transform: scale3d(1.05, 0.95, 1);
-  }
-  100% {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
+
+.showcase .seat:not(.occupied):hover {
+  cursor: default;
+  transform: scale(1);
 }
-@keyframes rubberBand {
-  0% {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-  30% {
-    -webkit-transform: scale3d(1.25, 0.75, 1);
-    transform: scale3d(1.25, 0.75, 1);
-  }
-  40% {
-    -webkit-transform: scale3d(0.75, 1.25, 1);
-    transform: scale3d(0.75, 1.25, 1);
-  }
-  50% {
-    -webkit-transform: scale3d(1.15, 0.85, 1);
-    transform: scale3d(1.15, 0.85, 1);
-  }
-  65% {
-    -webkit-transform: scale3d(0.95, 1.05, 1);
-    transform: scale3d(0.95, 1.05, 1);
-  }
-  75% {
-    -webkit-transform: scale3d(1.05, 0.95, 1);
-    transform: scale3d(1.05, 0.95, 1);
-  }
-  100% {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
+
+.showcase {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #777;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
 }
-.rubberBand {
-  -webkit-animation-name: rubberBand;
-  animation-name: rubberBand;
+
+.showcase li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.showcase li small {
+  margin-left: 2px;
+}
+
+.row {
+  display: flex;
+}
+
+.screen {
+  background-color: #fff;
+  height: 70px;
+  width: 100%;
+  margin: 15px 0;
+  transform: rotateX(-45deg);
+  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+}
+
+p.text {
+  margin: 5px 0;
+}
+
+p.text span {
+  color: #6feaf6;
 }
