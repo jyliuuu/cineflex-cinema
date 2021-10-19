@@ -12,6 +12,7 @@ if (isset($_GET['page'])) {
     $_SESSION['page'] = $page;
 }
 ?>
+
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/aos.css">
