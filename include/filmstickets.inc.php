@@ -163,8 +163,28 @@ WHERE planning_id = :planning_id";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute(array(
-        ':planning_id'  => $_POST['planning']
+    ':planning_id'  => $_POST['planning']
 ));
+
+$sql2 = "SELECT r.klant_id, p.zaal_id, zaal_stoel_id, p.planning_id AS planning
+FROM planning p
+
+INNER JOIN zalen z
+ON p.zaal_id = z.zaal_id
+
+INNER JOIN zaal_stoel zs
+ON z.zaal_id = zs.zaal_id
+
+INNER JOIN reserveringen r
+ON p.planning_id = r.planning_id
+
+WHERE r.planning_id = :plan";
+
+$stmt2 = $conn->prepare($sql2);
+$stmt2->execute(array(
+    ':plan'  => $_POST['planning']
+));
+$r2 = $stmt2->rowCount();
 ?>
 <section class="feature" id="feature">
     <div class="container">
@@ -180,7 +200,19 @@ $stmt->execute(array(
                 <form action="php/filmreserveren.php" method="POST">
                     <li class="row row--1">
                         <div class="row">
-                            <?php while ($r = $stmt->fetch()) { ?>
+                            <?php while ($r = $stmt->fetch()) {
+                            if ($r2 > 0) { ?>
+                                <ol class="seats">
+                                    <li class="seat-taken">
+                                        <input type="hidden" name="planning" value="<?= $r['planning'] ?>"></input>
+                                        <input type="checkbox" value="<?php echo $r['zaal_stoel_id']; ?>" name="stoelid[]"/>
+                                        <label for="<?php echo $r['zaal_stoel_id']; ?>">X</label>
+                                    </li>
+                                </ol>
+                                <?php
+                            }
+                            else {
+                                ?>
                             <ol class="seats">
                                 <li class="seat">
                                         <input type="hidden" name="planning" value="<?= $r['planning'] ?>"></input>
@@ -188,7 +220,8 @@ $stmt->execute(array(
                                         <label for="<?php echo $r['zaal_stoel_id']; ?>"><?php echo $r['zaal_stoel_id']; ?></label>
                                 </li>
                             </ol>
-                        <?php } ?>
+                        <?php }
+                            } ?>
                         </div>
                         <br>
                     <button class="btn-transform btn-lg btn-danger" type="submit">Reserveer Ticket</button>

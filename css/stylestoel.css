@@ -39,6 +39,16 @@ body {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
+
+.seat-taken {
+  background-color: #626262;
+  height: 35px;
+  width: 45px;
+  margin: 3px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
 .centeringult {
   position: absolute;
   top: -15%;
