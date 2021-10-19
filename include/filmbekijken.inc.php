@@ -171,7 +171,7 @@ $r10 = $smt10->rowCount();
                                     <span class="tag"><?= $r2['naam'] ?></span>
                                 <?php 
                                 }  ?>
-                                <span class="tag2"><?= $r5['genre'] ?></span>
+                                <span class="tag2 text-dark"><?= $r5['genre'] ?></span>
                             </div>
                         </div>
                     </div>
@@ -193,7 +193,7 @@ $r10 = $smt10->rowCount();
                                         <select name="planning" class="form-control limitform" id="planning">
                                             <?php
                                             if($_POST['planningid'] != NULL){ ?>
-                                                <option value="<?= $_POST['planningid'] ?>"><?= $_POST['planningtijd'] ?> op <?= $_POST['planningdatum'] ?> </option>
+                                                <option value="<?= $_POST['planningid'] ?>" name="planningid" ><?= $_POST['planningtijd'] ?> op <?= $_POST['planningdatum'] ?></option>
                                                 <button class="btn-transform btn-lg btn-danger" type="submit">Reserveer Ticket</button><?php
                                             }
                                             else {
