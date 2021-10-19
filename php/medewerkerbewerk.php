@@ -2,13 +2,11 @@
 require "../private/connectioncineflex.php";
 session_start();
 
-$voornaam   = strip_tags($_POST['voornaam']);
-$achternaam = strip_tags($_POST['achternaam']);
-$email      = strip_tags($_POST['email']);
-$id         = $_POST['id'];
-$wachtwoord = $_POST['wachtwoord'];
+$voornaam   = $_POST['voornaam'];
+$achternaam = $_POST['achternaam'];
+$email      = $_POST['email'];
+$id         = $_POST['acc_id'];
 
-$hash = password_hash($wachtwoord, PASSWORD_DEFAULT);
 
 $sql = "SELECT *
 FROM klanten
@@ -26,88 +24,102 @@ $stmt2->execute(array(
     ':email'    => $email
 ));
 
-$r = $stmt2->fetch();
+$sql3 = "SELECT *
+FROM klanten";
+$stmt3 = $conn->prepare($sql3);
+$stmt3->execute();
+
+$sql4 = "SELECT *
+FROM medewerkers";
+$stmt4 = $conn->prepare($sql4);
+$stmt4->execute();
+
+$r  = $stmt->fetch();
+$r2 = $stmt2->fetch();
 
 
-$rowCount = $stmt->rowCount();
-$rowCount2 = $stmt2->rowCount();
+$rowCount = $stmt3->rowCount();
+$rowCount2 = $stmt4->rowCount();
 
-if($rowCount > 0)
-{
-    $_SESSION['error'] = "email bestaat al";
-    header('location: ../index.php?page=medewerkersbewerk&acc_id='.$id.''); //gebruik database info inplaats van post
-}
+if($email == $r['email']) {
 
-else if($rowCount2 > 0)
-{
-    $_SESSION['error'] = "email bestaat al";
-    header('location: ../index.php?page=medewerkersbewerk&acc_id='.$id.'');
-}
-
-else if(strlen($wachtwoord) < 6)
-{
-    $_SESSION['error'] = "Wachtwoord is tekort, moet minimaal 6 karakters hebben";
-    header('location: ../index.php?page=medewerkersbewerk&acc_id='.$id.'');
-}
-
-else if($email == NULL)
-{
     $sql3 = "UPDATE medewerkers
 
+    SET voornaam    = :voornaam,
+    achternaam      = :achternaam
+
+    WHERE medewerker_id = :id";
+
+    $stmt3 = $conn->prepare($sql3);
+    $result3 = $stmt3->execute(array(
+        ':voornaam' => $voornaam,
+        ':achternaam' => $achternaam,
+        ':id' => $id
+    ));
+    if ($result3) {
+        echo 'Successfully edited';
+        header('location: ../index.php?page=medewerkers');
+    } else {
+        echo 'Something went wrong with the connection';
+        header('location: ../index.php?page=medewerkersbewerk&acc_id=' . $id . '');
+    }
+}
+else if($email == $r2['email']) {
+    $sql4 = "UPDATE medewerkers
+
+    SET voornaam    = :voornaam,
+    achternaam      = :achternaam
+
+    WHERE medewerker_id = :id";
+
+    $stmt4 = $conn->prepare($sql4);
+    $result4 = $stmt4->execute(array(
+        ':voornaam' => $voornaam,
+        ':achternaam' => $achternaam,
+        ':id' => $id
+    ));
+    if ($result4) {
+        echo 'Successfully edited';
+        header('location: ../index.php?page=medewerkers');
+    } else {
+        echo 'Something went wrong with the connection';
+        header('location: ../index.php?page=medewerkersbewerk&acc_id=' . $id . '');
+    }
+}
+    else {
+        if ($rowCount > 0) {
+            $_SESSION['error'] = "email bestaat al";
+            header('location: ../index.php?page=medewerkersbewerk&acc_id=' . $id . ''); //gebruik database info inplaats van post
+        } else if ($rowCount2 > 0) {
+            $_SESSION['error'] = "email bestaat al";
+            header('location: ../index.php?page=medewerkersbewerk&acc_id=' . $id . '');
+        } else {
+            $sql6 = "UPDATE medewerkers
+
 SET voornaam    = :voornaam,
 achternaam      = :achternaam,
-wachtwoord      = :wachtwoord
+email           = :email
 
 WHERE medewerker_id = :id";
 
-$stmt3 = $conn->prepare($sql3);
-$result = $stmt3->execute(array(
-    ':voornaam'     => $voornaam,
-    ':achternaam'   => $achternaam,
-    ':id'           => $id,
-    ':wachtwoord'   => $hash
-));
+            $stmt6 = $conn->prepare($sql6);
+            $result = $stmt6->execute(array(
+                ':voornaam' => $voornaam,
+                ':achternaam' => $achternaam,
+                ':email' => $email,
+                ':id' => $id
+            ));
 
 // echo "<pre>", print_r($), "</pre>";
 
-if ($result){
-    echo 'Successfully edited';
-    header('location: ../index.php?page=medewerkers');
+            if ($result) {
+                echo 'Successfully edited';
+                header('location: ../index.php?page=medewerkers');
+            } else {
+                echo 'Something went wrong with the connection';
+                header('location: ../index.php?page=medewerkersbewerk&acc_id=' . $id . '');
+            }
+        }
     }
-else{
-    echo 'Something we  nt wrong with the connection';
-    header('location: ../index.php?page=medewerkersbewerk');
-    }
-}
-
-else
-{
-$sql6 = "UPDATE medewerkers
-
-SET voornaam    = :voornaam,
-achternaam      = :achternaam,
-email           = :email,
-
-WHERE medewerker_id = :id";
-
-$stmt6 = $conn->prepare($sql6);
-$result = $stmt6->execute(array(
-    ':voornaam'     => $voornaam,
-    ':achternaam'   => $achternaam,
-    ':email'        => $email,
-    ':id'           => $id,
-));
-
-// echo "<pre>", print_r($), "</pre>";
-
-if ($result){
-    echo 'Successfully edited';
-    header('location: ../index.php?page=medewerkers');
-    }
-else{
-    echo 'Something went wrong with the connection';
-    header('location: ../index.php?page=medewerkersbewerk');
-    }
-}
 
 ?>
