@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+
 <?php 
 require "private/connectioncineflex.php"; 
 // WORK IN PROGRESS . . . 
@@ -64,60 +63,64 @@ require "private/connectioncineflex.php";
         
     <table class="txtalign" style="width:100%">
 
-    <tr class="text-light">
-        <th>Klant naam</th>
-        <th>Film</th>
-        <th>Tijden</th>
-        <th>Datum</th>
-        <th>Stoel nummer</th>
-        <th>Acties</th>
-    </tr>
-    <?php 
-        $klantid = $_SESSION['id'];
-        if ($_SESSION['rol'] == 3) {
-            $sql = 'SELECT *
-            FROM reserveringen r
-            INNER JOIN klanten k
-            ON r.klant_id = k.klant_id
-            INNER JOIN planning p 
-            ON r.planning_id = p.planning_id
-            INNER JOIN films f
-            ON p.film_id = f.film_id
-            WHERE k.klant_id = :klantid';
-            $sth = $conn->prepare($sql);
-            $sth->execute(array(
-                ':klantid' => $klantid
-            ));
-        }
-        else {
-            $sql = 'SELECT *
-            FROM reserveringen r
-            INNER JOIN klanten k
-            ON r.klant_id = k.klant_id
-            INNER JOIN planning p 
-            ON r.planning_id = p.planning_id
-            INNER JOIN films f
-            ON p.film_id = f.film_id';
-            $sth = $conn->prepare($sql);
-            $sth->execute();
-        }   
+        <tr class="text-light">
+            <th>Klant naam</th>
+            <th>Film</th>
+            <th>Tijden</th>
+            <th>Datum</th>
+            <th>Zaal</th>
+            <th>Stoel nummer</th>
+            <th>Acties</th>
+        </tr>
+        <?php
+            $klantid = $_SESSION['id'];
+            if ($_SESSION['rol'] == 3) {
+                $sql = 'SELECT *
+                FROM reserveringen r
+                INNER JOIN klanten k
+                ON r.klant_id = k.klant_id
+                INNER JOIN planning p 
+                ON r.planning_id = p.planning_id
+                INNER JOIN films f
+                ON p.film_id = f.film_id
+                WHERE k.klant_id = :klantid';
+                $sth = $conn->prepare($sql);
+                $sth->execute(array(
+                    ':klantid' => $klantid
+                ));
+            }
+            else {
+                $sql = 'SELECT *
+                FROM reserveringen r
+                INNER JOIN klanten k
+                ON r.klant_id = k.klant_id
+                INNER JOIN planning p 
+                ON r.planning_id = p.planning_id
+                INNER JOIN films f
+                ON p.film_id = f.film_id';
+                $sth = $conn->prepare($sql);
+                $sth->execute();
+            }
 
-        while ($r = $sth->fetch(PDO::FETCH_ASSOC)) { ?>
-    <tr>
-        <td class="text-white"><?php echo $r['voornaam'] ?></td>
-        <td class="text-white"><?php echo $r['titel'] ?></td>
-        <td class="text-white"><?php echo $r['begin_tijd'] ?> - <?= $r['eind_tijd'] ?></td>
-        <td class="text-white"><?php echo $r['datum'] ?></td>
-        <td class="text-white"><?php echo $r['stoel_id'] ?></td>
-        <td>
-            <form action="PHP/ticketannuleren.php" method="POST">
-                <input type="hidden" name="planningid" value="<?php echo $r['planning_id'] ?>">
-                <button type="submit" class="btn btn-danger" value="Submit">Annuleren</button>
-            </form>
-        </td>
-    </tr>
-    <?php } ?>
-</table>
+            while ($r = $sth->fetch(PDO::FETCH_ASSOC)) { ?>
+        <tr>
+            <td class="text-white"><?php echo $r['voornaam'] ?></td>
+            <td class="text-white"><?php echo $r['titel'] ?></td>
+            <td class="text-white"><?php echo $r['begin_tijd'] ?> - <?= $r['eind_tijd'] ?></td>
+            <td class="text-white"><?php echo $r['datum'] ?></td>
+            <td class="text-white"><?php echo $r['zaal_id'] ?></td>
+            <td class="text-white"><?php echo $r['stoel_id'] ?></td>
+            <td>
+                <form action="PHP/ticketannuleren.php" method="POST">
+                    <input type="hidden" name="stoelid" value="<?php echo $r['stoel_id'] ?>">
+                    <input type="hidden" name="planningid" value="<?php echo $r['planning_id'] ?>">
+                    <button type="submit" class="btn btn-danger" value="Submit">Annuleren</button>
+                </form>
+            </td>
+        </tr>
+        <?php } ?>
+    </table>
+</div>
 <!-- SCRIPTS -->
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

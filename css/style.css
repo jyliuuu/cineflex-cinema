@@ -1108,7 +1108,7 @@ body {
 /* Create three equal columns that sits next to each other */
 
 .tag {
-  background: white;
+  background: black;
   border-radius: 10px;
   padding: 3px 8px;
   font-size: 14px;
@@ -1118,7 +1118,7 @@ body {
 }
 
 .tag2 {
-  background: #dc3545;
+  background: white;
   border-radius: 10px;
   padding: 3px 8px;
   font-size: 14px;
@@ -1128,5 +1128,5 @@ body {
 }
 
 .tag:hover {
-  background: #ddd;
+  background: red;
 }

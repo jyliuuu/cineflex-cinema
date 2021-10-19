@@ -150,7 +150,7 @@ $seats[9] = "10";
 </section>
 
 <?php
-$sql = "SELECT p.zaal_id, zaal_stoel_id
+$sql = "SELECT p.zaal_id, zaal_stoel_id, p.planning_id AS planning
 FROM planning p
 
 INNER JOIN zalen z
@@ -177,21 +177,20 @@ $stmt->execute(array(
             <div class="exit exit--front">
             </div>
             <ol class="cabin">
-
-                <li class="row row--1">
-                    <div class="row">
-                        <?php while ($r = $stmt->fetch()) { ?>
-                        <ol class="seats">
-                            <li class="seat">
-                                    <input type="checkbox" id="<?php echo $r['zaal_stoel_id']; ?>" />
-                                    <label for="<?php echo $r['zaal_stoel_id']; ?>"><?php echo $r['zaal_stoel_id']; ?></label>
-                            </li>
-                        </ol>
-                    <?php } ?>
-                    </div>
-
-                    <br>
                 <form action="php/filmreserveren.php" method="POST">
+                    <li class="row row--1">
+                        <div class="row">
+                            <?php while ($r = $stmt->fetch()) { ?>
+                            <ol class="seats">
+                                <li class="seat">
+                                        <input type="hidden" name="planning" value="<?= $r['planning'] ?>"></input>
+                                        <input type="checkbox" value="<?php echo $r['zaal_stoel_id']; ?>" name="stoelid[]"/>
+                                        <label for="<?php echo $r['zaal_stoel_id']; ?>"><?php echo $r['zaal_stoel_id']; ?></label>
+                                </li>
+                            </ol>
+                        <?php } ?>
+                        </div>
+                        <br>
                     <button class="btn-transform btn-lg btn-danger" type="submit">Reserveer Ticket</button>
                 </form>
             </ol>
