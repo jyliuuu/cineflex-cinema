@@ -32,7 +32,7 @@ else
         ':id'           => $id
     ));
     $_SESSION['error'] = "Wachtwoord is bewerkt";
-    header('location: ../index.php?page=medewerkersbewerk&acc_id='.$id.'');
 }
+header('location: ../index.php?page=medewerkersbewerk&acc_id='.$id.'');
 
 
