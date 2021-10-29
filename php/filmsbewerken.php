@@ -15,6 +15,7 @@ $regisseurs = $_POST['regisseurs'];
 echo "<pre>", print_r($_POST), "</pre>";
 
 // Database checkt voor dubbele data // titel van een film.
+
 $sql0 = "SELECT *
         FROM films
         WHERE titel = :titel";

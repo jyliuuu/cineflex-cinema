@@ -200,12 +200,18 @@ $r2 = $stmt2->rowCount();
                 <form action="php/filmreserveren.php" method="POST">
                     <li class="row row--1">
                         <div class="row">
-                            <?php while ($r = $stmt->fetch()) {
+                            <?php
+                            for ($x = 0; $x < 90; $x++) {
+
+                            }
+                            ?>
+                            <?php
+                            while ($r = $stmt->fetch()) {
                             if ($r2 > 0) { ?>
                                 <ol class="seats">
                                     <li class="seat-taken">
                                         <input type="hidden" name="planning" value="<?= $r['planning'] ?>"></input>
-                                        <input type="checkbox" value="<?php echo $r['zaal_stoel_id']; ?>" name="stoelid[]"/>
+                                        <input type="checkbox" disabled value="<?php echo $r['zaal_stoel_id']; ?>" name="stoelid[]"/>
                                         <label for="<?php echo $r['zaal_stoel_id']; ?>">X</label>
                                     </li>
                                 </ol>

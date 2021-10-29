@@ -220,7 +220,7 @@ if (isset($_SESSION['melding'])) {
                             while ($result1 = $stmt1->fetch(PDO::FETCH_ASSOC)){
                             ?>
 
-                            <span class="tag"><?= $result1['naam'] ?></span>
+                            <span class="tag2"><?= $result1['naam'] ?></span>
 <?php }  ?>
                             <br>
                             <form action="index.php?page=filmbekijken" method="POST">
