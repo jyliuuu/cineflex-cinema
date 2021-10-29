@@ -2,10 +2,7 @@
 include 'private/connectioncineflex.php';
 
 $filmid = $_POST['filmid'];
-//$planningtijd = $_POST['planningtijd'];
-//$planningdatum = $_POST['planningdatum'];
-
-
+$today = date("Y-m-d", strtotime('now')); // OK
 
 $sql = "SELECT * 
         FROM films
@@ -28,10 +25,12 @@ $smt2->execute(array(
 
 $sql3 = "SELECT *
          FROM planning
-         WHERE film_id = :filmid";
+         WHERE film_id = :filmid
+         AND datum >= :datum";
 $smt3 = $conn->prepare($sql3);
 $smt3->execute(array(
-    ':filmid'=> $filmid
+    ':filmid'=> $filmid,
+    ':datum'=> $today
 ));
 
 $sql0 = "SELECT *
@@ -46,10 +45,12 @@ $r0 = $smt0->fetch(PDO::FETCH_ASSOC);
 
 $sql4 = "SELECT *
          FROM planning
-         WHERE film_id = :filmid";
+         WHERE film_id = :filmid
+         AND datum >= :datum";
 $smt4 = $conn->prepare($sql4);
 $smt4->execute(array(
-    ':filmid'=> $filmid
+    ':filmid'=> $filmid,
+    ':datum' => $today
 ));
 $r4 = $smt4->fetch(PDO::FETCH_ASSOC);
 
@@ -186,22 +187,17 @@ $r10 = $smt10->rowCount();
                                     <?php
                                     if (empty($r4)) { ?>
                                         <span><h2 class="text-danger">( ! )</h2><h2 class="text-white">Deze film wordt helaas niet meer afgespeeld.</h2></span>
-
                                     <?php
                                     } else { ?>
                                         <form action="index.php?page=filmstickets" method="POST">
-                                        <select name="planning" class="form-control limitform" id="planning">
-                                            <?php
-                                            if($_POST['planningid'] != NULL){ ?>
-                                                <option value="<?= $_POST['planningid'] ?>" name="planningid" ><?= $_POST['planningtijd'] ?> op <?= $_POST['planningdatum'] ?></option>
-                                                <button class="btn-transform btn-lg btn-danger" type="submit">Reserveer Ticket</button><?php
-                                            }
-                                            else {
-                                                while ($r3 = $smt3->fetch(PDO::FETCH_ASSOC)) { ?>
-                                                <option value="<?= $r3['planning_id'] ?>"><?= $r3['begin_tijd'] ?> op <?= $r3['datum'] ?></option><?php
-                                                 }
-                                            }?>
-                                        </select>
+                                            <select name="planning" class="form-control limitform" id="planning">
+                                                <?php
+                                                    while ($r3 = $smt3->fetch(PDO::FETCH_ASSOC)) { ?>
+                                                    <option value="<?= $r3['planning_id'] ?>"><?= $r3['begin_tijd'] ?> op <?= $r3['datum'] ?></option>
+                                                    <?php
+                                                    }
+                                                ?>
+                                            </select>
                                             <button class="btn-transform btn-lg btn-danger" type="submit">Reserveer Ticket</button>
                                         </form>
                                     <?php

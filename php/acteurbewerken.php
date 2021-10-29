@@ -5,8 +5,6 @@ session_start();
 $naam   = strip_tags($_POST['naam']);
 $id     = $_POST['id'];
 
-
-
 $sql = "SELECT *
 FROM acteurs
 WHERE naam = :naam";

@@ -18,6 +18,7 @@ if (isset($_SESSION['id']) == null ) {
 }
 else {
     for ($i = 0; $i < sizeof($stoelid); $i++) {
+
         $sql = "INSERT INTO reserveringen
                 (klant_id, planning_id, stoel_id)
                 VALUES (:klantid, :planning_id, :stoel)"; //we missen het stoelid maar die is WIP
