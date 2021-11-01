@@ -12,5 +12,14 @@ $smt3->execute(array(
     ':id' => $id,
     ':stoelid' => $sid
 ));
+
+$sql2 = "UPDATE zaal_stoel
+                SET active = :active
+                WHERE zaal_stoel_id = :stoelid";
+$smt2 = $conn->prepare($sql2);
+$smt2->execute(array(
+    ':active' => '0',
+    ':stoelid' => $sid
+));
 $_SESSION['melding2'] = 'Je hebt een ticket geannuleerd. ';
 header('location: ../index.php?page=reserveringen');
