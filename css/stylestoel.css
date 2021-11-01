@@ -27,10 +27,6 @@ body {
   appearance: none;
 }
 
-.container {
-  perspective: 1000px;
-}
-
 .seat {
   background-color: #ff0000;
   height: 35px;

@@ -41,86 +41,6 @@ $seats[7] = "8";
 $seats[8] = "9";
 $seats[9] = "10";
 ?>
-<script>
-    const container = document.querySelector('.container');
-    const seats = document.querySelectorAll('.row .seat:not(.occupied)');
-    const count = document.getElementById('count');
-    const total = document.getElementById('total');
-    const movieSelect = document.getElementById('movie');
-
-    populateUI();
-
-    let ticketPrice = +movieSelect.value;
-
-    // Save selected movie index and price
-
-    function setMovieData(movieIndex, moviePrice) {
-        localStorage.setItem('selectedMovieIndex', (movieIndex));
-        localStorage.setItem('selectedMoviePrice', (moviePrice));
-    }
-
-    // Update total and count
-    function updateSelectedCount() {
-        const selectedSeats = document.querySelectorAll('.row .seat.selected');
-
-        // Copy selected seat into an array
-        // Map through the array
-        // Return a new array indexes
-
-        const seatsIndex = [...selectedSeats].map((seat) =>{
-            return [...seats].indexOf(seat)
-        })
-
-        localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex));
-
-        const selectedSeatsCount = selectedSeats.length;
-
-        count.innerText = selectedSeatsCount;
-        total.innerText = selectedSeatsCount * ticketPrice;
-    }
-
-    // Get data from localstorage and populate the UI
-
-    function populateUI() {
-        const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
-
-        if (selectedSeats !== null && selectedSeats.length > 0) {
-            seats.forEach((seat, index) => {
-                if (selectedSeats.indexOf(index) > -1) {
-                    seat.classList.add('selected');
-                }
-            });
-        }
-
-        const selectedMovieIndex = localStorage.getItem('selectedMovieIndex');
-
-        if(selectedMovieIndex !== null) {
-            movieSelect.selectedIndex = selectedMovieIndex;
-        }
-    }
-
-    //Movie Select Event
-    movieSelect.addEventListener('change', (e) => {
-        ticketPrice = +e.target.value;
-        setMovieData(e.target.selectedIndex, e.target.value);
-        updateSelectedCount();
-    })
-
-    // Seat click event
-    container.addEventListener('click', (e) => {
-        if (e.target.classList.contains('seat') &&
-            !e.target.classList.contains('occupied')
-        ) {
-            e.target.classList.toggle('selected');
-
-            updateSelectedCount()
-        }
-    })
-
-    // Initial count and total set
-
-    updateSelectedCount();
-</script>
 <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
 
     <div class="bg-overlay"></div>
@@ -159,7 +79,8 @@ ON p.zaal_id = z.zaal_id
 INNER JOIN zaal_stoel zs
 ON z.zaal_id = zs.zaal_id
 
-WHERE planning_id = :planning_id";
+WHERE planning_id = :planning_id
+AND active = 0";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute(array(
@@ -185,6 +106,24 @@ $stmt2->execute(array(
     ':plan'  => $_POST['planning']
 ));
 $r2 = $stmt2->rowCount();
+
+$sql3 = "SELECT p.zaal_id, zaal_stoel_id, p.planning_id AS planning
+FROM planning p
+
+INNER JOIN zalen z
+ON p.zaal_id = z.zaal_id
+
+INNER JOIN zaal_stoel zs
+ON z.zaal_id = zs.zaal_id
+
+WHERE planning_id = :planning_id
+AND active = 1";
+
+$stmt3 = $conn->prepare($sql3);
+$stmt3->execute(array(
+    ':planning_id'  => $_POST['planning']
+));
+
 ?>
 <section class="feature" id="feature">
     <div class="container">
@@ -206,19 +145,17 @@ $r2 = $stmt2->rowCount();
                             }
                             ?>
                             <?php
-                            while ($r = $stmt->fetch()) {
-                            if ($r2 > 0) { ?>
+                            while ($r3 = $stmt3->fetch()) { ?>
                                 <ol class="seats">
                                     <li class="seat-taken">
-                                        <input type="hidden" name="planning" value="<?= $r['planning'] ?>"></input>
-                                        <input type="checkbox" disabled value="<?php echo $r['zaal_stoel_id']; ?>" name="stoelid[]"/>
-                                        <label for="<?php echo $r['zaal_stoel_id']; ?>">X</label>
+                                        <input type="hidden" name="planning" value="<?= $r3['planning'] ?>"></input>
+                                        <input type="checkbox" disabled value="<?php echo $r3['zaal_stoel_id']; ?>" name="stoelid[]"/>
+                                        <label for="<?php echo $r3['zaal_stoel_id']; ?>">X</label>
                                     </li>
                                 </ol>
-                                <?php
+                            <?php
                             }
-                            else {
-                                ?>
+                            while ($r = $stmt->fetch()) { ?>
                             <ol class="seats">
                                 <li class="seat">
                                         <input type="hidden" name="planning" value="<?= $r['planning'] ?>"></input>
@@ -226,8 +163,8 @@ $r2 = $stmt2->rowCount();
                                         <label for="<?php echo $r['zaal_stoel_id']; ?>"><?php echo $r['zaal_stoel_id']; ?></label>
                                 </li>
                             </ol>
-                        <?php }
-                            } ?>
+                            <?php
+                                } ?>
                         </div>
                         <br>
                     <button class="btn-transform btn-lg btn-danger" type="submit">Reserveer Ticket</button>

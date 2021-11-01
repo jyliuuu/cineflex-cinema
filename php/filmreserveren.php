@@ -6,12 +6,6 @@ $planning = $_POST['planning'];
 $klantid = $_SESSION['id'];
 $stoelid = $_POST['stoelid'];
 
-// $stoelid = $_POST['stoelid'];
-echo "<pre>", print_r($planning), "</pre>";
-echo "<pre>", print_r($klantid), "</pre>";
-
-echo "<pre>", print_r($_POST), "</pre>";
-
 if (isset($_SESSION['id']) == null ) {
     $_SESSION['melding'] = 'Je moet ingelogt zijn om een film ticket te reserveren.';
     header('location: ../index.php?page=home');
@@ -27,6 +21,15 @@ else {
             ':klantid' => $klantid,
             ':planning_id' => $planning,
             ':stoel' => $stoelid[$i]
+        ));
+
+        $sql2 = "UPDATE zaal_stoel
+                SET active = :active
+                WHERE zaal_stoel_id = :stoelid";
+        $smt2 = $conn->prepare($sql2);
+        $smt2->execute(array(
+            ':active' => '1',
+            ':stoelid' => $stoelid[$i]
         ));
     }
 

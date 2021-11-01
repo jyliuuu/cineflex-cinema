@@ -1,7 +1,6 @@
 <?php
 include 'private/connectioncineflex.php';
 
-$id = $_POST['film_id'];
 $today = date("m-d", strtotime('now')); // OK
 
 $sql = "SELECT * 
@@ -25,6 +24,7 @@ $r3 = $stmt3->fetch(PDO::FETCH_ASSOC)
 <link rel="stylesheet" href="../css/style.css">
 <div class="container">
     <div class="text-light">
+        <div class="freespaces"></div>
         <h1>Films inplannen</h1>
         <form class="maxform" action="php/filmsplan.php" method="post" enctype="multipart/form-data">
             <div class="user-box">
