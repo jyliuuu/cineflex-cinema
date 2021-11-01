@@ -79,34 +79,25 @@ ON p.zaal_id = z.zaal_id
 INNER JOIN zaal_stoel zs
 ON z.zaal_id = zs.zaal_id
 
-WHERE planning_id = :planning_id
-AND active = 0
-ORDER BY zaal_stoel_id";
+WHERE planning_id = :planning_id";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute(array(
     ':planning_id'  => $_POST['planning']
 ));
 
-$sql2 = "SELECT r.klant_id, p.zaal_id, zaal_stoel_id, p.planning_id AS planning
-FROM planning p
+$sql2 = "SELECT p.zaal_id, r.stoel_id
+FROM reserveringen r
 
-INNER JOIN zalen z
-ON p.zaal_id = z.zaal_id
-
-INNER JOIN zaal_stoel zs
-ON z.zaal_id = zs.zaal_id
-
-INNER JOIN reserveringen r
+INNER JOIN planning p
 ON p.planning_id = r.planning_id
 
-WHERE r.planning_id = :plan";
+WHERE r.planning_id = :plan ";
 
 $stmt2 = $conn->prepare($sql2);
 $stmt2->execute(array(
     ':plan'  => $_POST['planning']
 ));
-$r2 = $stmt2->rowCount();
 
 $sql3 = "SELECT p.zaal_id, zaal_stoel_id, p.planning_id AS planning
 FROM planning p
@@ -118,8 +109,7 @@ INNER JOIN zaal_stoel zs
 ON z.zaal_id = zs.zaal_id
 
 WHERE planning_id = :planning_id
-AND active = '1'
-ORDER BY zaal_stoel_id";
+AND active = 1";
 
 $stmt3 = $conn->prepare($sql3);
 $stmt3->execute(array(
@@ -141,21 +131,17 @@ $stmt3->execute(array(
                 <form action="php/filmreserveren.php" method="POST">
                     <li class="row row--1">
                         <div class="row">
-                            <?php
-                            for ($x = 0; $x < 90; $x++) {
 
-                            }
-                            ?>
                             <?php
-                            while ($r3 = $stmt3->fetch()) { ?>
-                            <ol class="seats">
-                                <li class="seat-taken">
-                                    <input type="hidden" name="planning" value="<?= $r3['planning'] ?>"></input>
-                                    <input type="checkbox" disabled value="<?php echo $r3['zaal_stoel_id']; ?>" name="stoelid[]"/>
-                                    <label for="<?php echo $r3['zaal_stoel_id']; ?>">X</label>
-                                </li>
-                            </ol>
-                            <?php
+                            while ($r2 = $stmt2->fetch()) { ?>
+                                <ol class="seats">
+                                    <li class="seat-taken">
+                                        <input type="hidden" name="planning" value="<?= $r3['planning'] ?>"></input>
+                                        <input type="checkbox" disabled value="<?php echo $r3['zaal_stoel_id']; ?>" name="stoelid[]"/>
+                                        <label for="<?php echo $r3['zaal_stoel_id']; ?>">X</label>
+                                    </li>
+                                </ol>
+                                <?php
                             }
                             while ($r = $stmt->fetch()) { ?>
                                 <ol class="seats">
@@ -164,11 +150,12 @@ $stmt3->execute(array(
                                         <input type="checkbox" value="<?php echo $r['zaal_stoel_id']; ?>" name="stoelid[]"/>
                                         <label for="<?php echo $r['zaal_stoel_id']; ?>"><?php echo $r['zaal_stoel_id']; ?></label>
                                     </li>
-                                </ol> <?php
+                                </ol>
+                                <?php
                             } ?>
                         </div>
                         <br>
-                    <button class="btn-transform btn-lg btn-danger" type="submit">Reserveer Ticket</button>
+                        <button class="btn-transform btn-lg btn-danger" type="submit">Reserveer Ticket</button>
                 </form>
             </ol>
             <div class="exit exit--back">

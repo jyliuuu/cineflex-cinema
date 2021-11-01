@@ -1,5 +1,5 @@
 <?php
-require "../private/connectioncineflex.php"; 
+require "../private/connectioncineflex.php";
 session_start();
 
 $planning = $_POST['planning'];
@@ -21,15 +21,6 @@ else {
             ':klantid' => $klantid,
             ':planning_id' => $planning,
             ':stoel' => $stoelid[$i]
-        ));
-
-        $sql2 = "UPDATE zaal_stoel
-                SET active = :active
-                WHERE zaal_stoel_id = :stoelid";
-        $smt2 = $conn->prepare($sql2);
-        $smt2->execute(array(
-            ':active' => '1',
-            ':stoelid' => $stoelid[$i]
         ));
     }
 
