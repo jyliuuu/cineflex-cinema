@@ -109,18 +109,14 @@ require "private/connectioncineflex.php";
             <td data-aos="fade-up" data-aos-delay="400" class="text-white"><?php echo $r['duratie'] ?></td>
         <?php 
         if ($_SESSION['rol'] == "3") { ?>
+
             <td>
-                <form action="index.php?page=filmbekijken" method="POST">
-                    <input type="hidden" name="filmid" value="<?php echo $r['film_id'] ?>">
-                    <button type="submit" class="btn btn-success" value="Submit">Bekijken</button>
-                </form>
+                <?php echo '<a href="index.php?page=filmbekijken&film_id='.$r['film_id'].'" class="btn btn-success">Bekijken</a>'; ?>
             </td>
+
         <?php } else { ?>
             <td>
-                <form action="index.php?page=filmbekijken" method="POST">
-                    <input type="hidden" value="<?= $r['film_id']; ?>" name="filmid">
-                    <button class="btn btn-success" type="submit">Bekijk</button>
-                </form>
+                <?php echo '<a href="index.php?page=filmbekijken&film_id='.$r['film_id'].'" class="btn btn-success">Bekijken</a>'; ?>
             </td>
             <td>
                 <form action="index.php?page=filmbewerken" method="POST">

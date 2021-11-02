@@ -1,7 +1,7 @@
 <?php
 include 'private/connectioncineflex.php';
 
-$filmid = $_POST['filmid'];
+$filmid = $_GET['film_id'];
 $today = date("Y-m-d", strtotime('now')); // OK
 
 $sql = "SELECT * 
@@ -35,10 +35,11 @@ $smt3->execute(array(
 
 $sql0 = "SELECT *
          FROM planning
-         WHERE film_id = :filmid";
+         WHERE film_id = :filmid AND planning_id = :planning_id";
 $smt0 = $conn->prepare($sql0);
 $smt0->execute(array(
-    ':filmid'=> $filmid
+    ':filmid'=> $filmid,
+    ':planning_id'=> $_GET['planning_id']
 ));
 
 $r0 = $smt0->fetch(PDO::FETCH_ASSOC);
@@ -192,9 +193,13 @@ $r10 = $smt10->rowCount();
                                         <form action="index.php?page=filmstickets" method="POST">
                                             <select name="planning" class="form-control limitform" id="planning">
                                                 <?php
+                                                if(isset($_GET['planning_id'])) { ?>
+                                                    <option value="<?= $r0['planning_id'] ?>"><?= $r0['begin_tijd'] ?> op <?= $r0['datum'] ?></option>
+                                                <?php } else  {
                                                     while ($r3 = $smt3->fetch(PDO::FETCH_ASSOC)) { ?>
                                                     <option value="<?= $r3['planning_id'] ?>"><?= $r3['begin_tijd'] ?> op <?= $r3['datum'] ?></option>
                                                     <?php
+                                                    }
                                                     }
                                                 ?>
                                             </select>
