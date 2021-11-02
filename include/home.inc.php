@@ -223,10 +223,7 @@ if (isset($_SESSION['melding'])) {
                             <span class="tag2"><?= $result1['naam'] ?></span>
 <?php }  ?>
                             <br>
-                            <form action="index.php?page=filmbekijken" method="POST">
-                                <input type="hidden" value="<?= $result['film_id']; ?>" name="filmid">
-                                <button class="btn-danger" type="submit">Bekijk</button>
-                            </form>
+                            <?php echo '<a href="index.php?page=filmbekijken&film_id='.$result['film_id'].'" class="btn btn-danger">Bekijken</a>'; ?>
                         </div>
                     </div>
                 </div>
