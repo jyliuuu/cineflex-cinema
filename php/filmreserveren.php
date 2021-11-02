@@ -6,6 +6,9 @@ $planning = $_POST['planning'];
 $klantid = $_SESSION['id'];
 $stoelid = $_POST['stoelid'];
 
+echo '<pre>', print_r($_POST), '</pre>';
+echo '<pre>', print_r($_SESSION), '</pre>';
+
 if (isset($_SESSION['id']) == null ) {
     $_SESSION['melding'] = 'Je moet ingelogt zijn om een film ticket te reserveren.';
     header('location: ../index.php?page=home');
@@ -25,6 +28,6 @@ else {
     }
 
     $_SESSION['melding'] = 'Jij hebt successvol een ticket gereserveerd.';
-    header('location: ../index.php?page=reserveringen');
+//    header('location: ../index.php?page=reserveringen');
 }
 ?>

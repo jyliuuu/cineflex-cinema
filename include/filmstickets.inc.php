@@ -30,16 +30,7 @@ if (isset($_SESSION['melding'])) {
 } else {
 
 }
-$seats[0] = "1";
-$seats[1] = "2";
-$seats[2] = "3";
-$seats[3] = "4";
-$seats[4] = "5";
-$seats[5] = "6";
-$seats[6] = "7";
-$seats[7] = "8";
-$seats[8] = "9";
-$seats[9] = "10";
+
 ?>
 <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
 
@@ -86,18 +77,23 @@ $stmt->execute(array(
     ':planning_id'  => $_POST['planning']
 ));
 
-$sql2 = "SELECT p.zaal_id, r.stoel_id
+$sql2 = "SELECT r.stoel_id
 FROM reserveringen r
 
 INNER JOIN planning p
 ON p.planning_id = r.planning_id
 
-WHERE r.planning_id = :plan ";
+WHERE r.planning_id = :plan 
+ORDER BY r.stoel_id";
 
 $stmt2 = $conn->prepare($sql2);
 $stmt2->execute(array(
     ':plan'  => $_POST['planning']
 ));
+$r2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+$bezet = 0;
+$blank = array("stoel_id"=>" ");
+array_push($r2, $blank);
 
 $sql3 = "SELECT p.zaal_id, zaal_stoel_id, p.planning_id AS planning
 FROM planning p
@@ -131,28 +127,28 @@ $stmt3->execute(array(
                 <form action="php/filmreserveren.php" method="POST">
                     <li class="row row--1">
                         <div class="row">
-
                             <?php
-                            while ($r2 = $stmt2->fetch()) { ?>
-                                <ol class="seats">
-                                    <li class="seat-taken">
-                                        <input type="hidden" name="planning" value="<?= $r3['planning'] ?>"></input>
-                                        <input type="checkbox" disabled value="<?php echo $r3['zaal_stoel_id']; ?>" name="stoelid[]"/>
-                                        <label for="<?php echo $r3['zaal_stoel_id']; ?>">X</label>
-                                    </li>
-                                </ol>
-                                <?php
-                            }
-                            while ($r = $stmt->fetch()) { ?>
-                                <ol class="seats">
-                                    <li class="seat">
-                                        <input type="hidden" name="planning" value="<?= $r['planning'] ?>"></input>
-                                        <input type="checkbox" value="<?php echo $r['zaal_stoel_id']; ?>" name="stoelid[]"/>
-                                        <label for="<?php echo $r['zaal_stoel_id']; ?>"><?php echo $r['zaal_stoel_id']; ?></label>
-                                    </li>
-                                </ol>
-                                <?php
+                            while ($r = $stmt->fetch()) {
+                                if ($r['zaal_stoel_id'] != $r2[$bezet]['stoel_id']) { ?>
+                                    <ol class="seats">
+                                        <li class="seat">
+                                            <input type="hidden" name="planning" value="<?= $r['planning'] ?>"></input>
+                                            <input type="checkbox" value="<?php echo $r['zaal_stoel_id']; ?>" name="stoelid[]"/>
+                                            <label for="<?php echo $r['zaal_stoel_id']; ?>"><?php echo $r['zaal_stoel_id']; ?></label>
+                                        </li>
+                                    </ol>
+                                <?php } else { ?>
+                                    <ol class="seats">
+                                        <li class="seat-taken">
+                                            <input type="hidden" name="planning" value="<?= $r['planning'] ?>"></input>
+                                            <input type="checkbox" disabled value="<?php echo $r['zaal_stoel_id']; ?>" name="stoelid[]"/>
+                                            <label for="<?php echo $r['zaal_stoel_id']; ?>">X</label>
+                                        </li>
+                                    </ol>
+                                <?php $bezet++;
+                                }
                             } ?>
+
                         </div>
                         <br>
                         <button class="btn-transform btn-lg btn-danger" type="submit">Reserveer Ticket</button>
