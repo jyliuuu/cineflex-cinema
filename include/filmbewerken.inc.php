@@ -1,7 +1,7 @@
 <?php
 include 'private/connectioncineflex.php';
 
-$id = $_POST['film_id'];
+$id = $_GET['film_id'];
 
 $sql = "SELECT * 
         FROM films 

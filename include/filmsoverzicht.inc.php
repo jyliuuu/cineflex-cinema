@@ -118,12 +118,11 @@ require "private/connectioncineflex.php";
             <td>
                 <?php echo '<a href="index.php?page=filmbekijken&film_id='.$r['film_id'].'" class="btn btn-success">Bekijken</a>'; ?>
             </td>
+
             <td>
-                <form action="index.php?page=filmbewerken" method="POST">
-                    <input type="hidden" name="film_id" value="<?php echo $r['film_id'] ?>">
-                    <button type="submit" class="btn btn-warning" value="Submit">Bewerken</button>
-                </form>
+                <?php echo '<a href="index.php?page=filmbewerken&film_id='.$r['film_id'].'" class="btn btn-primary">Bewerken</a>'; ?>
             </td>
+
             <td>
                 <form action="PHP/filmverwijderen.php" method="POST">
                     <input type="hidden" name="film_id" value="<?php echo $r['film_id'] ?>">
@@ -131,8 +130,8 @@ require "private/connectioncineflex.php";
                     <button type="submit" class="btn btn-danger" value="Submit">Verwijderen</button>
                 </form>
             </td>
-        <?php } ?>
-            
+        <?php } //buttons ^^^^ ?>
+
     </tr>
     <?php } ?>
 </table>
