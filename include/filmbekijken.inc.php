@@ -264,12 +264,9 @@ $r10 = $smt10->rowCount();
                                 ?>
                                 <div class="row">
                                     <div class="column">
-                                        <form action="index.php?page=filmbekijken" method="POST">
-                                            <input type="hidden" value="<?= $r6['film_id']; ?>" name="filmid">
                                             <img class="singlepic" id="s_img" src="data:image/png;base64,<?= $r6['poster']?>" height=220 width=160/>
                                             <p class="text-white"><?= $r6['titel'] ?></p>
-                                            <button class="btn-danger centeringbutton" type="submit">Bekijk</button>
-                                        </form>
+                                            <?php echo '<a href="index.php?page=filmbekijken&film_id='.$r6['film_id'].'" class="btn btn-success">Bekijken</a>'; ?>
                                     </div>
                                 <?php
                             }

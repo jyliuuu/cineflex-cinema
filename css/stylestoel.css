@@ -36,6 +36,10 @@ body {
   border-top-right-radius: 10px;
 }
 
+.seats{
+  list-style-type: none;
+}
+
 .seat-taken {
   background-color: #626262;
   height: 35px;

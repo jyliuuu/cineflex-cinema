@@ -28,6 +28,6 @@ else {
     }
 
     $_SESSION['melding'] = 'Jij hebt successvol een ticket gereserveerd.';
-//    header('location: ../index.php?page=reserveringen');
+    header('location: ../index.php?page=reserveringen');
 }
 ?>
