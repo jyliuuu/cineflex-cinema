@@ -66,7 +66,7 @@ $stmt->execute();
 
 <td>
     <form>
-        <?php echo '<a href="index.php?page=medewerkersbewerk&acc_id='.$r['medewerker_id'].'" class="btn btn-primary">Bewerk</a>'; ?>
+        <?php echo '<a href="index.php?page=medewerkersbewerk&acc_id='.$r['medewerker_id'].'" class="btn btn-primary">Bewerk</a>'; ?>">
     </form>
 </td>
 <td> 

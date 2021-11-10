@@ -109,20 +109,25 @@ require "private/connectioncineflex.php";
             <td data-aos="fade-up" data-aos-delay="400" class="text-white"><?php echo $r['duratie'] ?></td>
         <?php 
         if ($_SESSION['rol'] == "3") { ?>
-
             <td>
-                <?php echo '<a href="index.php?page=filmbekijken&film_id='.$r['film_id'].'" class="btn btn-success">Bekijken</a>'; ?>
+                <form action="index.php?page=filmbekijken" method="POST">
+                    <input type="hidden" name="filmid" value="<?php echo $r['film_id'] ?>">
+                    <button type="submit" class="btn btn-success" value="Submit">Bekijken</button>
+                </form>
             </td>
-
         <?php } else { ?>
             <td>
-                <?php echo '<a href="index.php?page=filmbekijken&film_id='.$r['film_id'].'" class="btn btn-success">Bekijken</a>'; ?>
+                <form action="index.php?page=filmbekijken" method="POST">
+                    <input type="hidden" value="<?= $r['film_id']; ?>" name="filmid">
+                    <button class="btn btn-success" type="submit">Bekijk</button>
+                </form>
             </td>
-
             <td>
-                <?php echo '<a href="index.php?page=filmbewerken&film_id='.$r['film_id'].'" class="btn btn-primary">Bewerken</a>'; ?>
+                <form action="index.php?page=filmbewerken" method="POST">
+                    <input type="hidden" name="film_id" value="<?php echo $r['film_id'] ?>">
+                    <button type="submit" class="btn btn-warning" value="Submit">Bewerken</button>
+                </form>
             </td>
-
             <td>
                 <form action="PHP/filmverwijderen.php" method="POST">
                     <input type="hidden" name="film_id" value="<?php echo $r['film_id'] ?>">
@@ -130,8 +135,8 @@ require "private/connectioncineflex.php";
                     <button type="submit" class="btn btn-danger" value="Submit">Verwijderen</button>
                 </form>
             </td>
-        <?php } //buttons ^^^^ ?>
-
+        <?php } ?>
+            
     </tr>
     <?php } ?>
 </table>

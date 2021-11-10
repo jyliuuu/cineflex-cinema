@@ -59,12 +59,12 @@ $stmt->execute();
                         echo "<td>";
                         {
                         while($times = $stmt2->fetch(PDO::FETCH_ASSOC) ){ ?>
-                            <?php echo '<a href="index.php?page=filmbekijken&film_id='.$movie['film_id'].'&planning_id='.$times['planning_id'].'" class="btn btn-danger">'.$times['begin_tijd'].'</a>'; ?>
-                            <input type="hidden" name="filmid" value="<?= $movie['film_id'] ?>">
+                            <form method="post" action="index.php?page=filmbekijken">
+                                <input type="hidden" name="filmid" value="<?= $movie['film_id'] ?>">
                                 <input type="hidden" name="planningid" value="<?= $times['planning_id'] ?>">
                                 <input type="hidden" name="planningtijd" value="<?= $times['begin_tijd'] ?>">
                                 <input type="hidden" name="planningdatum" value="<?= $times['datum'] ?>">
-
+                                <button type="submit" class="btn-danger"><?= $times['begin_tijd'] ?></button>
                             </form>
                             <?php
                             echo "<br>";

@@ -1,7 +1,6 @@
 <?php
 include 'private/connectioncineflex.php';
-
-$filmid = $_GET['film_id'];
+$filmid = $_POST['filmid'];
 $today = date("Y-m-d", strtotime('now')); // OK
 
 $sql = "SELECT * 
@@ -35,11 +34,10 @@ $smt3->execute(array(
 
 $sql0 = "SELECT *
          FROM planning
-         WHERE film_id = :filmid AND planning_id = :planning_id";
+         WHERE film_id = :filmid";
 $smt0 = $conn->prepare($sql0);
 $smt0->execute(array(
-    ':filmid'=> $filmid,
-    ':planning_id'=> $_GET['planning_id']
+    ':filmid'=> $filmid
 ));
 
 $r0 = $smt0->fetch(PDO::FETCH_ASSOC);
@@ -193,13 +191,9 @@ $r10 = $smt10->rowCount();
                                         <form action="index.php?page=filmstickets" method="POST">
                                             <select name="planning" class="form-control limitform" id="planning">
                                                 <?php
-                                                if(isset($_GET['planning_id'])) { ?>
-                                                    <option value="<?= $r0['planning_id'] ?>"><?= $r0['begin_tijd'] ?> op <?= $r0['datum'] ?></option>
-                                                <?php } else  {
                                                     while ($r3 = $smt3->fetch(PDO::FETCH_ASSOC)) { ?>
                                                     <option value="<?= $r3['planning_id'] ?>"><?= $r3['begin_tijd'] ?> op <?= $r3['datum'] ?></option>
                                                     <?php
-                                                    }
                                                     }
                                                 ?>
                                             </select>
@@ -264,9 +258,12 @@ $r10 = $smt10->rowCount();
                                 ?>
                                 <div class="row">
                                     <div class="column">
+                                        <form action="index.php?page=filmbekijken" method="POST">
+                                            <input type="hidden" value="<?= $r6['film_id']; ?>" name="filmid">
                                             <img class="singlepic" id="s_img" src="data:image/png;base64,<?= $r6['poster']?>" height=220 width=160/>
                                             <p class="text-white"><?= $r6['titel'] ?></p>
-                                            <?php echo '<a href="index.php?page=filmbekijken&film_id='.$r6['film_id'].'" class="btn btn-success">Bekijken</a>'; ?>
+                                            <button class="btn-danger centeringbutton" type="submit">Bekijk</button>
+                                        </form>
                                     </div>
                                 <?php
                             }

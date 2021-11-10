@@ -104,7 +104,8 @@ ON p.zaal_id = z.zaal_id
 INNER JOIN zaal_stoel zs
 ON z.zaal_id = zs.zaal_id
 
-WHERE planning_id = :planning_id";
+WHERE planning_id = :planning_id
+AND active = 1";
 
 $stmt3 = $conn->prepare($sql3);
 $stmt3->execute(array(
@@ -124,25 +125,26 @@ $stmt3->execute(array(
             </div>
             <ol class="cabin">
                 <form action="php/filmreserveren.php" method="POST">
+                    <li class="row row--1">
                         <div class="row">
                             <?php
-                            while ($r = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            while ($r = $stmt->fetch()) {
                                 if ($r['zaal_stoel_id'] != $r2[$bezet]['stoel_id']) { ?>
-                                    <ul class="seats">
+                                    <ol class="seats">
                                         <li class="seat">
                                             <input type="hidden" name="planning" value="<?= $r['planning'] ?>"></input>
-                                            <input type="checkbox" value="<?php echo $r['zaal_stoel_id'] ?>" name="stoelid[]"/>
-                                            <label for="<?php echo $r['zaal_stoel_id'] ?>"><?php echo $r['zaal_stoel_id'] ?></label>
+                                            <input type="checkbox" value="<?php echo $r['zaal_stoel_id']; ?>" name="stoelid[]"/>
+                                            <label for="<?php echo $r['zaal_stoel_id']; ?>"><?php echo $r['zaal_stoel_id']; ?></label>
                                         </li>
-                                    </ul>
+                                    </ol>
                                 <?php } else { ?>
-                                    <ul class="seats">
+                                    <ol class="seats">
                                         <li class="seat-taken">
                                             <input type="hidden" name="planning" value="<?= $r['planning'] ?>"></input>
-                                            <input type="checkbox" disabled value="<?php echo $r['zaal_stoel_id'] ?>" name="stoelid[]"/>
-                                            <label for="<?php echo $r['zaal_stoel_id'] ?>">X</label>
+                                            <input type="checkbox" disabled value="<?php echo $r['zaal_stoel_id']; ?>" name="stoelid[]"/>
+                                            <label for="<?php echo $r['zaal_stoel_id']; ?>">X</label>
                                         </li>
-                                    </ul>
+                                    </ol>
                                 <?php $bezet++;
                                 }
                             } ?>

@@ -1,8 +1,7 @@
 
 <?php 
 require "private/connectioncineflex.php"; 
-// WORK IN PROGRESS . . .
-$today = date("Y-m-d", strtotime('now'));
+// WORK IN PROGRESS . . . 
 ?>
 
 <head>
@@ -84,13 +83,10 @@ $today = date("Y-m-d", strtotime('now'));
                 ON r.planning_id = p.planning_id
                 INNER JOIN films f
                 ON p.film_id = f.film_id
-                WHERE k.klant_id = :klantid
-                AND datum >= :datum';
-
+                WHERE k.klant_id = :klantid';
                 $sth = $conn->prepare($sql);
                 $sth->execute(array(
-                    ':klantid' => $klantid,
-                    ':datum'   => $today
+                    ':klantid' => $klantid
                 ));
             }
             else {
@@ -101,12 +97,9 @@ $today = date("Y-m-d", strtotime('now'));
                 INNER JOIN planning p 
                 ON r.planning_id = p.planning_id
                 INNER JOIN films f
-                ON p.film_id = f.film_id
-                WHERE datum >= :datum';
+                ON p.film_id = f.film_id';
                 $sth = $conn->prepare($sql);
-                $sth->execute(array(
-                        ':datum'    => $today
-                ));
+                $sth->execute();
             }
 
             while ($r = $sth->fetch(PDO::FETCH_ASSOC)) { ?>
