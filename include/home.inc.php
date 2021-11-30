@@ -122,60 +122,6 @@ if (isset($_SESSION['melding'])) {
                     van reclame. En dit allemaal voor één lage prijs per maand. Er valt altijd iets nieuws te
                     ontdekken
                     en elke week worden er nieuwe series en films toegevoegd!</p>
-
-            </div>
-            <div class="empty">
-                <br>
-            </div>
-            <div class="ml-lg-auto col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="700">
-                <div class="team-thumb">
-                    <img src="images/team/team-image.jpg" class="img-fluid" alt="Trainer" style="max-height: 270px">
-
-                    <div class="team-info d-flex flex-column">
-
-                        <h3>Huzaifa Balaksi</h3>
-                        <span>Software Developer</span>
-
-                        <ul class="social-icon mt-3">
-                            <li><a href="https://www.instagram.com" class="fa fa-twitter"></a></li>
-                            <li><a href="https://www.instagram.com" class="fa fa-instagram"></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="mr-lg-auto mt-5 mt-lg-0 mt-md-0 col-lg-3 col-md-6 col-12" data-aos="fade-up"
-                 data-aos-delay="800">
-                <div class="team-thumb">
-                    <img src="images/team/jacky.jpg" class="img-fluid" alt="Trainer" style="max-height: 270px">
-
-                    <div class="team-info d-flex flex-column">
-
-                        <h3>Jacky Liu</h3>
-                        <span>Software Developer</span>
-
-                        <ul class="social-icon mt-3">
-                            <li><a href="#" class="fa fa-instagram"></a></li>
-                            <li><a href="#" class="fa fa-facebook"></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="mr-lg-auto mt-5 mt-lg-0 mt-md-0 col-lg-3 col-md-6 col-12" data-aos="fade-up"
-                 data-aos-delay="800">
-                <div class="team-thumb">
-                    <img src="images/team/dion.jpg" class="img-fluid" alt="Trainer" style="max-height: 270px">
-
-                    <div class="team-info d-flex flex-column">
-
-                        <h3>Dion Muller</h3>
-                        <span>Software Developer</span>
-
-                        <ul class="social-icon mt-3">
-                            <li><a href="#" class="fa fa-instagram"></a></li>
-                            <li><a href="#" class="fa fa-facebook"></a></li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
